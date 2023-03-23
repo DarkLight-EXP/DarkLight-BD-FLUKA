@@ -1,0 +1,2854 @@
+* Mean free path biasing, material based.
+* Reduce the inelastic (photon-hadron) interaction length of photons by a factor of 0.02 to improve statistics.
+* Necessary in order to sample with acceptable statistics photonuclear reactions which have a much lower probability than competing electromagnetic photon reactions,
+* but are often more important from the radiological point of view.
+LAM-BIAS         0.0      0.02              PHOTON
+* Leading particle biasing, region by region.
+* LPB is applied below 1MeV for e+, e-, and  gammas.
+* Kinetic energy for electrons, and total energy plus rest mass for positrons.
+EMF-BIAS        254.      .001      .001  AirSpace  @LASTREG        1.LPBEMF
+TITLE
+Shielding Calculation for eLINAC Beam Dump
+GLOBAL                                         1.0       1.0          OLDFLAIR
+DEFAULTS                                                              PRECISIO
+* 25 MeV beam, sigma = 0.6 cm , FWHM = 2.355 * 0.6 = 1.413
+BEAM           -.052                        -1.413    -1.413       1.0ELECTRON
+BEAMAXES         0.0        1.       0.0        1.       0.0       0.0
+* Beam starts at point (x,y,z) and along x-axis into the dump, assuming Beamline height is 2.5ft
+* Origin is (West wall, Hall floor, South wall)
+* - Use 1949 for checking effects of Hatch2 on Service Tunnel
+* -131.5 is where the 4x4 cm beam first hits the IP.
+* - The 0.43 cm shift in y is due to not accounting for the beam dispersion in the simulation.  More realistic irradiation of the BD
+* in the down stream direction and only for thermal and stress analyses.
+* X = -135
+!@what.2= Beam_Y
+!@what.3= 3040-98.5
+BEAMPOS        -490.       76.    2941.5
+#if 0
+* Physics and biasing control cards heavy recoils and ions are treated
+EVENTYPE                              1.                              EVAP
+#endif
+* Applying new evaporation module
+PHYSICS           3.                                                  EVAPORAT
+PHYSICS           1.                                                  COALESCE
+* All photonuclear interactions are activated in the required materials
+PHOTONUC          1.                        VACUUM  @LASTMAT        1.
+BIASING          0.0        1.        1.     WN1_1                    PRINT
+BIASING          0.0        1.        1.     WW1_1                    PRINT
+BIASING          0.0        1.        1.     Fl1_1                    PRINT
+BIASING          0.0        1.        5.     WN1_2                    PRINT
+BIASING          0.0        1.        5.     WW1_2                    PRINT
+BIASING          0.0        1.        5.     Fl1_2                    PRINT
+BIASING          0.0        1.       25.     WN1_3                    PRINT
+BIASING          0.0        1.       25.     WW1_3                    PRINT
+BIASING          0.0        1.       25.     Fl1_3                    PRINT
+BIASING          0.0        1.      125.     WN1_4                    PRINT
+BIASING          0.0        1.      125.     WW1_4                    PRINT
+BIASING          0.0        1.      125.     Fl1_4                    PRINT
+BIASING          0.0        1.      625.     WN1_5                    PRINT
+BIASING          0.0        1.      625.     WW1_5                    PRINT
+BIASING          0.0        1.      625.     Fl1_5                    PRINT
+BIASING          0.0        1.     3125.     WN1_6                    PRINT
+BIASING          0.0        1.     3125.     WW1_6                    PRINT
+BIASING          0.0        1.     3125.     Fl1_6                    PRINT
+BIASING          0.0        1.    15625.     WN1_7                    PRINT
+BIASING          0.0        1.    15625.     Fl1_7                    PRINT
+* Maximum allowed = 100000
+* region importance (allowed values range from 0.0001 to 100000.0)
+BIASING          0.0        1.        1.    USsSh1                    PRINT
+BIASING          0.0        1.        1.  InSteel1                    PRINT
+BIASING          0.0        1.        1.   USCshS1                    PRINT
+BIASING          0.0        1.        1.   SS_pt_1                    PRINT
+BIASING          0.0        1.        1.   USCshT1                    PRINT
+BIASING          0.0        1.        4.    UScSh1                    PRINT
+BIASING          0.0        1.        4.   USCshS2                    PRINT
+BIASING          0.0        1.        4.  InSteel2                    PRINT
+BIASING          0.0        1.        4.   USCshS3                    PRINT
+BIASING          0.0        1.        4.   SS_pt_2                    PRINT
+BIASING          0.0        1.        4.   SS_pb_1                    PRINT
+BIASING          0.0        1.        4.   USCshT2                    PRINT
+BIASING          0.0        1.       16.    USsSh2                    PRINT
+BIASING          0.0        1.       16.  InSteel3                    PRINT
+BIASING          0.0        1.       16.   SS_pt_3                    PRINT
+BIASING          0.0        1.       16.   SS_pb_2                    PRINT
+BIASING          0.0        1.       16.   USCshT3                    PRINT
+BIASING          0.0        1.       64.   UcSh2_1                    PRINT
+BIASING          0.0        1.       64.   USCshS4                    PRINT
+BIASING          0.0        1.       64.   InSt4_1                    PRINT
+BIASING          0.0        1.      256.   UcSh2_2                    PRINT
+BIASING          0.0        1.      256.   USCshS5                    PRINT
+BIASING          0.0        1.      256.   InSt4_2                    PRINT
+BIASING          0.0        1.     1024.    USsSh3                    PRINT
+BIASING          0.0        1.     1024.   USCshS6                    PRINT
+BIASING          0.0        1.     1024.  InSteel5                    PRINT
+BIASING          0.0        1.     4096.   UcSh3_1                    PRINT
+BIASING          0.0        1.     4096.    InS6_1                    PRINT
+BIASING          0.0        1.    16384.   UcSh3_2                    PRINT
+BIASING          0.0        1.    16384.    InS6_2                    PRINT
+BIASING          0.0        1.    49152.    USsSh4                    PRINT
+BIASING          0.0        1.    49152.  InSteel7                    PRINT
+BIASING          0.0        1.    98304.    UScSh4                    PRINT
+BIASING          0.0        1.    98304.  InSteel8                    PRINT
+BIASING          0.0        1.    98304.  AirSpace                    PRINT
+BIASING          0.0        1.    98304.  rFlange1                    PRINT
+USERDUMP        100.       49.                                        USpart.dat
+*USERDUMP        100.       49.                                        USpart.dat
+ROT-DEFI         0.0       0.0      -45.                              AngW
+RANDOMIZ          1.1140504738
+START       2000000.                                     0.0
+GEOBEGIN                                                              COMBNAME
+    0    0          
+* Black body
+SPH blkbody    0.0 0.0 0.0 10000000.0
+* Void sphere for potential region of interest
+SPH void       0.0 0.0 0.0 10000.0
+*
+* Beam stop, Iron, 5cm radius, 10cm long, placed at (beam axis, 2.5ft above floor,m downstream)
+* - Use 1050 for checking effects of Hatch2 on Service Tunnel
+RCC bTarget    -740. 76. 1060. 0.0 0.0 10. 5.
+* 5' thick starting at North wall
+RPP bFloor1    -3080. 330. -152.4 0.0 2034. 4540.
+* For biasing
+XZP pFl1_1     -20.
+!@what.1= 2*(-20)
+XZP pFl1_2     -40.
+!@what.1=3*(-20)
+XZP pFl1_3     -60.
+!@what.1=4*(-20)
+XZP pFl1_4     -80.
+!@what.1=5*(-20)
+XZP pFl1_5     -100.
+!@what.1=6*(-20)
+XZP pFl1_6     -120.
+* 4' at 33' from the North wall going towards south wall
+RPP bFloor2    -3080. 330. -121.92 0.0 -135. 2034.
+* Soil under the concrte floor
+RPP bSoilF     -3080. 330. -510. -121.92 -135. 4540.
+* Roof beams, Concrete, 5ft thick, covers to 22.2m
+!@what.4=853+152.4
+RPP bRoof      -2430. 30. 853. 1005.4 -80. 2329.
+!@what.4= 427+183
+!@what.5= 3040-828
+RPP bCeiling   -2410. 10. 427. 610. 2212. 3040.
+RPP WallStk    -2520.0 120.0 600.0 1006.0 2210.0 2340.0
+* - Extra concrete shielding at edge of Roof Beams, 90x120cm, wide by tall
+RPP bBlkE      -2520.5 -2430.5 840. 960. -80. 2220.
+RPP bWallW1    0.0 121.9 -1. 762. 2650. 3190.
+* For biasing
+YZP pWW1_1     20.
+!@what.1= 2*(20)
+YZP pWW1_2     40.
+!@what.1= 3*(20)
+YZP pWW1_3     60.
+!@what.1= 4*(20)
+YZP pWW1_4     80.
+!@what.1= 5*(20)
+YZP pWW1_5     100.
+RPP bWallW2    0.0 121.9 -1. 762. -110. 2650.
+* - Extra concrete shielding at edge of Roof Beams, 90x120cm, wide by tall
+RPP bBlkW      30.5 120.5 762.0 914.4 -80.0 2240.0
+RPP bWallE     -2850. -2400. -1. 853. -110. 3190.
+* Norht wall 1 (next to the dump) Top - extends to the angled wall (x = 532 cm)
+* (y = 168 to roof top)
+*
+!@what.1= 121.9 -650
+!@what.2= 121.9
+!@what.5= 3040. - 35
+RPP bWallN1T   -528.10000000000002 121.90000000000001 167.6 853. 3005. 3190.
+* Norht wall 1 (next to the dump) Bottom - extends to the angled wall (x = 532 cm)
+* (floor to a height of 168)
+!@what.1= 121.9 - 650
+!@what.2= 121.9
+RPP bWallN1B   -528.10000000000002 121.90000000000001 -1. 168. 3040. 3190.
+!@what.1= 3040+1*20
+XYP pWN1_1     3060.
+!@what.1= 3040+2*20
+XYP pWN1_2     3080.
+!@what.1= 3040+3*20
+XYP pWN1_3     3100.
+!@what.1= 3040+4*20
+XYP pWN1_4     3120.
+!@what.1= 3040+5*20
+XYP pWN1_5     3140.
+!@what.1= 3040+6*20
+XYP pWN1_6     3160.
+* Plane for the angled North wall to the north and top of the BD
+!@what.2= cos(44*deg)
+!@what.3=sin(44*deg)
+PLA pWallN1    0.0 0.71933980033865119 0.69465837045899725 -134.7 167.6 3040.
+!@what.2= 130 - 650
+RPP bWallN2    -2880. -520. -1. 853. 3040. 3190.
+!@what.2= 330
+RPP bSoilN     -902. 330. -1. 853. 3190. 3398.
+* - Extra concete for the S wall
+RPP bWallS1    -1555. -645. 0.0 853. 0.0 90.
+* - Extra concete for the S wall
+RPP bWallS2    -2400. -1555. 0.0 465. -60. 30.
+* - Extra concete for the S wall
+RPP bWallS3    -2400. -1555. 465. 652.5 -60. 0.0
+* - Extra concrete between old pHall wall and stairwell wall plus the stairwell wall
+RPP bWallS4    -2400. -1635. 652.5 840. -180. -120.
+* - Reworked the (previously) existing South Wall to include more detail
+RPP bWSEx1     -855. 121.9 -1. 762. -135. 0.0
+RPP bWSEx2     -1635. -855. 0.0 375. -120. 0.0
+RPP bWSEx3     -1635. -855. 375. 853. -100. 0.0
+RPP bWSEx4     -2400. -1635. 0.0 652.5 -180. -60.
+RPP bWSEx5     -2400. -1635. 652.5 853. -120. 0.0
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGp22   -2430. 30. 853. 1005. 2219.5 2220.
+* - Iron Filler between roof beams, Iron, 0.5cm wide by 15cm deep
+!@what.3=1005-15
+RPP bFe22      -2430. 30. 990. 1005. 2219.5 2220.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGp21   -2430. 30. 853. 1005. 2119.5 2120.
+* - Iron Filler between roof beams, Iron, 0.5cm wide by 15cm deep
+!@what.3=1005-15
+RPP bFe21      -2430. 30. 990. 1005. 2119.5 2120.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGp20   -2430. 30. 853. 1005. 2019.5 2020.
+!@what.3=1005-15
+RPP bFe20      -2430. 30. 990. 1005. 2019.5 2020.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGp19   -2430. 30. 853. 1005. 1919.5 1920.
+!@what.3=1005-15
+RPP bFe19      -2430. 30. 990. 1005. 1919.5 1920.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGp18   -2430. 30. 853. 1005. 1819.5 1820.
+!@what.3=1005-15
+RPP bFe18      -2430. 30. 990. 1005. 1819.5 1820.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGp17   -2430. 30. 853. 1005. 1719.5 1720.
+!@what.3=1005-15
+RPP bFe17      -2430. 30. 990. 1005. 1719.5 1720.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGp16   -2430. 30. 853. 1005. 1619.5 1620.
+!@what.3=1005-15
+RPP bFe16      -2430. 30. 990. 1005. 1619.5 1620.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGp15   -2430. 30. 853. 1005. 1519.5 1520.
+!@what.3=1005-15
+RPP bFe15      -2430. 30. 990. 1005. 1519.5 1520.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGp14   -2430. 30. 853. 1005. 1419.5 1420.
+!@what.3=1005-15
+RPP bFe14      -2430. 30. 990. 1005. 1419.5 1420.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGp13   -2430. 30. 853. 1005. 1319.5 1320.
+!@what.3=1005-15
+RPP bFe13      -2430. 30. 990. 1005. 1319.5 1320.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP AirGap12   -2430. 30. 853. 1005. 1219.5 1220.
+!@what.3=1005-15
+RPP bFe12      -2430. 30. 990. 1005. 1219.5 1220.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGp11   -2430. 30. 853. 1005. 1119.5 1120.
+!@what.3=1005-15
+RPP bFe11      -2430. 30. 990. 1005. 1119.5 1120.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGp10   -2430. 30. 853. 1005. 1019.5 1020.
+!@what.3=1005-15
+RPP bFe10      -2430. 30. 990. 1005. 1019.5 1020.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGp9    -2430. 30. 853. 1005. 919.5 920.
+!@what.3=1005-15
+RPP bFe9       -2430. 30. 990. 1005. 919.5 920.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGap8   -2430. 30. 853. 1005. 819.5 820.
+!@what.3=1005-15
+RPP bFe8       -2430. 30. 990. 1005. 819.5 820.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGap7   -2430. 30. 853. 1005. 719.5 720.
+!@what.3=1005-15
+RPP bFe7       -2430. 30. 990. 1005. 719.5 720.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGap6   -2430. 30. 853. 1005. 619.5 620.
+!@what.3=1005-15
+RPP bFe6       -2430. 30. 990. 1005. 619.5 620.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGap5   -2430. 30. 853. 1005. 519.5 520.
+!@what.3=1005-15
+RPP bFe5       -2430. 30. 990. 1005. 519.5 520.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGap4   -2430. 30. 853. 1005. 419.5 420.
+!@what.3=1005-15
+RPP bFe4       -2430. 30. 990. 1005. 419.5 420.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGap3   -2430. 30. 853. 1005. 319.5 320.
+!@what.3=1005-15
+RPP bFe3       -2430. 30. 990. 1005. 319.5 320.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGap2   -2430. 30. 853. 1005. 219.5 220.
+!@what.3=1005-15
+RPP bFe2       -2430. 30. 990. 1005. 219.5 220.
+* Air Gap between roof beams, Air, 0.5cm
+!@what.4= 853+152
+RPP bAirGap1   -2430. 30. 853. 1005. 119.5 120.
+!@what.3=1005-15
+RPP bFe1       -2430. 30. 990. 1005. 119.5 120.
+* - Tunnel opening in N wall
+RPP bTunOp     -1505. -909. 0.0 274.3 3040. 3190.
+* - Small door in South Wall, 100x240cm opening
+RPP bOpSmS     -2015. -1915. 0.0 240. -180. 30.
+* - Series of blocks to form maze in SE corner
+* - F blocks sit on the floor and span 0 to 240
+* - R blocks form the covering roof and span 240 to 330
+RPP bSEBlk1F   -2005. -1824. 0.0 240.0 30.0 210.
+RPP bSEBlk2F   -2095.0 -2005. 0.0 240.0 30.0 120.0
+RPP bSEBlk3F   -2095.0 -2005.0 0.0 240.0 120.0 300.0
+RPP bSEBlk4F   -2095.0 -2005.0 0.0 240.0 300.0 480.0
+RPP bSEBlk5F   -2365.0 -2185.0 0.0 240.0 30.0 120.0
+RPP bSEBlk6F   -2275.0 -2185.0 0.0 240.0 120.0 300.0
+RPP bSEBlk7F   -2275.0 -2185.0 0.0 240.0 300.0 480.0
+RPP bSEBlk8F   -2275.0 -2185.0 0.0 240.0 480.0 660.0
+RPP bSEBlk9F   -2400.0 -2220.0 0.0 240.0 750.0 840.0
+* - Poly door in SE maze with ~2cm air gap all around
+RPP bSEDoor    -2240.0 -2235.0 2.0 238.0 662.5 747.5
+RPP bSEBlkaF   -2095.0 -2005.0 0.0 240.0 480.0 660.0
+RPP bSEBlkbF   -2095.0 -2005.0 0.0 240.0 660.0 840.0
+RPP bSEBlkcF   -2095.0 -2005.0 0.0 240.0 840.0 1020.0
+RPP bSEBlkdF   -2275.0 -2095.0 0.0 240.0 930.0 1020.0
+RPP bSEBlk1R   -2400.0 -1900.0 240.0 330.0 30.0 130.0
+RPP bSEBlk2R   -2400. -2010. 240. 330. 130. 490.
+RPP bSEBlk3R   -2400.0 -2240.0 240.0 330.0 490.0 830.0
+RPP bSEBlkaR   -2240.0 -2010.0 240.0 330.0 490.0 1000.0
+* - Big Door in S wall, 7x8ft opening
+RPP bOpBigS    -1545. -1335. 0.0 240. -120. 0.
+* - Big Door in S wall, larger opening through newly poured concrete
+RPP bOpBigS2   -1555. -1335. 0.0 240. 0.0 90.
+* - Concrete wall to South of eventual Ring
+RPP bBlockS    -940. -220. 0.0 240. 360. 450.
+* - Canopies over eventual Ring
+RPP bCanNS     -400. 0.0 240. 300. 1000. 2000.
+RPP bCanEW     -800. 0.0 240. 300. 700. 1000.
+*  - Opening to Cyclotron Vault, 240x240cm
+RPP bCycOp     -2850. -2400. 0.0 240. 140. 380.
+* Chases that would be "Jay"-shaped placed in WallStk
+RPP bJayUp1    -772. -708. 746. 990. 2288. 2300.
+RPP bJayDn1    -772. -708. 734. 746. 2220. 2300.
+RPP bJayUp2    -1572. -1508. 746. 990. 2288. 2300.
+RPP bJayDn2    -1572. -1508. 734. 746. 2220. 2300.
+RPP bJayUp3    -1772. -1708. 746. 990. 2288. 2300.
+RPP bJayDn3    -1772. -1708. 734. 746. 2220. 2300.
+* - Chase for cryo lines
+RPP bCrOpAir   -945. -865. 630. 655. -220. -100.
+* - 10cm Poly
+RPP bCrOpPol   -955. -855. 620. 665. -220. -100.
+* - NE Maze, construction similar to SE Maze above
+* - Small opening for NE Maze exit, 90x240cm, through WallStk and onto Ceiling over BL4N
+RPP bOpSmN     -2400. -2310. 610. 840. 2220. 2329.
+RPP bNEBlk1F   -2310. -2220. 610. 840. 2374.4 2550.
+RPP bNEBlk2F   -2310. -2220. 610. 840. 2550. 2730.
+RPP bNEBlk3F   -2400. -2220. 610. 840. 2820. 2910.
+RPP bNEBlkaF   -2220. -2040. 610. 840. 2820. 2910.
+RPP bNEBlkbF   -2130. -2040. 610. 840. 2640. 2820.
+* - Must touch WallStk
+RPP bNEBlk1R   -2400. -2220. 840. 960. 2374.4 2910.
+* Angled plane on the North side
+!@what.1= cos(45*deg)
+!@what.3= -cos(45*deg)
+PLA pAngW_N    0.70710678118654757 0.0 -0.70710678118654757 -909.2 0.0 3190.
+* Angled plane on the South side
+!@what.1= cos(45*deg)
+!@what.3= -cos(45*deg)
+PLA pAngW_S    0.70710678118654757 0.0 -0.70710678118654757 -532.2 0.0 3040.
+* Angled plane for the hole to the tunnel on the West side
+!@what.1=cos(50*deg)
+!@what.3=cos(40*deg)
+PLA pHoleE_W   0.64278760968653936 0.0 0.76604444311897801 -841.3 0.0 3040.
+* Angled plane for the hole to the tunnel on the East side
+!@what.1=cos(50*deg)
+!@what.3=cos(40*deg)
+PLA pHoleE_E   0.64278760968653936 0.0 0.76604444311897801 -1048. 0.0 3040.
+YZP pHole_ZY   -920.
+XZP pHole_ZX   152.4
+RPP bAngBody   -1600. -480. 0.0 427. 2370. 3040.
+*$start_transform AngW
+#if 0
+RPP bAngWall   -2898.57211744 -2523.87211744 0.0 853.0 724.78445071621
+              1785.444622496
+#endif
+*$end_transform 
+#if 0
+* - Hole to allow electron beam pipe through angled wall, 30cm radius
+* - Doglegs from X -760 to -890 and Y 75 to 45
+RCC bAngHole   -759. 75. 2765. -132. -30. 175. 30.
+#endif
+#if 0
+* - Opening in AngWall for Dipole, 70x70x70cm
+RPP bDipHole   -925. -855. 0.0 70. 2905. 2975.
+#endif
+#if 0
+RPP bAngCon    -1170. -787. 0.0 240. 2825. 3190.
+#endif
+#if 0
+* - Plane for making rAngCon
+PLA bPlaAng    -268800. 0.0 268800. -1130. 0.0 2909.1169
+#endif
+#if 0
+* - Plane for making rAngCon, orthogonal to bPlaAng
+PLA bPlaOrth   268800. 0.0 268800. -1080. 0.0 2950.
+#endif
+* Electron beam pipe hole in North wall - entrance to the tunnel
+RCC bHoleN     -877.2 45.5 3040. 0.0 0.0 150. 22.8
+* Concrete shielding for Klystron area, 10ft tall
+!@what.1= -1087.5 - 30.5
+!@what.2= -1087.5
+!@what.5= 3040 - 758.7 - 1391.2
+!@what.6= 3040 - 758.7
+RPP bKlyW_W1   -1118. -1087.5 0.0 180.4 890.10000000000014 2281.3000000000002
+!@what.1= -1087.5 - 30.5 - 91.4
+!@what.2= -1087.5 - 30.5
+!@what.5= 3040 - 758.7 - 1391.2
+!@what.6= 3040 - 758.7
+RPP bKlyW_E    -1209.4000000000001 -1118. 0.0 304.8 890.10000000000014
+              2281.3000000000002
+!@what.1= -1087.5 - 30.5 - 91.4
+!@what.2= -1087.5 - 30.5
+!@what.5= 3040 - 758.7 - 1391.2  - 182.8
+!@what.6= 3040 - 758.7 - 1391.2
+RPP bKlyW_W2   -1209.4000000000001 -1118. 0.0 243.8 707.30000000000018
+              890.10000000000014
+!@what.2= -1087.5
+!@what.5= 3040 -786.0
+!@what.6= 3040 -464
+RPP bProtE     -2400. -1087.5 0.0 420. 2254. 2576.
+#if 0
+* - Angled shielding wall for eGun (bulk, before getting sliced by planes)
+*
+* Original
+RPP bGunWall   -1130. -776.0898 0.0 300. 520. 732.9904
+#endif
+* - Beam pipe, 3mm thick Al wall, filled with vacuum
+!@what.2= Beam_Y
+RCC bBmPipe    -740. 76. 1250. 0.0 0.0 1450. 2.8
+!@what.2= Beam_Y
+RCC bBmVac     -740. 76. 1250. 0.0 0.0 1450. 2.5
+* - South running Beam pipe, 3mm thick Al wall, filled with vacuum
+!@what.2= Beam_Y
+RCC bBmPipe2   -240. 76. 2000. 0.0 0.0 -1010. 2.8
+!@what.2= Beam_Y
+RCC bBmVac2    -240. 76. 2000. 0.0 0.0 -1010. 2.5
+* - SouthEast running Beam pipe, 3mm thick Al wall, filled with vacuum
+!@what.2= Beam_Y
+RCC bBmPipe3   -340. 76. 560. 70.70 0.0 70.70 2.8
+!@what.2= Beam_Y
+RCC bBmVac3    -340. 76. 560. 70.70 0.0 70.70 2.5
+* - East running Beam pipe, 3mm thick Al wall, filled with vacuum
+* - should end at -630+300= -340, but cut it short to not overlap with SE leg
+!@what.2= Beam_Y
+RCC bBmPipe4   -640. 76. 560. 280. 0.0 0.0 2.8
+!@what.2= Beam_Y
+RCC bBmVac4    -640. 76. 560. 280. 0.0 0.0 2.5
+* - Beam pipe, 1.651 mm (0.065") thick SS wall, filled with vacuum, running West to New Dump
+* - Outer diameter = 6.35 cm
+!@what.1= BD_FF_new
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+!@what.7= 3.175
+RCC bBP0Wall   -149.90000000000001 76. 2941.5 -113.6 0.0 0.0 3.1749999999999998
+!@what.1= BD_FF_new
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+!@what.7= 3.175 - 0.1651
+RCC bBP0Vac    -149.90000000000001 76. 2941.5 -113.6 0.0 0.0 3.0099
+* - Beam pipe, 1.651 mm (0.065")  thick SS wall, filled with vacuum, running West to New Dump
+* - Outer diameter = 5.08 cm
+!@what.1= BD_FF_new - 113.6
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+!@what.7= 2.54
+RCC bBP1Wall   -263.5 76. 2941.5 -237. 0.0 0.0 2.54
+!@what.1= BD_FF_new - 113.6
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+!@what.7= 2.54- 0.1651
+RCC bBP1Vac    -263.5 76. 2941.5 -237. 0.0 0.0 2.3749000000000002
+* - Bent pipe at MB4
+* - Outer diameter = 5.08 cm
+!@what.2= Beam_Y
+!@what.3= Beam_Z  + 0.3397
+!@what.4= -100*cos(30*deg)
+!@what.6= - 100*sin(30*deg)
+RCC bBP2Wall   -499.25 76. 2941.8397 -86.602540378443877 0.0 -49.999999999999993
+              2.54
+!@what.2= Beam_Y
+!@what.3= Beam_Z + 0.3397
+!@what.4= -100*cos(30*deg)
+!@what.6= - 100*sin(30*deg)
+!@what.7= 2.54- 0.1651
+RCC bBP2Vac    -499.25 76. 2941.8397 -86.602540378443877 0.0 -49.999999999999993
+              2.3749000000000002
+* Flange 1: diameter 11.4 cm, 3.81 cm thick, ss
+!@what.1= BD_FF_new - 28.62 - 73.38 - 11.6
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+RCC bFl_G1     -263.5 76. 2941.5 -3.81 0.0 0.0 5.7
+* 24 wafers, each 0.05 mm, extended space= 12 mm (8 mm ss + 4 mm air)
+!@what.1= BD_FF_orig- 28.62 - 73.38  - 5.55
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+RCC bBellow1   -269.05000000000001 76. 2941.5 -0.8 0.0 0.0 5.
+* 24 wafers, each 0.05 mm, extended space= 12 mm (8 mm ss + 4 mm air)
+!@what.1= BD_FF_orig - 28.62 - 73.38 - 10.55
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+RCC bBellow2   -274.05000000000001 76. 2941.5 +0.8 0.0 0.0 5.
+* BPM6 Stainless steel, 0.851 cm thick
+* Xmin = BD_FF_orig - 28.62 - 73.38 - 9.75
+* Xmax = BD_FF_orig - 28.62 - 73.38 - 6.35
+!@what.1= BD_FF_orig - 28.62 - 73.38 - 9.75
+!@what.2= BD_FF_orig - 28.62 - 73.38 - 6.35
+!@what.3= Beam_Y - 3.391
+!@what.4= Beam_Y + 3.391
+!@what.5= Beam_Z - 3.391
+!@what.6= Beam_Z + 3.391
+RPP bBPM6bS    -273.25 -269.85000000000002 72.608999999999995 79.391000000000005
+              2938.1089999999999 2944.8910000000001
+* BPM Air
+!@what.1= BD_FF_orig - 28.62 - 73.38 - 9.75 + 0.3211
+!@what.2= BD_FF_orig - 28.62 - 73.38 - 6.35 - 0.3211
+!@what.3= Beam_Y - 3.391 + 0.851
+!@what.4= Beam_Y + 3.391 - 0.851
+!@what.5= Beam_Z - 3.391 + 0.851
+!@what.6= Beam_Z + 3.391 - 0.851
+RPP bBPM6bA    -272.9289 -270.17110000000002 73.459999999999994
+              78.540000000000006 2938.96 2944.04
+* Top Plane (North side)
+!@what.4= BD_FF_orig - 28.62 - 73.38 - 9.75
+!@what.5= Beam_Y + 3.391 - 1.13
+!@what.6= Beam_Z + 3.391
+PLA pBPM6bN    0.0 .5 .5 -273.25 78.26100000000001 2944.8910000000001
+* Top Plane (South side)
+!@what.4= BD_FF_orig - 28.62 - 73.38 - 9.75
+!@what.5= Beam_Y + 3.391 - 1.13
+!@what.6= Beam_Z - 3.391
+PLA pBPM6bS    0.0 .5 -.5 -273.25 78.26100000000001 2938.1089999999999
+* Flange : diameter 11.4 cm, 3.81 cm thick, ss
+!@what.1= BD_FF_orig - 28.62 - 73.38 - 13.64
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+RCC bFl_E1     -277.13999999999999 76. 2941.5 -3.15 0.0 0.0 4.28
+* Flange : diameter 11.4 cm, 3.81 cm thick, ss
+!@what.1= BD_FF_orig - 28.62 - 73.38 - 34.10
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+RCC bFl_E2     -297.60000000000002 76. 2941.5 -3.81 0.0 0.0 4.8
+* 24 wafers, each 0.05 mm, extended space= 12 mm (8 mm ss + 4 mm air)
+!@what.1= BD_FF_orig - 28.62 - 73.38 - 40.8
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+RCC bBellow3   -304.30000000000001 76. 2941.5 -0.8 0.0 0.0 5.
+* Flange : diameter 9.6 cm, 1.9 cm thick, ss
+!@what.1= BD_FF_orig - 28.62 - 73.38 - 41.6
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+RCC bFl_L1     -305.10000000000002 76. 2941.5 -1.9 0.0 0.0 5.7
+!@what.1= BD_FF_orig - 145.5
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+RCC bDB6SS     -307. 76. 2941.5 -11.43 0.0 0.0 13.8
+!@what.1= BD_FF_orig - 145.5 - 1.6
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+!@what.4= -11.43 + 3.2
+!@what.7= 13.8 -2.54
+RCC bDB6Air    -308.60000000000002 76. 2941.5 -8.2300000000000004 0.0 0.0
+              11.260000000000002
+!@what.1= BD_FF_orig - 145.5 - 5.715
+!@what.2= Beam_Y - 12
+!@what.3= Beam_Z
+RCC bDB6CylS   -312.71499999999997 64. 2941.5 0.0 -15.44 0.0 5.
+!@what.1= BD_FF_orig - 145.5 - 5.715
+!@what.2= Beam_Y - 12
+!@what.3= Beam_Z
+RCC bDB6CylA   -312.71499999999997 64. 2941.5 0.0 -15.44 0.0 4.36
+* 15.945 = - 11.43/2 - 20.46/2
+* 4.515 = -11.43/2 + 20.46/2
+* 3.2 mm thick
+!@what.1= BD_FF_orig - 145.5 - 15.945
+!@what.2= BD_FF_orig - 145.5 + 4.515
+!@what.3= Beam_Y - 27.44 - 20.46 - 0.32
+!@what.4= Beam_Y - 27.44 + 0.32
+!@what.5= Beam_Z - 20.64/2
+!@what.6= Beam_Z + 20.64/2
+RPP bDB6BoxS   -322.94499999999999 -302.48500000000001 27.780000000000001
+              48.880000000000003 2931.1799999999998 2951.8200000000002
+!@what.1= BD_FF_orig - 145.5 -15.945 + 0.32
+!@what.2= BD_FF_orig - 145.5 +4.515 - 0.32
+!@what.3= Beam_Y - 27.44 - 20.46
+!@what.4= Beam_Y - 27.44
+!@what.5= Beam_Z - 20.64/2 + 0.32
+!@what.6= Beam_Z + 20.64/2 - 0.32
+RPP bDB6BoxA   -322.625 -302.80500000000001 28.100000000000001
+              48.560000000000002 2931.5 2951.5
+* BPM6 Stainless steel, 0.851 cm thick
+!@what.1= BD_FF_orig - 145.15 - 13.25 - 3.4
+!@what.2= BD_FF_orig -145.15 - 13.25
+!@what.3= Beam_Y - 3.391
+!@what.4= Beam_Y + 3.391
+!@what.5= Beam_Z - 3.391
+!@what.6= Beam_Z + 3.391
+RPP bBPM6aS    -323.29999999999995 -319.89999999999998 72.608999999999995
+              79.391000000000005 2938.1089999999999 2944.8910000000001
+* BPM Air
+!@what.1= BD_FF_orig - 145.15 - 13.25 - 3.4 + 0.321
+!@what.2=  BD_FF_orig -145.15 - 13.25- 0.321
+!@what.3= Beam_Y - 3.391 + 0.851
+!@what.4= Beam_Y + 3.391 - 0.851
+!@what.5= Beam_Z - 3.391 + 0.851
+!@what.6= Beam_Z + 3.391 - 0.851
+RPP bBPM6aA    -322.97899999999993 -320.221 73.459999999999994
+              78.540000000000006 2938.96 2944.04
+* Top plane (North side)
+!@what.4= BD_FF_orig - 145.15 - 13.25 - 3.4 + 0.321
+!@what.5= Beam_Y + 3.391 - 1.13
+!@what.6= Beam_Z + 3.391
+PLA pBPM6aN    0.0 .5 .5 -322.97899999999993 78.26100000000001
+              2944.8910000000001
+* Top Plane (South side)
+!@what.4= BD_FF_orig - 145.15 - 13.25 - 3.4 + 0.321
+!@what.5= Beam_Y + 3.391 - 1.13
+!@what.6= Beam_Z - 3.391
+PLA pBPM6aS    0.0 .5 -.5 -322.97899999999993 78.26100000000001
+              2938.1089999999999
+* 24 wafers, each 0.05 mm, extended space= 12 mm (8 mm ss + 4 mm air)
+!@what.1= BD_FF_orig - 145.15 - 13.25 - 3.4
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+RCC bBellow4   -323.29999999999995 76. 2941.5 -0.8 0.0 0.0 5.
+* Flange 1: diameter 9.6 cm, 1.9 cm thick, ss
+!@what.1= BD_FF_orig  - 165.5
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+RCC bFl_L2     -327. 76. 2941.5 -1.9 0.0 0.0 5.7
+!@what.1= BD_FF_orig  - 167.4
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+RCC bIV6CylW   -328.89999999999998 76. 2941.5 -0.71 0.0 0.0 9.
+* IV6 valve - main box SS
+!@what.1= BD_FF_orig  - 173.89
+!@what.2= BD_FF_orig  - 168.11
+!@what.3= Beam_Y - 15.6/2
+!@what.4= Beam_Y + 15.6/2
+!@what.5= Beam_Z - 8.55
+!@what.6= Beam_Z + 16.5
+RPP bIV6BoxS   -335.38999999999999 -329.61000000000001 68.200000000000003
+              83.799999999999997 2932.9499999999998 2958.
+* IV6 valve - Flange SS
+!@what.1= BD_FF_orig  - 171 -7.625/2
+!@what.2= BD_FF_orig - 171 +7.625/2
+!@what.3= Beam_Y - 7.625/2
+!@what.4= Beam_Y + 7.625/2
+!@what.5= Beam_Z + 16.55
+!@what.6= Beam_Z + 16.5 + 4.4
+RPP bIV6Fl     -336.3125 -328.6875 72.1875 79.8125 2958.0500000000002
+              2962.4000000000001
+!@what.1= BD_FF_orig  - 171
+!@what.2= Beam_Y
+!@what.3= Beam_Z + 16.5 + 4.4
+RCC bIV6C1S    -332.5 76. 2962.4000000000001 0.0 0.0 16.8 2.225
+!@what.1= BD_FF_orig  - 171
+!@what.2= Beam_Y
+!@what.3= Beam_Z + 16.5 + 4.4
+RCC bIV6C1A    -332.5 76. 2962.4000000000001 0.0 0.0 16.8 1.725
+!@what.1= BD_FF_orig  - 171
+!@what.2= Beam_Y
+!@what.3= Beam_Z + 16.5 + 4.4+ 16.8
+RCC bIV6C2S    -332.5 76. 2979.2000000000003 0.0 0.0 18.9 4.9
+!@what.1= BD_FF_orig  - 171
+!@what.2= Beam_Y
+!@what.3= Beam_Z + 16.5 + 4.4 + 16.8 + 1
+RCC bIV6C2A    -332.5 76. 2980.2000000000003 0.0 0.0 16.9 4.4
+* IV6 valve - main box Air
+!@what.1= BD_FF_orig  - 173.89 + 0.05
+!@what.2= BD_FF_orig  - 168.11 - 0.05
+!@what.3= Beam_Y - 15.6/2 + 0.05
+!@what.4= Beam_Y + 15.6/2 - 0.05
+!@what.5= Beam_Z - 8.55 + 0.05
+!@what.6= Beam_Z + 16.5 - 0.05
+RPP bIV6BoxA   -335.33999999999997 -329.66000000000003 68.25 83.75 2933.
+              2957.9499999999998
+!@what.1= BD_FF_orig  - 174.60
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+RCC bIV6CylE   -336.10000000000002 76. 2941.5 +0.71 0.0 0.0 9.
+* Flange 1: diameter 9.6 cm, 1.9 cm thick, ss
+!@what.1= BD_FF_orig  - 174.60
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+RCC bFl_L3     -336.10000000000002 76. 2941.5 -1.9 0.0 0.0 5.7
+
+
+#if 0
+* 1.25 cm Pb  (1/4")
+!@what.1= BD_FF_orig - 223.5 - 1.25
+!@what.2= BD_FF_orig  - 223.5
+!@what.3= Beam_Y - 50
+!@what.4= Beam_Y + 50
+!@what.5= Beam_Z -50
+!@what.6= Beam_Z + 50
+RPP bUSPb1     -386.25 -385. 26. 126. 2891.5 2991.5
+#endif
+#if 0
+* 2.5 cm PE (1")
+!@what.1= BD_FF_orig - 223.5- 1.25 - 2.5
+!@what.2= BD_FF_orig - 223.5 -1.25
+!@what.3= Beam_Y - 50
+!@what.4= Beam_Y + 50
+!@what.5= Beam_Z - 50
+!@what.6= Beam_Z + 50
+RPP bUSPE1     -388.75 -386.25 26. 126. 2891.5 2991.5
+#endif
+#if 0
+* 1.25 cm Pb (1/4 ")
+!@what.1= BD_FF_orig -245.5- 1.25
+!@what.2= BD_FF_orig - 245.5
+!@what.3= Beam_Y - 50
+!@what.4= Beam_Y + 50
+!@what.5= Beam_Z -50
+!@what.6= Beam_Z + 50
+RPP bUSPb2     -408.25 -407. 26. 126. 2891.5 2991.5
+#endif
+#if 0
+* 2.5 cm PE (1")
+!@what.1= BD_FF_orig - 245.5 - 1.25 - 2.5
+!@what.2= BD_FF_orig- 245.5 -1.25
+!@what.3= Beam_Y - 50
+!@what.4= Beam_Y + 50
+!@what.5= Beam_Z - 50
+!@what.6= Beam_Z + 50
+RPP bUSPE2     -410.75 -408.25 26. 126. 2891.5 2991.5
+#endif
+!@what.1= BD_FF_orig - 254 - 9.5 + 60
+!@what.2= BD_FF_orig- 254 + 60
+!@what.3= Beam_Y - 15
+!@what.4= Beam_Y + 15
+!@what.5= Beam_Z - 15
+!@what.6= Beam_Z + 15
+RPP bQ6oSS     -365. -355.5 61. 91. 2926.5 2956.5
+!@what.1= BD_FF_orig - 254 - 9.5 + 60
+!@what.2= BD_FF_orig- 254 + 60
+!@what.3= Beam_Y - 12.5
+!@what.4= Beam_Y + 12.5
+!@what.5= Beam_Z - 12.5
+!@what.6= Beam_Z + 12.5
+RPP bQ6iSS     -365. -355.5 63.5 88.5 2929. 2954.
+!@what.1= BD_FF_orig- 254 - 9.5 + 60
+!@what.2= BD_FF_orig -254 + 60
+!@what.3= Beam_Y -12.5
+!@what.4= Beam_Y + 12.5
+!@what.5= Beam_Z - 4.92/2
+!@what.6= Beam_Z + 4.92/2
+RPP bQ6pSStb   -365. -355.5 63.5 88.5 2939.04 2943.96
+!@what.1= BD_FF_orig - 254 - 9.5 + 60
+!@what.2= BD_FF_orig -254 + 60
+!@what.3= Beam_Y -4.92/2
+!@what.4= Beam_Y + 4.92/2
+!@what.5= Beam_Z - 12.5
+!@what.6= Beam_Z + 12.5
+RPP bQ6pSSns   -365. -355.5 73.540000000000006 78.459999999999994 2929. 2954.
+!@what.1= BD_FF_orig - 254 - 9.5 + 60
+!@what.2= BD_FF_orig - 254 + 60
+!@what.3= Beam_Y - 3.35
+!@what.4= Beam_Y + 3.35
+!@what.5= Beam_Z - 3.35
+!@what.6= Beam_Z + 3.35
+RPP bQ6boxp    -365. -355.5 72.650000000000006 79.349999999999994
+              2938.1500000000001 2944.8499999999999
+!@what.1= BD_FF_orig - 254 - 9.5/2 + 60
+!@what.2= Beam_Y - 12.5
+!@what.3= Beam_Z
+RCC bQ6cCutb   -360.25 63.5 2941.5 0.0 25.0 0.0 6.82
+!@what.1= BD_FF_orig - 254 - 9.5/2 + 60
+!@what.2= Beam_Y
+!@what.3= Beam_Z -12.5
+!@what.6= 25.0
+RCC bQ6cCuns   -360.25 76. 2929. 0.0 0.0 25. 6.82
+!@what.1= BD_FF_orig - 254 - 9.5 + 60
+!@what.2= BD_FF_orig - 254 + 60
+!@what.3= Beam_Y - 7.6
+!@what.4= Beam_Y + 7.6
+!@what.5= Beam_Z - 7.6
+!@what.6= Beam_Z + 7.6
+RPP bQ6boxc    -365. -355.5 68.400000000000006 83.599999999999994
+              2933.9000000000001 2949.0999999999999
+!@what.1= BD_FF_orig - 284 - 9.5 + 60
+!@what.2= BD_FF_orig - 284 + 60
+!@what.3= Beam_Y - 15
+!@what.4= Beam_Y + 15
+!@what.5= Beam_Z - 15
+!@what.6= Beam_Z + 15
+RPP bQ5oSS     -395. -385.5 61. 91. 2926.5 2956.5
+!@what.1= BD_FF_orig - 284 - 9.5 + 60
+!@what.2= BD_FF_orig - 284 + 60
+!@what.3= Beam_Y - 12.5
+!@what.4= Beam_Y + 12.5
+!@what.5= Beam_Z - 12.5
+!@what.6= Beam_Z + 12.5
+RPP bQ5iSS     -395. -385.5 63.5 88.5 2929. 2954.
+!@what.1= BD_FF_orig - 284 - 9.5 + 60
+!@what.2= BD_FF_orig  - 284 + 60
+!@what.3= Beam_Y -12.5
+!@what.4= Beam_Y + 12.5
+!@what.5= Beam_Z - 4.92/2
+!@what.6= Beam_Z + 4.92/2
+RPP bQ5pSStb   -395. -385.5 63.5 88.5 2939.04 2943.96
+!@what.1= BD_FF_orig - 284 - 9.5 + 60
+!@what.2= BD_FF_orig -284 + 60
+!@what.3= Beam_Y -4.92/2
+!@what.4= Beam_Y + 4.92/2
+!@what.5= Beam_Z - 12.5
+!@what.6= Beam_Z + 12.5
+RPP bQ5pSSns   -395. -385.5 73.540000000000006 78.459999999999994 2929. 2954.
+!@what.1= BD_FF_orig - 284 - 9.5 + 60
+!@what.2= BD_FF_orig - 284 + 60
+!@what.3= Beam_Y - 3.35
+!@what.4= Beam_Y + 3.35
+!@what.5= Beam_Z - 3.35
+!@what.6= Beam_Z + 3.35
+RPP bQ5boxp    -395. -385.5 72.650000000000006 79.349999999999994
+              2938.1500000000001 2944.8499999999999
+!@what.1= BD_FF_orig - 284 - 9.5/2 + 60
+!@what.2= Beam_Y - 12.5
+!@what.3= Beam_Z
+RCC bQ5cCutb   -390.25 63.5 2941.5 0.0 25.0 0.0 6.82
+!@what.1= BD_FF_orig - 284 - 9.5/2 + 60
+!@what.2= Beam_Y
+!@what.3= Beam_Z -12.5
+!@what.6= 25.0
+RCC bQ5cCuns   -390.25 76. 2929. 0.0 0.0 25. 6.82
+!@what.1= BD_FF_orig - 284 - 9.5 + 60
+!@what.2= BD_FF_orig - 284 + 60
+!@what.3= Beam_Y - 7.6
+!@what.4= Beam_Y + 7.6
+!@what.5= Beam_Z - 7.6
+!@what.6= Beam_Z + 7.6
+RPP bQ5boxc    -395. -385.5 68.400000000000006 83.599999999999994
+              2933.9000000000001 2949.0999999999999
+* MB4 yoke
+!@what.1= BD_FF_orig - 331.6 - 14.3
+!@what.2= BD_FF_orig - 331.6
+!@what.3= Beam_Y - 46.5/2
+!@what.4= Beam_Y + 46.5/2
+!@what.5= Beam_Z - 59/2
+!@what.6= Beam_Z + 59/2
+RPP bMB4Y      -507.40000000000003 -493.10000000000002 52.75 99.25 2912.5 2970.5
+* MB4 Top outer Air
+!@what.1= BD_FF_orig - 331.6 - 14.3
+!@what.2= BD_FF_orig - 331.6
+!@what.3= Beam_Y +5.08/2
+!@what.4= Beam_Y + 5.08/2 +9.2+.3 + .5
+!@what.5= Beam_Z - 39/2
+!@what.6= Beam_Z + 39/2
+RPP bMB4TAo    -507.40000000000003 -493.10000000000002 78.540000000000006
+              88.540000000000006 2922.5 2960.5
+* MB4 Bot outer Air
+!@what.1= BD_FF_orig - 331.6 - 14.3
+!@what.2= BD_FF_orig - 331.6
+!@what.3= Beam_Y-5.08/2  -.5 -9.2 -.3
+!@what.4= Beam_Y - 5.08/2
+!@what.5= Beam_Z - 39/2
+!@what.6= Beam_Z + 39/2
+RPP bMB4BAo    -507.40000000000003 -493.10000000000002 63.459999999999994
+              73.459999999999994 2922.5 2960.5
+* MB4 Top inner Air
+!@what.1= BD_FF_orig - 331.6 - 14.3
+!@what.2= BD_FF_orig - 331.6
+!@what.3= Beam_Y +5.08/2
+!@what.4= Beam_Y + 5.08/2  +9.2+.3 + .5
+!@what.5= Beam_Z - 23/2
+!@what.6= Beam_Z + 23/2
+RPP bMB4TAi    -507.40000000000003 -493.10000000000002 78.540000000000006
+              88.540000000000006 2930.5 2952.5
+* MB4 Bot inner Air
+!@what.1= BD_FF_orig - 331.6 - 14.3
+!@what.2= BD_FF_orig - 331.6
+!@what.3= Beam_Y -5.08/2 - .5 -9.2 -.3
+!@what.4= Beam_Y - 5.08/2
+!@what.5= Beam_Z - 23/2
+!@what.6= Beam_Z + 23/2
+RPP bMB4BAi    -507.40000000000003 -493.10000000000002 63.459999999999994
+              73.459999999999994 2930.5 2952.5
+* MB4 Vaccum area for B field
+!@what.1= BD_FF_orig - 331.6 - 14.3
+!@what.2= BD_FF_orig - 331.6
+!@what.3= Beam_Y - 5.08/2
+!@what.4= Beam_Y +5.08/2
+!@what.5= Beam_Z - 23/2
+!@what.6= Beam_Z + 23/2
+RPP bMB4BV     -507.40000000000003 -493.10000000000002 73.459999999999994
+              78.540000000000006 2930.5 2952.5
+* MB4 Vaccum area outside B field
+!@what.1= BD_FF_orig - 331.6 - 14.3
+!@what.2= BD_FF_orig - 331.6
+!@what.3= Beam_Y - 5.08/2
+!@what.4= Beam_Y + 5.08/2
+!@what.5= Beam_Z - 39/2
+!@what.6= Beam_Z + 39/2
+RPP bMB4Vac    -507.40000000000003 -493.10000000000002 73.459999999999994
+              78.540000000000006 2922.5 2960.5
+* Cu coild North-Top piece
+!@what.1= BD_FF_orig - 331.6 - 14.3
+!@what.2= BD_FF_orig - 331.6
+!@what.3= Beam_Y + 5.08/2+.5
+!@what.4= Beam_Y + 5.08/2+.5 + 9.2
+!@what.5= Beam_Z + 24.4/2
+!@what.6= Beam_Z + 24.4/2 + 4.45
+RPP bMB4CNT    -507.40000000000003 -493.10000000000002 79.040000000000006
+              88.240000000000009 2953.6999999999998 2958.1499999999996
+* Cu coild South-Top piece
+!@what.1= BD_FF_orig - 331.6 - 14.3
+!@what.2= BD_FF_orig - 331.6
+!@what.3= Beam_Y + 5.08/2+.5
+!@what.4= Beam_Y + 5.08/2+.5 + 9.2
+!@what.5= Beam_Z - 24.4/2 - 4.45
+!@what.6= Beam_Z - 24.4/2
+RPP bMB4CST    -507.40000000000003 -493.10000000000002 79.040000000000006
+              88.240000000000009 2924.8500000000004 2929.3000000000002
+* Cu coild North-Bottom piece
+!@what.1= BD_FF_orig - 331.6 - 14.3
+!@what.2= BD_FF_orig - 331.6
+!@what.3= Beam_Y - 5.08/2 - 0.5 - 9.2
+!@what.4= Beam_Y - 5.08/2 - 0.5
+!@what.5= Beam_Z + 24.4/2
+!@what.6= Beam_Z + 24.4/2 + 4.45
+RPP bMB4CNB    -507.40000000000003 -493.10000000000002 63.759999999999991
+              72.959999999999994 2953.6999999999998 2958.1499999999996
+* Cu coild South-Top piece
+!@what.1= BD_FF_orig - 331.6 - 14.3
+!@what.2= BD_FF_orig - 331.6
+!@what.3= Beam_Y - 5.08/2 - 0.5 - 9.2
+!@what.4= Beam_Y - 5.08/2 - 0.5
+!@what.5= Beam_Z - 24.4/2 - 4.45
+!@what.6= Beam_Z - 24.4/2
+RPP bMB4CSB    -507.40000000000003 -493.10000000000002 63.759999999999991
+              72.959999999999994 2924.8500000000004 2929.3000000000002
+* Bore hole in the East Wall
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+RCC bBoreEW    -622. 76. 2941.5 -40. 0.0 0.0 5.
+* Al-6061 Beam Dump in the NW corner, facing East
+* Length: 130 cm
+* Widhth: 12.5 cm
+* Height: 16.5 cm
+!@what.1= BD_FF_new
+!@what.2= BD_FF + BD_L
+!@what.3= Beam_Y - (BD_Hb)
+!@what.4= Beam_Y + BD_Ht
+!@what.5= Beam_Z - (BD_W/2)
+!@what.6= Beam_Z+ BD_W/2
+RPP bBD_6061   -149.90000000000001 -16. 68.200000000000003 84.700000000000003
+              2935.25 2947.75
+* Water at the back of the BD
+!@what.1= BD_FF + BD_L - 5.3 + 0.5
+!@what.2= BD_FF + BD_L -1.3
+!@what.3= Beam_Y - 6
+!@what.4= Beam_Y + BD_Ht
+!@what.5= Beam_Z - (BD_W/2) + 0.5
+!@what.6= Beam_Z+ BD_W/2 -0.5
+RPP bBD_bWat   -20.800000000000001 -17.300000000000001 70. 84.700000000000003
+              2935.75 2947.25
+!@what.1= BD_FF_new
+!@what.2= BD_FF_new + 2.5
+!@what.3= Beam_Y - 4
+!@what.4= Beam_Y  +  3.08
+!@what.5= Beam_Z - 6.2/2
+!@what.6= Beam_Z+ 6.2/2
+RPP bBD_Vac1   -149.90000000000001 -147.40000000000001 72. 79.079999999999998
+              2938.4000000000001 2944.5999999999999
+!@what.1= BD_FF_new + 2.5
+!@what.2= BD_FF + BD_L  -5.3
+!@what.3= Beam_Y - 6
+!@what.4= Beam_Y + BD_Ht - 0.8 - 1.7  -0.5
+!@what.5= Beam_Z - 7.5/2
+!@what.6= Beam_Z + 7.5/2
+RPP bBD_Vac2   -147.40000000000001 -21.300000000000001 70. 81.700000000000003
+              2937.75 2945.25
+!@what.1= BD_FF_new
+!@what.2= BD_FF + BD_L  -5.3
+!@what.3= Beam_Y - 4
+!@what.4= Beam_Y + BD_Ht - 0.8 - 1.7
+!@what.5= Beam_Z - 8.5/2
+!@what.6= Beam_Z + 8.5/2
+RPP bBD_TAl    -149.90000000000001 -21.300000000000001 72. 82.200000000000003
+              2937.25 2945.75
+!@what.1= BD_FF_new + 2.5
+!@what.2= BD_FF + BD_L  -5.3
+!@what.3= Beam_Y - 4
+!@what.4= Beam_Y +BD_Ht
+!@what.5= Beam_Z - 11.5/2
+!@what.6= Beam_Z + 11.5/2
+RPP bBD_Twat   -147.40000000000001 -21.300000000000001 72. 84.700000000000003
+              2935.75 2947.25
+* 3.10 deg
+!@what.1= -cos(86.90*deg)
+!@what.2= cos(3.10*deg)
+!@what.4= BD_FF
+!@what.5= Beam_Y - (BD_Hb) + 2.26
+PLA pBD_xyz1   -0.054078812984775314 0.99853667032621174 -0.0 -146.
+              70.460000000000008 2940.0
+* 3.10 deg
+!@what.1= -cos(86.90*deg)
+!@what.2= cos(3.10*deg)
+!@what.4= BD_FF
+!@what.5= Beam_Y - (BD_Hb) + 3.26
+PLA pBD_xyz2   -0.054078812984775314 0.99853667032621174 -0.0 -146.
+              71.460000000000008 2940.0
+* 3.10 deg
+!@what.1= -cos(86.90*deg)
+!@what.2= cos(3.10*deg)
+!@what.4= BD_FF
+!@what.5= Beam_Y - (BD_Hb) + 4.26
+PLA pBD_xyz3   -0.054078812984775314 0.99853667032621174 -0.0 -146.
+              72.460000000000008 2940.0
+* -102.67
+!@what.1= BD_FF + BD_L/3
+YZP pBD_yz1    -103.
+* -59.33
+!@what.1= BD_FF + 2*BD_L/3
+YZP pBD_yz2    -60.
+* -133.33
+!@what.1= BD_FF + 1.14 + 11.528
+YZP pBD_yz3    -133.33200000000002
+* BD_FF + 1.14 + 23.056 = -146 + 1.14 + 23.056 = -121.804
+!@what.1= BD_FF  + 1.14 + 11.528*2
+YZP pBD_yz4    -121.80400000000002
+#if 0
+* BD_FF + BD_L -1.346  -29.626 = -46.972
+!@what.1= BD_FF  + BD_L - 1.346 - (14.813*2)
+YZP pBD_yz5    -46.972000000000001
+#endif
+* BD_FF + BD_L -1.346  -29.626 = -46.972
+YZP pBD_yz5    -46.972
+* -32.159
+!@what.1= BD_FF + BD_L -1.346 - 14.813
+YZP pBD_yz6    -32.158999999999999
+* -103.096
+!@what.1= BD_FF  + 1.14 + 11.528*2 +74.832/4
+YZP pBD_yz7    -103.09600000000002
+* -84.388
+!@what.1= BD_FF + 1.14 + 11.528*2 + 2*74.832/4
+YZP pBD_yz8    -84.388000000000019
+* -65.68
+!@what.1= BD_FF + 1.14 + 11.528*2 + 3*74.832/4
+YZP pBD_yz9    -65.680000000000021
+#if 0
+* -65.68
+YZP pBD_yz9    -65.68
+#endif
+* -13.5
+!@what.1= BD_FF + BD_L + 2.5
+YZP pBD_yz10   -13.5
+* -11.5
+!@what.1= BD_FF + BD_L + 2.5 + 1
+YZP pBD_yz11   -12.5
+* -9.5
+!@what.1= BD_FF + BD_L + 2.5 + 2
+YZP pBD_yz12   -11.5
+* -7.5
+!@what.1= BD_FF + BD_L + 2.5 + 4
+YZP pBD_yz13   -9.5
+* -7.5
+!@what.1= BD_FF + BD_L + 2.5 + 6
+YZP pBD_yz14   -7.5
+* 2939.42
+!@what.1= Beam_Z - BD_W/6
+XYP pBD_yx1    2939.4166666666665
+* 2943.58
+!@what.1= Beam_Z + BD_W/6
+XYP pBD_yx2    2943.5833333333335
+!@what.1= Beam_Y + BD_Ht + 0.5
+XZP pBD_xz1    85.200000000000003
+* BD_frame
+!@what.1= BD_FF +1.14
+!@what.2= BD_FF + BD_L - 1.346
+!@what.3= Beam_Y -3.5
+!@what.4= Beam_Y +4.1
+!@what.5= Beam_Z - 7.5/2
+!@what.6= Beam_Z+ 7.5/2
+RPP bBD_fr     -144.86000000000001 -17.346 72.5 80.099999999999994 2937.75
+              2945.25
+* 3.10 deg
+!@what.1= -cos(86.90*deg)
+!@what.2= cos(3.10*deg)
+!@what.4= BD_FF
+!@what.5= Beam_Y - (BD_Hb) + 4.26 + 0.35
+PLA pBD_wat    -0.054078812984775314 0.99853667032621174 -0.0 -146.
+              72.810000000000002 2940.0
+* 3.10 deg
+* 5.87 = 4.26 + 0.35 + 0.41 + 0.85
+!@what.1= -cos(86.90*deg)
+!@what.2= cos(3.10*deg)
+!@what.4= BD_FF
+!@what.5= Beam_Y - (BD_Hb) +5.87
+PLA pBD_TAlb   -0.054078812984775314 0.99853667032621174 -0.0 -146.
+              74.070000000000007 2940.0
+!@what.1= Beam_Y + (BD_Ht) - 0.8
+XZP pBD_TAlt   83.900000000000006
+!@what.1= Beam_Y + (BD_Ht) - 0.8 - 1.7
+XZP pBD_Twat   82.200000000000003
+!@what.1=BD_FF_new + 2.5
+YZP pBD_TAlE   -147.40000000000001
+!@what.1= BD_FF + BD_L - 5.3
+YZP pBD_TAlW   -21.300000000000001
+* 3.10 deg
+!@what.1= -cos(86.90*deg)
+!@what.2= cos(3.10*deg)
+!@what.4= BD_FF
+!@what.5= Beam_Y - (BD_Hb) + 4.26 + 0.35 + 0.41
+PLA pBD_ip4    -0.054078812984775314 0.99853667032621174 -0.0 -146.
+              73.219999999999999 2940.0
+* 3.10 deg
+!@what.1= -cos(86.90*deg)
+!@what.2= cos(3.10*deg)
+!@what.4= BD_FF
+!@what.5= Beam_Y - (BD_Hb) + 4.26 + 0.35 + 0.3075
+PLA pBD_ip3    -0.054078812984775314 0.99853667032621174 -0.0 -146.
+              73.117500000000007 2940.0
+* 3.10 deg
+!@what.1= -cos(86.90*deg)
+!@what.2= cos(3.10*deg)
+!@what.4= BD_FF
+!@what.5= Beam_Y - (BD_Hb) + 4.26 + 0.35 + 0.205
+PLA pBD_ip2    -0.054078812984775314 0.99853667032621174 -0.0 -146.
+              73.015000000000001 2940.0
+* 3.10 deg
+!@what.1= -cos(86.90*deg)
+!@what.2= cos(3.10*deg)
+!@what.4= BD_FF
+!@what.5= Beam_Y - (BD_Hb) + 4.26 + 0.35 + 0.1025
+PLA pBD_ip1    -0.054078812984775314 0.99853667032621174 -0.0 -146.
+              72.912500000000009 2940.0
+* Cooled margin - Note: +18 and -25 are arbitrary dims for the length.  I use planes to cut.
+!@what.1= BD_FF + 1.14 + 18
+!@what.2= BD_FF + BD_L -1.346  -25
+!@what.3= Beam_Y -4
+!@what.4= Beam_Y +3
+!@what.5= Beam_Z - 2
+!@what.6= Beam_Z+ 2
+RPP bBD_cm     -126.86000000000001 -42.346000000000004 72. 79. 2939.5 2943.5
+* Air box around Beam Dump
+!@what.1= BD_FF_new
+!@what.2= BD_FF + BD_L + 2.5
+!@what.3= Beam_Y - (BD_Hb) - 2
+!@what.4= Beam_Y +  (BD_Ht) + 0.5
+!@what.5= Beam_Z - (BD_W/2) -3
+!@what.6= Beam_Z+ BD_W/2 +3
+RPP bBD_Air    -149.90000000000001 -13.5 66.200000000000003 85.200000000000003
+              2932.25 2950.75
+* Pb box in the back of the BD to define lead regions
+!@what.1= BD_FF + BD_L + 2.5
+!@what.3= Beam_Y - (BD_Hb) - 2
+!@what.4= Beam_Y +  (BD_Ht) + 0.5
+!@what.5= Beam_Z - (BD_W/2) -3
+!@what.6= Beam_Z+ BD_W/2 +3
+RPP bBD_Pb     -13.5 0.0 66.200000000000003 85.200000000000003 2932.25 2950.75
+* Al-6061 piece under the BD (2 cm)
+!@what.1= BD_FF_new
+!@what.2= BD_FF + BD_L
+!@what.3= Beam_Y - (BD_Hb) - 2
+!@what.4= Beam_Y - BD_Hb - 0.5
+!@what.5= Beam_Z -  15/2
+!@what.6= Beam_Z+ 15/2
+RPP bBD_AlB    -149.90000000000001 -16. 66.200000000000003 67.700000000000003
+              2934.5 2948.5
+!@what.1= BD_FF_new
+!@what.3= (Beam_Y - (BD_Hb) -2) - 10
+!@what.4= (Beam_Y + BD_Ht + 0.5) +10
+!@what.5= (Beam_Z - (BD_W/2) - 2) - 10
+!@what.6= (Beam_Z + BD_W/2 + 2) + 10
+RPP bPbSh      -149.90000000000001 0.0 56.200000000000003 95.200000000000003
+              2923.25 2959.75
+!@what.1= BD_FF_new
+!@what.4= (Beam_Y + BD_Ht + 0.5) + 115
+!@what.5= (Beam_Z - BD_W/2 -2) -125
+RPP bShBulk    -149.90000000000001 0.0 0.0 200.19999999999999 2808.25 3040.
+!@what.1= BD_FF_new
+!@what.4= (Beam_Y + BD_Ht + 0.5) + 111.5
+!@what.5= (Beam_Z - BD_W/2 -2) -125
+RPP bShBulk2   -149.90000000000001 0.0 0.0 196.69999999999999 2808.25 3040.
+!@what.1= (Beam_Y + BD_Ht +0.5) +25
+XZP pShT1      110.2
+!@what.1= (Beam_Y + BD_Ht +0.5) +35
+XZP pShT2      120.2
+!@what.1= (Beam_Y + BD_Ht +0.5) +50
+XZP pShT3      135.19999999999999
+!@what.1= (Beam_Y + BD_Ht +0.5) +60
+XZP pShT4      145.19999999999999
+!@what.1= (Beam_Y + BD_Ht +0.5) +75
+XZP pShT5      160.19999999999999
+!@what.1= (Beam_Y + BD_Ht +0.5) +85
+XZP pShT6      170.19999999999999
+!@what.1= (Beam_Y - BD_Hb -2 ) -25
+XZP pShB1      41.200000000000003
+!@what.1= (Beam_Y - BD_Hb -2 ) -35
+XZP pShB2      31.200000000000003
+!@what.1= (Beam_Y - BD_Hb -2 ) -50
+XZP pShB3      16.200000000000003
+!@what.1= (Beam_Z + BD_W/2 + 2) +10
+XYP pShN1      2959.75
+!@what.1= (Beam_Z + BD_W/2 + 2) +25
+XYP pShN2      2974.75
+!@what.1= (Beam_Z + BD_W/2 + 2) +35
+XYP pShN3      2984.75
+!@what.1= (Beam_Z + BD_W/2 + 2) +50
+XYP pShN4      2999.75
+!@what.1= (Beam_Z + BD_W/2 + 2) +60
+XYP pShN5      3009.75
+#if 0
+!@what.1= (Beam_Z + BD_W/2 + 2) +75
+XYP pShN6      3024.75
+#endif
+!@what.1= (Beam_Z - BD_W/2 -2)- 10
+XYP pShS1      2923.25
+!@what.1= (Beam_Z - BD_W/2 -2)- 25
+XYP pShS2      2908.25
+!@what.1= (Beam_Z - BD_W/2 -2)- 35
+XYP pShS3      2898.25
+!@what.1= (Beam_Z - BD_W/2 -2)- 50
+XYP pShS4      2883.25
+!@what.1= (Beam_Z - BD_W/2 -2)- 60
+XYP pShS5      2873.25
+!@what.1= (Beam_Z - BD_W/2 -2)- 75
+XYP pShS6      2858.25
+!@what.1= (Beam_Z - BD_W/2 -2)- 85
+XYP pShS7      2848.25
+!@what.1= BD_FF_new
+!@what.3= (Beam_Y - BD_Hb -2) - 25
+!@what.4= (Beam_Y + BD_Ht +0.5) +25
+!@what.5= (Beam_Z - BD_W/2 -2)- 25
+!@what.6= (Beam_Z + BD_W/2 + 2) +25
+RPP bcSh1      -149.90000000000001 0.0 41.200000000000003 110.2 2908.25 2974.75
+#if 0
+!@what.1= BD_FF_new
+!@what.3= (Beam_Y - BD_Hb -2 ) -35
+!@what.4= (Beam_Y + BD_Ht +0.5) + 35
+!@what.5= (Beam_Z - BD_W/2 -2)- 35
+!@what.6= (Beam_Z + BD_W/2 + 2) + 35
+RPP bsSh2      -149.90000000000001 0.0 31.200000000000003 120.2 2898.25 2984.75
+#endif
+#if 0
+!@what.1= BD_FF_new
+!@what.3= (Beam_Y - BD_Hb -2) - 50
+!@what.4= (Beam_Y + BD_Ht +0.5) + 50
+!@what.5= (Beam_Z - BD_W/2 -2)-50
+!@what.6= (Beam_Z + BD_W/2 + 2) +50
+RPP bcSh2      -149.90000000000001 0.0 16.200000000000003 135.19999999999999
+              2883.25 2999.75
+#endif
+#if 0
+!@what.1= BD_FF_new
+!@what.4= (Beam_Y + BD_Ht + 0.5) + 60
+!@what.5= (Beam_Z - BD_W/2 -2) -60
+!@what.6= (Beam_Z + BD_W/2 + 2) +60
+RPP bsSh3      -149.90000000000001 0.0 0.0 145.19999999999999 2873.25 3009.75
+#endif
+#if 0
+!@what.1= BD_FF_new
+!@what.4= (Beam_Y + BD_Ht + 0.5) + 75
+!@what.5= (Beam_Z - BD_W/2 -2) -75
+!@what.6= (Beam_Z + BD_W/2 + 2) + 90
+RPP bcSh3      -149.90000000000001 0.0 0.0 160.19999999999999 2858.25 3039.75
+#endif
+#if 0
+!@what.1= BD_FF_new
+!@what.4= (Beam_Y + BD_Ht + 0.5) + 85
+!@what.5= (Beam_Z - BD_W/2 -2) -85
+RPP bsSh4      -149.90000000000001 0.0 0.0 170.19999999999999 2848.25 3040.
+#endif
+* Service stand - upstream, plug (top)
+!@what.1= BD_FF_new - 15
+!@what.2= BD_FF_new
+!@what.4= Beam_Y+100
+!@what.5= 3040 - 38 - 30
+!@what.6= 3040 - 38
+RPP bSS_pt_1   -164.90000000000001 -149.90000000000001 90. 176. 2972. 3002.
+* Service stand - upstream, plug (top)
+!@what.1= BD_FF_new - 28.62
+!@what.2= BD_FF_new -15
+!@what.4= Beam_Y+100
+!@what.5= 3040 - 38 - 30
+!@what.6= 3040 - 38
+RPP bSS_pt_2   -178.52000000000001 -164.90000000000001 90. 176. 2972. 3002.
+* Service stand - upstream, plug (top)
+!@what.1= BD_FF_new - 36
+!@what.2= BD_FF_new - 28.62
+!@what.4= Beam_Y+100
+!@what.5= 3040 - 38 - 30
+!@what.6= 3040 - 38
+RPP bSS_pt_3   -185.90000000000001 -178.52000000000001 90. 176. 2972. 3002.
+* Service stand - upstream, plug (bot)
+!@what.1= BD_FF_new - 28.62
+!@what.2= BD_FF_new - 17.9
+!@what.5= 3040 - 38 - 30
+!@what.6= 3040 - 38
+RPP bSS_pb_1   -178.52000000000001 -167.80000000000001 47. 90. 2972. 3002.
+* Service stand - upstream, plug (bot)
+!@what.1= BD_FF_new - 36
+!@what.2= BD_FF_new - 28.62
+!@what.5= 3040 - 38 - 30
+!@what.6= 3040 - 38
+RPP bSS_pb_2   -185.90000000000001 -178.52000000000001 47. 90. 2972. 3002.
+* Service stand - upstream, top piece
+!@what.1= BD_FF_new - 17.9
+!@what.2= BD_FF_new
+!@what.5= 3040 - 38 - 30
+!@what.6= 3040 - 38
+RPP bSS_us_t   -167.80000000000001 -149.90000000000001 50. 90. 2972. 3002.
+* Service stand - upstream, bottom piece
+!@what.1= BD_FF_new - 36
+!@what.2= BD_FF_new
+!@what.5= 3040 - 38 - 30
+!@what.6= 3040 - 38
+RPP bSS_us_b   -185.90000000000001 -149.90000000000001 0.0 50. 2972. 3002.
+#if 0
+* Service stand - upstream, plug
+!@what.1= BD_FF_new - 18.5
+!@what.2= BD_FF_new
+!@what.4= Beam_Y + 100
+!@what.5= 3040 - 38 - 30
+!@what.6= 3040 - 38
+RPP bSS_us_p   -168.40000000000001 -149.90000000000001 90. 176. 2972. 3002.
+#endif
+* Service stand - BD
+!@what.1= BD_FF_new
+!@what.2= BD_FF_new + 15
+!@what.5= Beam_Z + BD_W/2 + 2 + 10
+!@what.6= 3040 - 38
+RPP bSS_BD     -149.90000000000001 -134.90000000000001 76.0 98.0 2959.75 3002.
+!@what.4= BD_FF_new
+!@what.6= Beam_Z + BD_W/2 + 2 + 50
+PLA pSS_BD     -.7 0.0 -.7 -149.90000000000001 80. 2999.75
+!@what.1= Beam_Y
+XZP pSS_BD_2   76.
+!@what.1= Beam_Y + 22
+XZP pSS_BD_3   98.
+* Marman Clamp (leaving 1 cm clearance on each side and accounting for the opening position of the clamp).
+!@what.1= BD_FF_new - 9.2
+!@what.2= BD_FF_new - 3
+!@what.3= Beam_Y - 14.5
+!@what.4= Beam_Y + 32.5
+!@what.5= Beam_Z - 26/2
+!@what.6= Beam_Z + 26/2
+RPP bClamp     -159.09999999999999 -152.90000000000001 61.5 108.5 2928.5 2954.5
+!@what.1= BD_FF_new - 113.6
+!@what.2= BD_FF_new
+!@what.5= Beam_Z - 100
+RPP bUSConc    -263.5 -149.90000000000001 0.0 50. 2841.5 3040.
+* Concrete block on the south side of the us EHDT bulk shielding.  1-6 for biasing
+!@what.1= BD_FF_new - 15
+!@what.2= BD_FF_new
+!@what.4= Beam_Y + 100
+!@what.5= Beam_Z  -BD_W/2 -2 - 125
+!@what.6= Beam_Z  -100
+RPP bUSCshS1   -164.90000000000001 -149.90000000000001 0.0 176. 2808.25 2841.5
+!@what.1= BD_FF_new - 28.62
+!@what.2= BD_FF_new -15
+!@what.4= Beam_Y + 100
+!@what.5= Beam_Z  -BD_W/2 -2 - 125
+!@what.6= Beam_Z  -100
+RPP bUSCshS2   -178.52000000000001 -164.90000000000001 0.0 176. 2808.25 2841.5
+!@what.1= BD_FF_new - 28.62 - 10
+!@what.2= BD_FF_new - 28.62
+!@what.4= Beam_Y + 100
+!@what.5= Beam_Z  -BD_W/2 -2 - 125
+!@what.6= Beam_Z  -100
+RPP bUSCshS3   -188.52000000000001 -178.52000000000001 0.0 176. 2808.25 2841.5
+!@what.1= BD_FF_new - 28.62 - 20
+!@what.2= BD_FF_new - 28.62 - 10
+!@what.4= Beam_Y + 100
+!@what.5= Beam_Z  -BD_W/2 -2 - 125
+!@what.6= Beam_Z  -100
+RPP bUSCshS4   -198.52000000000001 -188.52000000000001 0.0 176. 2808.25 2841.5
+!@what.1= BD_FF_new - 28.62 - 30
+!@what.2= BD_FF_new - 28.62 - 20
+!@what.4= Beam_Y + 100
+!@what.5= Beam_Z  -BD_W/2 -2  - 125
+!@what.6= Beam_Z  -100
+RPP bUSCshS5   -208.52000000000001 -198.52000000000001 0.0 176. 2808.25 2841.5
+!@what.1= BD_FF_new - 28.62 - 40
+!@what.2= BD_FF_new -28.62 -30
+!@what.4= Beam_Y + 100
+!@what.5= Beam_Z  -BD_W/2 -2 - 125
+!@what.6= Beam_Z  -100
+RPP bUSCshS6   -218.52000000000001 -208.52000000000001 0.0 176. 2808.25 2841.5
+* Concrete block on top of the us EHDT bulk shielding.  1-3 for biasing
+!@what.1= BD_FF_new - 15
+!@what.2= BD_FF_new
+!@what.3= Beam_Y + 100
+!@what.4= Beam_Y + 100 + 25
+!@what.5= Beam_Z  - 126/2
+!@what.6= Beam_Z +126/2
+RPP bUSCshT1   -164.90000000000001 -149.90000000000001 176. 201. 2878.5 3004.5
+!@what.1= BD_FF_new - 28.62
+!@what.2= BD_FF_new -15
+!@what.3= Beam_Y + 100
+!@what.4= Beam_Y + 100 + 25
+!@what.5= Beam_Z  - 126/2
+!@what.6= Beam_Z +126/2
+RPP bUSCshT2   -178.52000000000001 -164.90000000000001 176. 201. 2878.5 3004.5
+!@what.1= BD_FF_new - 28.62 -10
+!@what.2= BD_FF_new -28.62
+!@what.3= Beam_Y + 100
+!@what.4= Beam_Y + 100 + 25
+!@what.5= Beam_Z  - 126/2
+!@what.6= Beam_Z +126/2
+RPP bUSCshT3   -188.52000000000001 -178.52000000000001 176. 201. 2878.5 3004.5
+* Box Cut Out 1
+!@what.1= BD_FF_new - 9.2
+!@what.2= BD_FF_new
+!@what.3= Beam_Y - 8.8
+!@what.4= Beam_Y+14.8
+!@what.5= Beam_Z - 26/2
+!@what.6= Beam_Z + 26/2
+RPP bUSCO_b1   -159.09999999999999 -149.90000000000001 67.200000000000003
+              90.799999999999997 2928.5 2954.5
+* First cylindrical cut out
+!@what.1= BD_FF_new - 15
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+RCC bUSc_CO1   -164.90000000000001 76. 2941.5 +5.8 0.0 0.0 8.2
+* Inner steel layer
+!@what.1= BD_FF_new - 15
+!@what.2= BD_FF_new - 9.2
+!@what.3= Beam_Y - 15
+!@what.4= Beam_Y + 15
+!@what.5= Beam_Z - 13
+!@what.6= Beam_Z + 13
+RPP bUSb_CO1   -164.90000000000001 -159.09999999999999 61. 91. 2928.5 2954.5
+* 2nd cylindrical cut out
+!@what.1= BD_FF_new - 15 - 13.62
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+!@what.7= 8.2
+RCC bUSc_CO2   -178.52000000000001 76. 2941.5 13.62 0.0 0.0 8.1999999999999993
+* Inner steel layer
+!@what.1= BD_FF_new - 15 -13.62
+!@what.2= BD_FF_new - 15
+!@what.3= Beam_Y - 10
+!@what.4= Beam_Y + 10
+!@what.5= Beam_Z - 10
+!@what.6= Beam_Z + 10
+RPP bUSb_CO2   -178.52000000000001 -164.90000000000001 66. 86. 2931.5 2951.5
+* 3rd cylindrical cut out
+!@what.1= BD_FF_new - 28.62 -10
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+!@what.7= 3.8
+RCC bUSc_CO3   -188.52000000000001 76. 2941.5 10. 0.0 0.0 3.7999999999999998
+* Inner steel layer
+!@what.1= BD_FF_new - 28.62 -10
+!@what.2= BD_FF_new - 28.62
+!@what.3= Beam_Y - 23.8
+!@what.4= Beam_Y + 23.8
+!@what.5= Beam_Z - 23.8
+!@what.6= Beam_Z + 23.8
+RPP bUSb_CO3   -188.52000000000001 -178.52000000000001 52.200000000000003
+              99.799999999999997 2917.6999999999998 2965.3000000000002
+* 4th cylindrical cut out
+!@what.1= BD_FF_new - 28.62 - 18
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+!@what.7= 3.8
+RCC bc_CO4_1   -196.52000000000001 76. 2941.5 8. 0.0 0.0 3.7999999999999998
+* Inner steel layer
+!@what.1= BD_FF_new - 28.62 - 18
+!@what.2= BD_FF_new - 38.62
+!@what.3= Beam_Y - 23.8
+!@what.4= Beam_Y + 23.8
+!@what.5= Beam_Z - 23.8
+!@what.6= Beam_Z + 23.8
+RPP bb_CO4_1   -196.52000000000001 -188.52000000000001 52.200000000000003
+              99.799999999999997 2917.6999999999998 2965.3000000000002
+* 4th cylindrical cut out
+!@what.1= BD_FF_new - 28.62 - 30
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+!@what.7= 3.8
+RCC bc_CO4_2   -208.52000000000001 76. 2941.5 12. 0.0 0.0 3.7999999999999998
+* Inner steel layer
+!@what.1= BD_FF_new - 28.62 - 30
+!@what.2= BD_FF_new - 46.62
+!@what.3= Beam_Y - 10
+!@what.4= Beam_Y + 10
+!@what.5= Beam_Z - 10
+!@what.6= Beam_Z + 10
+RPP bb_CO4_2   -208.52000000000001 -196.52000000000001 66. 86. 2931.5 2951.5
+* 5th cylindrical cut out
+!@what.1= BD_FF_new - 28.62 - 40
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+!@what.7= 3.8
+RCC bUSc_CO5   -218.52000000000001 76. 2941.5 10. 0.0 0.0 3.7999999999999998
+* Inner steel layer
+!@what.1= BD_FF_new - 28.62 - 40
+!@what.2= BD_FF_new - 58.62
+!@what.3= Beam_Y - 7.5
+!@what.4= Beam_Y + 7.5
+!@what.5= Beam_Z - 7.5
+!@what.6= Beam_Z + 7.5
+RPP bUSb_CO5   -218.52000000000001 -208.52000000000001 68.5 83.5 2934. 2949.
+* 6th cylindrical cut out
+!@what.1= BD_FF_new - 28.62 - 50
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+!@what.7= 3.8
+RCC bc_CO6_1   -228.52000000000001 76. 2941.5 10. 0.0 0.0 3.7999999999999998
+* Inner steel layer
+!@what.1= BD_FF_new - 28.62 - 50
+!@what.2= BD_FF_new - 68.62
+!@what.3= Beam_Y - 10
+!@what.4= Beam_Y + 10
+!@what.5= Beam_Z - 10
+!@what.6= Beam_Z + 10
+RPP bb_CO6_1   -228.52000000000001 -218.52000000000001 66. 86. 2931.5 2951.5
+* 6th cylindrical cut out
+!@what.1= BD_FF_new - 28.62 - 60
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+!@what.7= 3.8
+RCC bc_CO6_2   -238.52000000000001 76. 2941.5 10. 0.0 0.0 3.7999999999999998
+* Inner steel layer
+!@what.1= BD_FF_new - 28.62 - 60
+!@what.2= BD_FF_new - 78.62
+!@what.3= Beam_Y - 10
+!@what.4= Beam_Y + 10
+!@what.5= Beam_Z - 10
+!@what.6= Beam_Z + 10
+RPP bb_CO6_2   -238.52000000000001 -228.52000000000001 66. 86. 2931.5 2951.5
+* 7th cylindrical cut out
+!@what.1= BD_FF_new - 88.62 - 13.3
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+!@what.7= 3.8
+RCC bUSc_CO7   -251.82000000000002 76. 2941.5 +13.3 0.0 0.0 3.7999999999999998
+* Inner steel layer
+!@what.1= BD_FF_new - 101.92
+!@what.2= BD_FF_new - 88.62
+!@what.3= Beam_Y - 7.5
+!@what.4= Beam_Y + 7.5
+!@what.5= Beam_Z - 7.5
+!@what.6= Beam_Z + 7.5
+RPP bUSb_CO7   -251.81999999999999 -238.52000000000001 68.5 83.5 2934. 2949.
+* 8th cylindrical cut out
+!@what.1= BD_FF_new - 102- 11.6
+!@what.2= Beam_Y
+!@what.3= Beam_Z
+!@what.7= 3.8
+RCC bUSc_CO8   -263.5 76. 2941.5 +11.68 0.0 0.0 3.7999999999999998
+* Inner steel layer
+!@what.1= BD_FF_new - 113.6
+!@what.2= BD_FF_new - 101.92
+!@what.3= Beam_Y - 10
+!@what.4= Beam_Y + 10
+!@what.5= Beam_Z - 10
+!@what.6= Beam_Z + 10
+RPP bUSb_CO8   -263.5 -251.81999999999999 66. 86. 2931.5 2951.5
+!@what.1= BD_FF_new - 15
+!@what.2= BD_FF_new
+!@what.4= Beam_Y  + 100
+!@what.5= Beam_Z  -100
+RPP bUSsSh1    -164.90000000000001 -149.90000000000001 50. 176. 2841.5 3040.
+!@what.1= BD_FF_new - 28.62
+!@what.2= BD_FF_new - 15
+!@what.4= Beam_Y + 100
+!@what.5= Beam_Z  -100
+RPP bUScSh1    -178.52000000000001 -164.90000000000001 50. 176. 2841.5 3040.
+!@what.1= BD_FF_new - 28.62 -10
+!@what.2= BD_FF_new - 28.62
+!@what.4= Beam_Y + 100
+!@what.5= Beam_Z  -100
+RPP bUSsSh2    -188.52000000000001 -178.52000000000001 50. 176. 2841.5 3040.
+!@what.1= BD_FF_new - 28.62 - 18
+!@what.2= BD_FF_new - 28.62 -10
+!@what.4= Beam_Y + 100
+!@what.5= Beam_Z  -100
+RPP bUcSh2_1   -196.52000000000001 -188.52000000000001 50. 176. 2841.5 3040.
+!@what.1= BD_FF_new - 28.62 - 30
+!@what.2= BD_FF_new - 28.62 - 18
+!@what.4= Beam_Y + 100
+!@what.5= Beam_Z  -100
+RPP bUcSh2_2   -208.52000000000001 -196.52000000000001 50. 176. 2841.5 3040.
+!@what.1= BD_FF_new - 28.62 - 40
+!@what.2= BD_FF_new - 28.62 -30
+!@what.4= Beam_Y + 100
+!@what.5= Beam_Z  -100
+RPP bUSsSh3    -218.52000000000001 -208.52000000000001 50. 176. 2841.5 3040.
+!@what.1= BD_FF_new - 28.62 - 50
+!@what.2= BD_FF_new - 28.62 - 40
+!@what.4= Beam_Y + 100
+!@what.5= Beam_Z  -100
+RPP bUcSh3_1   -228.52000000000001 -218.52000000000001 50. 176. 2841.5 3040.
+!@what.1= BD_FF_new - 28.62 - 60
+!@what.2= BD_FF_new - 28.62 - 50
+!@what.4= Beam_Y + 100
+!@what.5= Beam_Z  -100
+RPP bUcSh3_2   -238.52000000000001 -228.52000000000001 50. 176. 2841.5 3040.
+!@what.1= BD_FF_new - 28.62 - 73.3
+!@what.2= BD_FF_new - 28.62 -60
+!@what.4= Beam_Y + 100
+!@what.5= Beam_Z  -100
+RPP bUSsSh4    -251.81999999999999 -238.52000000000001 50. 176. 2841.5 3040.
+!@what.1= BD_FF_new - 28.62 - 84.98
+!@what.2= BD_FF_new - 28.62 - 73.3
+!@what.4= Beam_Y + 100
+!@what.5= Beam_Z  -100
+RPP bUScSh4    -263.5 -251.81999999999999 50. 176. 2841.5 3040.
+* 10 cm PE  to shield back shine from the dump
+* Extending to FF of Pb collimation style shielding
+* Removed for DarkLight
+* !@what.1= BD_FF_orig -250
+* !@what.2= BD_FF_orig -240
+* !@what.3= Beam_Y - 60
+* !@what.4= Beam_Y + 60
+* !@what.5= Beam_Z - 60
+* !@what.6= Beam_Z + 60
+* RPP bUSshPE    -411.5 -401.5 16. 136. 2881.5 3001.5
+* 2 cm Pb hutch
+* Removed for DarkLight
+* !@what.1= BD_FF_orig - 240
+* !@what.2= BD_FF_orig -238
+* !@what.3= Beam_Y - 60
+* !@what.4= Beam_Y + 60
+* !@what.5= Beam_Z - 60
+* !@what.6= Beam_Z + 60
+* RPP bUSshPb    -401.5 -399.5 16. 136. 2881.5 3001.5
+* - Detector, 30cm radius sphere
+* - Volume=4/3piR^3=113097cm^3
+SPH DetWU      -1030. 175. 2000. 30.
+* - Detector, 30cm radius sphere
+* - Volume=4/3piR^3=113097cm^3
+SPH DetWD      -1030. 75. 2000. 30.
+* - Detector, 30cm radius sphere
+* - Volume=4/3piR^3=113097cm^3
+SPH DetEU      -1290. 175. 2000. 30.
+RCC bDetTun    -1070.0 25.0 3120.0 0.0 100.0 0.0 30.0
+RCC bDetCeil   -740. 625. 2660. 0.0 100. 0.0 30.
+RCC bDetRoof   -740. 1015. 1950. 0.0 100. 0.0 30.
+* - Detector, 30cm radius sphere
+* - Volume=4/3piR^3=113097cm^3
+SPH DetED      -1290. 75. 2000. 30.
+* - Detector, 30cm radius sphere
+* - Volume=4/3piR^3=113097cm^3
+SPH DetMU      -2000. 175. 2000. 30.
+* - Detector, 30cm radius sphere
+* - Volume=4/3piR^3=113097cm^3
+SPH DetMD      -2000. 75. 2000. 30.
+* - Detector, 30cm radius sphere
+* - Volume=4/3piR^3=113097cm^3
+SPH DetNeut    -600. 75. 2700. 30.
+* - Detector, 30cm radius sphere
+* - Volume=4/3piR^3=113097cm^3
+SPH DetNeut2   -200. 75. 2600. 30.
+* - Add in the 6 chases/penetrations in the South Wall
+RPP bSChs1H    -2295. -2235. 0.0 20. -150. 30.
+RPP bSChs1V    -2295. -2235. 0.0 840. -150. -130.
+RPP bSChs2H    -1990. -1945. 330. 360. -180. -130.
+RPP bSChs2V    -1990. -1945. 240. 360. -150. -130.
+RPP bSChs3H    -1695. -1635. 0.0 20. -150. 30.
+RPP bSChs3V    -1695. -1635. 0.0 840. -150. -130.
+RPP bSChs4H    -1545. -1485. 632.5 652.5 -100. 90.
+RCC bCrBig     -925. 642.5 -100. 0.0 0.0 190. 12.
+RCC bCrMed     -880. 642.5 -100. 0.0 0.0 190. 9.5
+RCC bCrSmT     -900. 650. -100. 0.0 0.0 190. 4.5
+RCC bCrSmB     -900. 635. -100. 0.0 0.0 190. 4.5
+RPP bSChs6H    -735. -645. 622.5 660. -120. 90.
+RPP bSChs6V    -735. -645. 622.5 914.4 -120. -82.5
+* Plane to cut extra concrete at the South Wall at an angle
+PLA AngS       .57357643635105 0.0 .81915204428899 -160.0 0.0 -350.0
+RPP bOpSmS2    -2185.0 -2015.0 0.0 240. -60.0 30.0
+* Double door in South Wall with 2cm gap around edges
+RPP bDrBigS    -1543.0 -1337.0 0.0 238. -90.0 30.0
+#if 0
+*  - B3 level service tunnel
+RPP bB3Tun     -1005. -825. -277.5 -90. -135. 3190.
+#endif
+*  - B3 level service tunnel (Concrete)
+!@what.1= -856  -182.88- 46
+!@what.2= -856  + 46
+!@what.3= -121.92 - 182.8
+RPP bB3TunC    -1084.8800000000001 -810. -304.72000000000003 -121.92 -135. 3190.
+*  - B3 level service tunnel (Air)
+!@what.1= -856 - 182.88
+!@what.2= -856
+!@what.3= -152.4 - 137.1
+!@what.4= -121.92
+RPP bB3TunA    -1038.8800000000001 -856. -289.5 -121.92 -135. 3190.
+!@what.1= -856 - 152.4
+!@what.5= 3040 - 2834.6 - 152.4
+!@what.6= 3040 - 2834.6
+RPP bB3Htch1   -1008.4 -856. -121.92 0.0 53.000000000000085 205.40000000000009
+!@what.1= -856 -152.4
+!@what.5= 3040 - 1927.8 - 152.4
+!@what.6= 3040 - 1927.8
+RPP bB3Htch2   -1008.4 -856. -121.92 0.0 959.80000000000007 1112.2
+#if 0
+RPP bB3Plg2    -975. -825. -60.0 0.0 945. 1095.
+#endif
+#if 0
+RPP bB3PlgA2   -975. -900. -60.0 0.0 1020. 1095.
+#endif
+!@what.1= -856 - 152.4
+!@what.5= 3040 - 990.6 - 152.4
+!@what.6= 3040 - 990.6
+RPP bB3Htch3   -1008.4 -856. -121.92 0.0 1897. 2049.4000000000001
+#if 0
+RPP bB3Plg3    -975. -825. -60.0 0.0 1845. 1995.
+#endif
+!@what.1= -856 - 152.4
+!@what.5= 3040 -30.5 - 152.4
+!@what.6= 3040 - 30.5
+RPP bB3Htch4   -1008.4 -856. -121.92 0.0 2857.0999999999999 3009.5
+*  - B3 level Service Annex
+RPP bB3SACon   -1635. -735. -510. 0.0 -1835. -135.
+RPP bB3SAAir   -1605. -795. -420. -60. -1775. -135.
+*  - Soil at southwest corner of eHall
+RPP bSoilS     -735. 330. -510. 735. -1835. -135.
+*  - Service Annex floor
+RPP bSAFlr     -1635. 330. 735. 750. -1835. -100.
+* - Chases through the West wall
+RPP bWChs0H    0.0 102.5 742. 762. 0. 45.
+RPP bWChs0V    82.5 102.5 770. 912. 0. 45.
+RPP bWChs1H    0.0 102.5 742. 762. 1320. 1410.
+RPP bWChs1V    82.5 102.5 762. 914.4 1320. 1410.
+RPP bWChs2H    0.0 102.5 742. 762. 1995. 2085.
+RPP bWChs2V    82.5 102.5 763. 914.4 1995. 2085.
+RPP bWChs3H    0.0 102.5 742. 762. 2115. 2205.
+RPP bWChs3V    82.5 102.5 762. 914.4 2115. 2205.
+RPP bSoilW     121.9 330. 0.0 735. -135. 3190.
+RPP bExConcW   121.9 330. 0.0 735. 2650. 3190.
+!@what.4= 762 +152.4
+RPP bConSW     -855. 130. 762. 914.39999999999998 -135. -80.
+#if 0
+* - Lead collimator for angled hole
+RPP bAngPb     -835.1966376146 -764.650044614 26.124809630761 96.124809630761
+              2810.3452252451 2835.3452252451
+#endif
+RCC bAngPbAr   -759. 75. 2765. -132. -30. 175. 3.75
+* - Concrete blocks placed in hallway to mitigate against penetration through chase
+RPP bHallBlk   -795. 0.0 750. 930. -195. -135.
+* - West wall in SA, 2 foot thick concrete
+RPP bSAWallW   -795. -735. 0.0 735. -1835. -135.
+* - B1 floor, concrete
+RPP bSAFlrB1   -1635. -795. 360. 375. -1835. -120.
+RPP bFlrW      130. 330. 735. 750. -135. 3190.
+#if 0
+BOX bICMstl    -1050.0 37.0 630.0 114.71528727021 0.0 163.8304088578
+              81.915204428898 0.0 -57.3576436351 0.0 135.0 0.0
+#endif
+#if 0
+BOX bICMair    -1047.5 39.0 630.0 112.42098152481 0.0 160.55380068064
+              78.638596251743 0.0 -55.0633378897 0.0 130.0 0.0
+#endif
+* DarkLight Target
+RPP bDLfoil   -460.0001 -460. 73.5 78.5 2938.959 2944.03 
+RCC bDLcham   -457.415 67.105 2941.5 0. 17.79 0. 12.945
+RCC bDLvacc   -457.415 69.015 2941.5 0. 13.97 0. 12.705
+END
+* Black hole
+BLKBODY      5 +blkbody -void
+* Void around
+AirSpace     5 +void -bTarget -bDLfoil -bDLcham -bDLvacc -bFloor1 -bFloor2 -bSoilF -bRoof -bWallN1B -bWallN1T -bWallN2
+               -(bAngBody -pAngW_N +pAngW_S)
+               -bSoilN
+               -bWSEx1 -bWallE
+               -bWallW1 -bWallW2  -bCeiling -WallStk
+               -bKlyW_W1 -bKlyW_W2 -bKlyW_E
+               -bProtE -bBmPipe - bBmVac -bBlkE -bBlkW -DetWU -DetWD -DetEU -DetED -DetNeut -DetNeut2
+               -DetMU -DetMD -bBmPipe2 -bBmVac2  -bBmPipe3 -bBmVac3 -bBlockS
+               -bCanNS -bCanEW -bOpSmS -bSEBlk1F -bSEBlk2F -bSEBlk3F -bSEBlk4F -bSEBlk5F
+               -bSEBlk6F -bSEBlk7F -bSEBlk8F -bSEBlk9F -bSEBlk1R -bSEBlk2R -bSEBlk3R -bNEBlk1F -bNEBlk2F
+               -bNEBlk3F -bNEBlk1R-bSEBlkaF -bSEBlkbF -bSEBlkcF -bSEBlkaR -bNEBlkaF -bNEBlkbF -bSEBlkdF
+               -bHoleN -bBmPipe4 -bBmVac4 -bCycOp -bSEDoor -bWallS1  -bWallS2 -bWallS3
+               -bOpBigS -bDetTun -bDetCeil -bDetRoof  -bCrOpAir -bCrOpPol -bWSEx2 -bWSEx3 -bWSEx4 -bWSEx5
+               -bWallS4 -bDrBigS -bB3SACon -bSoilS
+               -bSoilW -bSAFlr -bConSW -bHallBlk -bSAWallW -bSAFlrB1 -bFlrW
+               -bShBulk
+               -bUSsSh1  -bUScSh1 -bUSsSh2  -bUcSh2_2   -bUcSh2_1  -bUSsSh3  -bUcSh3_2  -bUcSh3_1 -bUSsSh4
+               -bUScSh4
+               -bUSConc
+               -bUSCshS1 -bUSCshS2 -bUSCshS3 -bUSCshS4 -bUSCshS5 -bUSCshS6
+               -bUSCshT1 -bUSCshT2 -bUSCshT3
+               -bBP0Wall  -bBP1Wall -bBP2Wall
+               -bQ6oSS -bQ6cCutb -bQ6cCuns
+               -bQ5oSS -bQ5cCutb -bQ5cCuns
+               -bMB4Y
+               -bClamp
+               -bBP0Wall  -bBP1Wall
+               -bFl_G1 - bFl_E1 -bFl_E2 - bFl_L1 - bFl_L2 - bFl_L3
+               -bIV6CylW -bIV6CylE -bIV6BoxS -bIV6Fl  -bIV6C1S -bIV6C2S
+               -bBPM6aS -bBPM6bS
+               -bDB6SS -bDB6CylS -bDB6BoxS
+               -bBellow1 -bBellow2 -bBellow3 -bBellow4
+               -bUSConc -bUScSh4
+
+* Removed for DarkLight
+* -bRMVYo - bRMVCni - bRMVCno - bRMVCsi - bRMVCso
+* -bRMHYo - bRMHCbi - bRMHCbo - bRMHCti - bRMHCto
+* -bUSshPE -bUSshPb
+NW_air       5 +pWallN1 +bWallN1T  -bWallW1 -bShBulk -bUSsSh1  -bUScSh1  -bUSsSh2  -bUcSh2_2   -bUcSh2_1 -bUSsSh3
+               -bUcSh3_2 -bUcSh3_1
+               -bUSsSh4 -bUScSh4
+* Beam Dump - 6061-T6 Al
+BD_Al        5 +bBD_6061 +pBD_xyz1+pBD_yz1 +pBD_yx1
+               |+bBD_6061 +pBD_xyz1-pBD_yz1 +pBD_yz2 + pBD_yx1
+               |+bBD_6061 +pBD_xyz1 -pBD_yz2 + pBD_yx1
+               |+bBD_6061 +pBD_xyz1+pBD_yz1 -pBD_yx1+pBD_yx2
+               |+bBD_6061 +pBD_xyz1-pBD_yz1 +pBD_yz2 - pBD_yx1+pBD_yx2
+               |+bBD_6061 +pBD_xyz1 -pBD_yz2 - pBD_yx1+pBD_yx2
+               |+bBD_6061 +pBD_xyz1+pBD_yz1 -pBD_yx2
+               |+bBD_6061 +pBD_xyz1-pBD_yz1 +pBD_yz2 - pBD_yx2
+               |+bBD_6061 +pBD_xyz1 -pBD_yz2 - pBD_yx2
+               |+bBD_6061 -pBD_xyz1+ pBD_xyz2+pBD_yz1 +pBD_yx1
+               |+bBD_6061 -pBD_xyz1+ pBD_xyz2-pBD_yz1 +pBD_yz2 + pBD_yx1
+               |+bBD_6061-pBD_xyz1+ pBD_xyz2 -pBD_yz2 + pBD_yx1
+               |+bBD_6061 -pBD_xyz1+ pBD_xyz2 +pBD_yz1 -pBD_yx1+pBD_yx2
+               |+bBD_6061 -pBD_xyz1+ pBD_xyz2 -pBD_yz1 +pBD_yz2 - pBD_yx1+pBD_yx2
+               |+bBD_6061 -pBD_xyz1+ pBD_xyz2 -pBD_yz2 - pBD_yx1+pBD_yx2
+               |+bBD_6061 -pBD_xyz1+ pBD_xyz2 +pBD_yz1 -pBD_yx2
+               |+bBD_6061 -pBD_xyz1+ pBD_xyz2 -pBD_yz1 +pBD_yz2 - pBD_yx2
+               |+bBD_6061 -pBD_xyz1+ pBD_xyz2 -pBD_yz2 - pBD_yx2
+               |+bBD_6061 -pBD_xyz2 +pBD_xyz3 +pBD_yz1 +pBD_yx1
+               |+bBD_6061 -pBD_xyz2 +pBD_xyz3 -pBD_yz1 +pBD_yz2 + pBD_yx1
+               |+bBD_6061-pBD_xyz2 +pBD_xyz3 -pBD_yz2 + pBD_yx1
+               |+bBD_6061 -pBD_xyz2 +pBD_xyz3 +pBD_yz1 -pBD_yx1+pBD_yx2
+               |+bBD_6061 -pBD_xyz2 +pBD_xyz3 -pBD_yz1 +pBD_yz2 - pBD_yx1+pBD_yx2
+               |+bBD_6061 -pBD_xyz2 +pBD_xyz3 -pBD_yz2 - pBD_yx1+pBD_yx2
+               |+bBD_6061 -pBD_xyz2 +pBD_xyz3 +pBD_yz1 -pBD_yx2
+               |+bBD_6061 -pBD_xyz2 +pBD_xyz3 -pBD_yz1 +pBD_yz2 - pBD_yx2
+               |+bBD_6061 -pBD_xyz2 +pBD_xyz3 -pBD_yz2 - pBD_yx2
+               |+bBD_6061 - pBD_TAlt
+               |+bBD_6061+pBD_TAlt  -bBD_Vac1 -pBD_ip4 +pBD_TAlE
+               |+bBD_6061  +pBD_TAlt  -pBD_ip4 -pBD_TAlW -bBD_bWat
+               |+bBD_6061  +pBD_TAlt -bBD_Twat  -pBD_ip4 -pBD_TAlE +pBD_TAlW
+               |-pBD_TAlE +pBD_yz1 +pBD_TAlb -pBD_ip4  +bBD_Twat -bBD_TAl
+               |-pBD_TAlE +pBD_yz1 -bBD_Vac2   -pBD_ip4  + bBD_TAl
+               |-pBD_yz1 +pBD_yz2 +pBD_TAlb -pBD_ip4 +bBD_Twat  -bBD_TAl
+               |-pBD_yz1 +pBD_yz2 -bBD_Vac2 -pBD_ip4  + bBD_TAl
+               |-pBD_yz2 +pBD_TAlb -pBD_ip4 +bBD_Twat  -bBD_TAl
+               |-pBD_yz2 -bBD_Vac2 -pBD_ip4  + bBD_TAl
+               |+bBD_AlB
+               |+bBD_6061 -pBD_xyz3 +pBD_ip4 -bBD_fr
+               |+bBD_fr +pBD_yz3  +pBD_ip4 -pBD_wat
+               |+bBD_fr -pBD_yz3  +pBD_yz4 +pBD_ip4 -pBD_wat
+               |+bBD_fr -bBD_cm -pBD_yz4  +pBD_yz5 +pBD_ip4 -pBD_wat
+               |+bBD_fr -pBD_yz5  +pBD_yz6 +pBD_ip4 -pBD_wat
+               |+bBD_fr -pBD_yz6  +pBD_ip4 -pBD_wat
+               |+bBD_cm +pBD_yz7 -pBD_yz4 +pBD_ip1 -pBD_wat
+               |+bBD_cm-pBD_yz7 +pBD_yz8+pBD_ip1 -pBD_wat
+               |+bBD_cm-pBD_yz8 +pBD_yz9+pBD_ip1 -pBD_wat
+               |+bBD_cm +pBD_yz5 -pBD_yz9+pBD_ip1 -pBD_wat
+               |+bBD_cm +pBD_yz7 -pBD_yz4+pBD_ip2 -pBD_ip1
+               |+bBD_cm -pBD_yz7 +pBD_yz8+pBD_ip2 -pBD_ip1
+               |+bBD_cm -pBD_yz8 +pBD_yz9+pBD_ip2 -pBD_ip1
+               |+bBD_cm +pBD_yz5 -pBD_yz9+pBD_ip2 -pBD_ip1
+               |+bBD_cm +pBD_yz7 -pBD_yz4+pBD_ip3 -pBD_ip2
+               |+bBD_cm -pBD_yz7 +pBD_yz8 +pBD_ip3 -pBD_ip2
+               |+bBD_cm-pBD_yz8 +pBD_yz9 +pBD_ip3 -pBD_ip2
+               |+bBD_cm +pBD_yz5 -pBD_yz9 +pBD_ip3 -pBD_ip2
+               |+bBD_cm +pBD_yz7 -pBD_yz4 +pBD_ip4 -pBD_ip3
+               |+bBD_cm -pBD_yz7 +pBD_yz8 +pBD_ip4 -pBD_ip3
+               |+bBD_cm -pBD_yz8 +pBD_yz9 +pBD_ip4 -pBD_ip3
+               |+bBD_cm +pBD_yz5 -pBD_yz9  +pBD_ip4 -pBD_ip3
+* BD Water
+BD_Wat       1 +bBD_fr +pBD_wat -pBD_xyz3
+               |+bBD_Twat -pBD_TAlE -pBD_Twat +pBD_TAlt
+               |+bBD_Twat -bBD_TAl -pBD_TAlE +pBD_Twat -pBD_TAlb
+               |+bBD_bWat +pBD_TAlt -pBD_ip4
+* BD Vac
+rBD_Vac      5 +bBD_Vac1 - pBD_ip4
+               | +bBD_Vac2 - pBD_ip4
+rPbAir       5 +bBD_Air -bBD_6061 -bBD_AlB
+#if 0
+PbShT        5 +bPbSh -bBD_Air -pBD_xz1
+#endif
+#if 0
+PbShB        5 +bShBulk +bPbSh -bBD_Air +pBD_xz1
+#endif
+BD_PbSh      5 +bShBulk +bPbSh -bBD_Air
+BD_ConSh     5 +bShBulk -bPbSh -pShS1 +pShN1 +pShT1  -pBD_xz1
+               |+bShBulk -pShT2 +pShT3 -pShS1 +pShN1
+               |+bShBulk -bPbSh -pShS1 +pShN1 -pShB1 +pBD_xz1
+               |+bShBulk -pShT4 +pShT5 -pShS1 +pShN1
+               |+bShBulk -pShT6 +bShBulk -pShS1 +pShN1
+               |+bShBulk +pShB2 -pShB3 -pShS1 +pShN1
+               |+bShBulk -pShN1 +pShN2 -bSS_BD + pShT1
+               |+bShBulk -pShN1 +pShN2 -bSS_BD -pShT2 +pShT3
+               |+bShBulk -pShN1 +pShN2 -bSS_BD -pShT4 +pShT5
+               |+bShBulk -pShN1 +pShN2 -bSS_BD -pShT6
+               |+bShBulk  -pShN3 +pShN4  +pWallN1 +pSS_BD + pSS_BD_3 - pSS_BD_2
+               | +bShBulk  -pShN3 +pShN4  +pWallN1 - pSS_BD_3
+               | +bShBulk  -pShN3 +pShN4  +pWallN1  + pSS_BD_2
+               |+bShBulk  -pShN5  -bWallN1B +pWallN1
+               |+bShBulk  -pShS2 +pShS1 + pShT1
+               |+bShBulk  -pShS2 +pShS1 -pShT2 +pShT3
+               |+bShBulk  -pShS2 +pShS1 -pShT4 +pShT5
+               |+bShBulk  -pShS2 +pShS1-pShT6
+               |+bShBulk -pShS4 +pShS3
+               |+bShBulk  -pShS6 +pShS5
+               |+bShBulk +pShS7
+BD_StAir     5 |+bShBulk -bShBulk2 -pShN4 +pShN5   +pWallN1
+BD_StSh      5 +bShBulk -pShT1 +pShT2 -pShS2 +pShN2
+               | +bShBulk -pShT3 +pShT4 -pShS2 +pShN2
+               | +bShBulk -pShT5 +pShT6 -pShS2 +pShN2
+               | +bShBulk +pShB1 -pShB2 -pShS1 +pShN1
+               | +bShBulk +pShB3 -pShS1 -bFloor1 +pShN1
+               | +bShBulk -pShN2 +pShN3 -bSS_BD
+               | +bShBulk2 -pShN4 +pShN5 +pWallN1
+               | +bShBulk -pShS3 +pShS2
+               | +bShBulk -pShS5 +pShS4
+               | +bShBulk -pShS7 +pShS6
+SS_pt_1      5 +bSS_pt_1
+SS_pt_2      5 +bSS_pt_2
+SS_pt_3      5 +bSS_pt_3
+SS_pb_1      5 +bSS_pb_1
+SS_pb_2      5 +bSS_pb_2
+SS_us_b      5 +bSS_us_b - bSS_pb_1- bSS_pb_2
+SS_us_t      5 +bSS_us_t
+SS_BD        5 +bSS_BD -pSS_BD
+USConsh      5 +bUSConc -bSS_us_b -bSS_us_t
+USCshS1      5 +bUSCshS1
+USCshS2      5 +bUSCshS2
+USCshS3      5 +bUSCshS3
+USCshS4      5 +bUSCshS4
+USCshS5      5 +bUSCshS5
+USCshS6      5 +bUSCshS6
+USCshT1      5 +bUSCshT1
+USCshT2      5 +bUSCshT2
+USCshT3      5 +bUSCshT3
+USsSh1       5 +bUSsSh1 -bUSCO_b1  -bUSb_CO1  -bUSb_CO1 -bSS_us_t   -bClamp -bSS_pt_1  +pWallN1
+UScSh1       5 +bUScSh1 -bUSb_CO2 -bSS_us_t  -bSS_pt_2  -bSS_pb_1 +pWallN1
+USsSh2       5 +bUSsSh2-bUSb_CO3 -bSS_pt_1 -bBP0Wall -bSS_pt_3 -bSS_pb_2 +pWallN1
+UcSh2_1      5 +bUcSh2_1 -bb_CO4_1-bBP0Wall+pWallN1
+UcSh2_2      5 +bUcSh2_2  -bb_CO4_2 -bBP0Wall+pWallN1
+USsSh3       5 +bUSsSh3  -bUSb_CO5 -bBP0Wall+pWallN1
+UcSh3_1      5 +bUcSh3_1   -bb_CO6_1 -bBP0Wall+pWallN1
+UcSh3_2      5 +bUcSh3_2 -bb_CO6_2 -bBP0Wall+pWallN1
+USsSh4       5 +bUSsSh4 -bUSb_CO7-bBP0Wall+pWallN1
+UScSh4       5 +bUScSh4  -bUSb_CO8 -bBP0Wall+pWallN1
+USHole       5 +bUSCO_b1 -bClamp -bBP0Wall
+Clamp        5 +bClamp -bBP0Wall
+InSteel1     5 +bUSb_CO1 -bUSc_CO1
+InSteel2     5 +bUSb_CO2 -bUSc_CO2
+InSteel3     5 +bUSb_CO3 -bUSc_CO3
+InSt4_1      5 +bb_CO4_1 -bc_CO4_1
+InSt4_2      5 +bb_CO4_2 -bc_CO4_2
+InSteel5     5 +bUSb_CO5 -bUSc_CO5
+InS6_1       5 +bb_CO6_1 -bc_CO6_1
+InS6_2       5 +bb_CO6_2 -bc_CO6_2
+InSteel7     5 +bUSb_CO7 -bUSc_CO7
+InSteel8     5 +bUSb_CO8 -bUSc_CO8
+InAirG1      5 +bUSc_CO1 -bBP0Wall
+InAirG2      5 +bUSc_CO2 -bBP0Wall
+InAirG3      5 +bUSc_CO3 -bBP0Wall
+InAG4_1      5 +bc_CO4_1 -bBP0Wall
+InAG4_2      5 +bc_CO4_2 -bBP0Wall
+InAirG5      5 +bUSc_CO5 -bBP0Wall
+InAG6_1      5 +bc_CO6_1 -bBP0Wall
+InAG6_2      5 +bc_CO6_2 -bBP0Wall
+InAirG7      5 +bUSc_CO7 -bBP0Wall
+InAirG8      5 +bUSc_CO8 -bBP0Wall
+rBPM6bS      5 +bBPM6bS -bBPM6bA  -bBP1Wall +pBPM6bN +pBPM6bS
+rBPM6bA      5 +bBPM6bA -bBP1Wall
+               |+bBPM6bS -pBPM6bN
+               |  +bBPM6bS -pBPM6bS
+rBPM6aS      5 +bBPM6aS -bBPM6aA  -bBP1Wall +pBPM6aN +pBPM6aS
+rBPM6aA      5 +bBPM6aA -bBP1Wall
+               |+bBPM6aS -pBPM6aN
+               |  +bBPM6aS -pBPM6aS
+rFlange1     5 +bFl_G1 - bBP1Wall
+rFlange      5 +bFl_E1 - bBP1Wall
+               |+bFl_E2 - bBP1Wall
+               | +bFl_L1 - bBP1Wall
+               | +bFl_L2 - bBP1Wall
+               | +bFl_L3 - bBP1Wall
+rBellows     5 +bBellow1 -bBP1Wall -bBPM6bS
+               |+bBellow2 -bBP1Wall -bBPM6bS
+               |+bBellow3 -bBP1Wall
+               |+bBellow4 -bBP1Wall
+rDB6SS       5 +bDB6SS -bDB6Air -bBP1Wall
+rDB6Air      5 +bDB6Air -bBP1Wall
+rDB6CylS     5 +bDB6CylS -bDB6CylA -bDB6SS
+rDB6CylA     5 +bDB6CylA -bDB6SS
+rDB6BoxS     5 +bDB6BoxS -bDB6BoxA -bDB6CylS
+rDB6BoxA     5 +bDB6BoxA
+MB4Yoke      5 +bMB4Y -bMB4TAo -bMB4BAo -bMB4Vac  -bMB4BV
+               | +bMB4TAi
+               | +bMB4BAi
+MB4Air       5 +bMB4TAo -bMB4TAi-bMB4CNT -bMB4CST
+               |+bMB4BAo -bMB4BAi -bMB4CNB -bMB4CSB
+MB4Coils     5 +bMB4CNT
+               |+bMB4CNB
+               |+bMB4CST
+               |+ bMB4CSB
+rMB4BVac     5 +bMB4BV -bBP1Wall -bBP2Wall
+MB4V         5 +bMB4Vac - bMB4BV
+rIV6SS       5 +bIV6CylW -bBP1Wall
+               |+bIV6CylE - bBP1Wall
+               |+bIV6BoxS -bIV6BoxA - bBP1Wall
+               |+bIV6Fl
+               |+bIV6C1S -bIV6C1A
+               |+bIV6C2S -bIV6C2A
+rIV6Air      5 +bIV6BoxA - bBP1Wall
+               |+bIV6C1A
+               |+bIV6C2A
+
+* Removed for DarkLight
+* rRMVCoil     5 + bRMVCno -  bRMVCni
+*               |+ bRMVCso -  bRMVCsi
+* rRMVYoke     5 +bRMVYo - bRMVYi1
+*                | +bRMVYi3 - bRMVYi2
+* rRMVAir      5 + bRMVYi1 - bRMVYi3 -bRMVCno  -bRMVCso
+*               | +bRMVCni -bRMVYi3
+*               | +bRMVCsi -bRMVYi3
+* rRMV_Vac     5 +bRMVYi2
+* rRMHCoil     5 + bRMHCbo -  bRMHCbi
+*                |+ bRMHCto -  bRMHCti
+* rRMHYoke     5 +bRMHYo - bRMHYi1
+*                | +bRMHYi3 - bRMHYi2
+* rRMHAir      5 + bRMHYi1 - bRMHYi3 -bRMHCbo  -bRMHCto
+*                | +bRMHCbi -bRMHYi3
+*                | +bRMHCti -bRMHYi3
+* rRMH_Vac     5 +bRMHYi2
+* Removed for DarkLight
+* USshPb       5 +bUSshPb -bBP1Wall
+* USshPE       5 +bUSshPE -bBP1Wall
+
+rQ6SS        5 +bQ6oSS -bQ6iSS
+rQ6Air       5 +bQ6iSS -bBP1Wall -bQ6pSStb -bQ6pSSns -bQ6cCutb -bQ6cCuns
+               |  +bQ6boxp -bBP1Wall  +bQ6boxp
+               |  +bQ6boxc - bQ6pSStb -bQ6pSSns
+rQ6pSS       5 + bQ6pSStb -bQ6boxp
+               | + bQ6pSSns -bQ6boxp
+rQ6pCu       5 + bQ6cCutb -bQ6boxc -bQ6pSStb-bBP1Wall
+               |+ bQ6cCuns -bQ6boxc -bQ6pSSns-bBP1Wall
+rQ5SS        5 +bQ5oSS -bQ5iSS
+rQ5Air       5 +bQ5iSS -bBP1Wall -bQ5pSStb -bQ5pSSns -bQ5cCutb -bQ5cCuns
+               |  +bQ5boxp -bBP1Wall  +bQ5boxp
+               |  +bQ5boxc - bQ5pSStb -bQ5pSSns
+rQ5pSS       5 + bQ5pSStb -bQ5boxp
+               | + bQ5pSSns -bQ5boxp
+rQ5pCu       5 + bQ5cCutb -bQ5boxc -bQ5pSStb-bBP1Wall
+               |+ bQ5cCuns -bQ5boxc -bQ5pSSns-bBP1Wall
+* - Beam pipe, filled with vacuum, contains Target
+rBmPipe      5 +bBmPipe -bBmVac -bTarget
+rBmVac       5 +bBmVac -bTarget
+* - South running Beam pipe, filled with vacuum, contains Target
+rBmPipe2     5 +bBmPipe2 -bBmVac2 -bTarget
+rBmVac2      5 +bBmVac2 -bTarget
+* - SouthEast running Beam pipe, filled with vacuum, contains Target
+rBmPipe3     5 +bBmPipe3 -bBmVac3 -bTarget
+rBmVac3      5 +bBmVac3 -bTarget
+* - East running Beam pipe, filled with vacuum, contains Target
+rBmPipe4     5 +bBmPipe4 -bBmVac4 -bTarget
+rBmVac4      5 +bBmVac4 -bTarget
+* - West running Beam pipe, filled with vacuum
+rBP0Wall     5 +bBP0Wall -bBP0Vac
+* - West running Beam pipe, filled with vacuum
+* rBP1Wall     5 +bBP1Wall -bBP1Vac -bRMVYi2  -bRMHYi2 -bMB4BV -bDLfoil
+* Removed for DarkLight
+rBP1Wall     5 +bBP1Wall -bBP1Vac -bMB4BV -bDLfoil -bDLcham -bDLvacc
+rBP2Wall     5 +bBP2Wall -bBP2Vac -bMB4BV -bDLfoil -bDLcham -bDLvacc
+rBP0Vac      5 +bBP0Vac
+*Removed for DarkLight
+* rBP1Vac      5 +bBP1Vac -bRMVYi2 -bRMHYi2 -bMB4BV -bDLfoil
+rBP1Vac      5 +bBP1Vac -bMB4BV -bDLfoil
+rBP2Vac      5 +bBP2Vac -bMB4BV
+rBPMB4SB     5 +bBP1Wall - bBP1Vac + bMB4Y -bBP2Wall
+               |+bBP2Wall- bBP2Vac +bMB4Y -bBP1Vac
+rBPMB4VB     5 +bBP1Vac + bMB4Y -bBP2Wall
+               |+bBP2Vac  + bMB4Y
+               | +bBP2Wall- bBP2Vac +bBP1Vac
+* Target
+Target       5 +bTarget
+* DarkLight Target
+DLTarget     5 +bDLfoil
+DLChamb      5 +bDLcham -bDLvacc -bBP1Vac
+DLVacuum     5 +bDLvacc -bDLfoil -bBP1Vac
+* Floor
+Fl1_1        5 +bFloor1 -pFl1_1 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
+* Floor
+Fl1_2        5 +bFloor1 +pFl1_1  -pFl1_2 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
+* Floor
+Fl1_3        5 +bFloor1  +pFl1_2  -pFl1_3 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
+* Floor
+Fl1_4        5 +bFloor1  +pFl1_3  -pFl1_4 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
+* Floor
+Fl1_5        5 +bFloor1 +pFl1_4   -pFl1_5 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
+* Floor
+Fl1_6        5 +bFloor1 +pFl1_5   -pFl1_6 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
+* Floor
+Fl1_7        5 +bFloor1 +pFl1_6 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
+* Floor
+Floor2       5 +bFloor2 -bWallE -bB3TunA -bB3Htch1 -bB3SACon -bB3Htch2 -bB3Htch3 -bB3Htch4
+* Existing roof beams
+Roof         5 +bRoof -bAirGp21 -bAirGp20 -bAirGp19 -bAirGp18 -bAirGp17 -bAirGp16 -bAirGp15
+               -bAirGp14 -bAirGp13 -AirGap12 -bAirGp11 -bAirGp10 -bAirGp9 -bAirGap8 -bAirGap7
+               -bAirGap6 -bAirGap5 -bAirGap4 -bAirGap3 -bAirGap2 -bAirGap1 -bAirGp22
+* - Air Gaps in roof beams
+AirGap22     5 +bAirGp22-bFe22
+AirGap21     5 +bAirGp21-bFe21
+AirGap20     5 +bAirGp20-bFe20
+AirGap19     5 +bAirGp19-bFe19
+AirGap18     5 +bAirGp18-bFe18
+AirGap17     5 +bAirGp17-bFe17
+AirGap16     5 +bAirGp16-bFe16
+AirGap15     5 +bAirGp15-bFe15
+AirGap14     5 +bAirGp14-bFe14
+AirGap13     5 +bAirGp13-bFe13
+AirGap12     5 +AirGap12-bFe12
+AirGap11     5 +bAirGp11-bFe11
+AirGap10     5 +bAirGp10-bFe10
+AirGap9      5 +bAirGp9-bFe9
+AirGap8      5 +bAirGap8-bFe8
+AirGap7      5 +bAirGap7-bFe7
+AirGap6      5 +bAirGap6-bFe6
+AirGap5      5 +bAirGap5-bFe5
+AirGap4      5 +bAirGap4-bFe4
+AirGap3      5 +bAirGap3-bFe3
+AirGap2      5 +bAirGap2-bFe2
+AirGap1      5 +bAirGap1-bFe1
+* - Iron filler in Roof Beam air gaps
+rFe22        5 +bFe22
+rFe21        5 +bFe21
+rFe20        5 +bFe20
+rFe19        5 +bFe19
+rFe18        5 +bFe18
+rFe17        5 +bFe17
+rFe16        5 +bFe16
+rFe15        5 +bFe15
+rFe14        5 +bFe14
+rFe13        5 +bFe13
+rFe12        5 +bFe12
+rFe11        5 +bFe11
+rFe10        5 +bFe10
+rFe9         5 +bFe9
+rFe8         5 +bFe8
+rFe7         5 +bFe7
+rFe6         5 +bFe6
+rFe5         5 +bFe5
+rFe4         5 +bFe4
+rFe3         5 +bFe3
+rFe2         5 +bFe2
+rFe1         5 +bFe1
+WN1_1        5 +bWallN1T +pWN1_1 -bWallE -bWallW1 -bRoof -bCeiling -bSoilW  -pWallN1
+               | +bWallN1B  +pWN1_1-bWallE -bWallW1 -bFloor1
+WN1_2        5 +bWallN1T -pWN1_1 +pWN1_2 -bWallE -bWallW1 -bRoof -bCeiling -bSoilW
+               | +bWallN1B  -pWN1_1 +pWN1_2 -bWallE -bWallW1 -bFloor1
+WN1_3        5 +bWallN1T -pWN1_2 +pWN1_3 -bWallE -bWallW1 -bRoof -bCeiling -bSoilW
+               | +bWallN1B  -pWN1_2 +pWN1_3 -bWallE -bWallW1 -bFloor1
+WN1_4        5 +bWallN1T -pWN1_3 +pWN1_4 -bWallE -bWallW1 -bRoof -bCeiling -bSoilW
+               | +bWallN1B  -pWN1_3 +pWN1_4 -bWallE -bWallW1 -bFloor1
+WN1_5        5 +bWallN1T -pWN1_4 +pWN1_5 -bWallE -bWallW1 -bRoof -bCeiling -bSoilW
+               | +bWallN1B  -pWN1_4  +pWN1_5 -bWallE -bWallW1 -bFloor1
+WN1_6        5 +bWallN1T-pWN1_5 +pWN1_6  -bWallE -bWallW1 -bRoof -bCeiling -bSoilW
+               | +bWallN1B  -pWN1_5 +pWN1_6 -bWallE -bWallW1 -bFloor1
+WN1_7        5 +bWallN1T-pWN1_6  -bWallE -bWallW1 -bRoof -bCeiling -bSoilW
+               | +bWallN1B  -pWN1_6 -bWallE -bWallW1 -bFloor1
+WallN2       5 +bWallN2 -bCeiling -bWallE -bWallW1 -bFloor1 -bRoof -bTunOp -bHoleN -bWallN1T  -bWallN1B
+rTunOpe      5 +bTunOp -bDetTun +pAngW_N
+WallSEx1     5 +bWSEx1 -bWallE -bWallW2 -bFloor1 -bFloor2 -bRoof -bSChs6H -bSChs6V
+WallSEx2     5 +bWSEx2 -bOpBigS
+WallSEx3     5 +bWSEx3 -bSChs4H -bCrBig -bCrMed -bCrSmT -bCrSmB
+WallSEx4     5 +bWSEx4 -bOpSmS -bSChs1H -bSChs1V -bSChs2H -bSChs2V -bSChs3H -bSChs3V
+WallSEx5     5 +bWSEx5
+rWallS1      5 +bWallS1 +AngS -bOpBigS2 -bSChs4H -bCrBig -bCrMed -bCrSmT -bCrSmB -bSChs6H
+rWallS2      5 +bWallS2 -bWSEx2 -bOpSmS -bWSEx3 -bSChs1H -bSChs3H -bOpSmS2
+rWallS3      5 +bWallS3 -bWSEx3
+rWallS4      5 +bWallS4 -bSChs1V -bSChs3V
+rSEBlk1F     5 +bSEBlk1F
+rSEBlk2F     5 +bSEBlk2F
+rSEBlk3F     5 +bSEBlk3F
+rSEBlk4F     5 +bSEBlk4F
+rSEBlk5F     5 +bSEBlk5F
+rSEBlk6F     5 +bSEBlk6F
+rSEBlk7F     5 +bSEBlk7F
+rSEBlk8F     5 +bSEBlk8F
+rSEBlk9F     5 +bSEBlk9F
+rSEDoor      5 +bSEDoor
+rSEBlkaF     5 +bSEBlkaF
+rSEBlkbF     5 +bSEBlkbF
+rSEBlkcF     5 +bSEBlkcF
+rSEBlkdF     5 +bSEBlkdF
+rSEBlk1R     5 +bSEBlk1R
+rSEBlk2R     5 +bSEBlk2R
+rSEBlk3R     5 +bSEBlk3R
+rSEBlkaR     5 +bSEBlkaR
+rOpSmS       5 +bOpSmS
+rOpSmS2      5 +bOpSmS2
+rOpBigS      5 +bOpBigS -bDrBigS
+rOpBigS2     5 +bOpBigS2 -bDrBigS
+rBlockS      5 +bBlockS
+rCanNS       5 +bCanNS
+rCanEW       5 +bCanEW
+WallE        5 +bWallE  -bRoof -bCycOp
+rCycOp       5 +bCycOp
+WW1_1        5 +bWallW1 +pWW1_1-bFloor1  -bRoof
+WW1_2        5 +bWallW1 -pWW1_1  +pWW1_2 -bFloor1  -bRoof
+WW1_3        5 +bWallW1  -pWW1_2  +pWW1_3 -bFloor1  -bRoof
+WW1_4        5 +bWallW1  -pWW1_3 +pWW1_4 -bFloor1  -bRoof
+WW1_5        5 +bWallW1  -pWW1_4  +pWW1_5 -bFloor1  -bRoof
+WW1_6        5 +bWallW1  -pWW1_5 -bFloor1  -bRoof
+WallW2       5 +bWallW2 -bFloor1 -bFloor2  -bRoof -bWChs1H -bWChs1V -bWChs2H -bWChs2V -bWChs3H -bWChs3V -bWChs0H
+               -bWChs0V -bCeiling
+Ceiling      5 +bCeiling -bWallE -bWallW1  -bWallW1
+WallStk      5 +WallStk -bCeiling -bRoof -bWallE -bWallW2 -bOpSmN -bJayUp1 -bJayUp2 -bJayDn1 -bJayDn2
+               -bJayUp3 -bJayDn3
+rJayUp1      5 +bJayUp1
+rJayDn1      5 +bJayDn1 -bJayUp1
+rJayUp2      5 +bJayUp2
+rJayDn2      5 +bJayDn2 -bJayUp2
+rJayUp3      5 +bJayUp3
+rJayDn3      5 +bJayDn3 -bJayUp3
+rCrOpAir     5 +bCrOpAir
+rCrOpPol     5 +bCrOpPol -bCrOpAir
+rOpSmN       5 +bOpSmN
+rNEBlk1F     5 +bNEBlk1F
+rNEBlk2F     5 +bNEBlk2F
+rNEBlk3F     5 +bNEBlk3F
+rNEBlkaF     5 +bNEBlkaF
+rNEBlkbF     5 +bNEBlkbF
+rNEBlk1R     5 +bNEBlk1R
+rProtE       5 +bProtE -bKlyW_W1 -bKlyW_E
+rAngWall     5 +bAngBody -bProtE -pAngW_N +pAngW_S +pHoleE_E
+               | +bAngBody -pHoleE_E +pHole_ZY
+               | -bAngBody +bTunOp -pAngW_N
+               | +bAngBody -pHoleE_W +pAngW_S -bBoreEW
+               | +bAngBody +pHoleE_W -pHoleE_E +pAngW_S -pHole_ZY -pHole_ZX -bWallN2
+BoreEW       5 +bBoreEW +pAngW_S
+#if 0
+rAngWal1     5 -bProtE +bAngBody -pAngW_N +pAngW_S
+               | -bAngBody +bTunOp -pAngW_N
+#endif
+* rAngHole     5 +bAngHole -bHoleN
+rKlyWalW     5 +bKlyW_W1
+* rDipHole     5 +bDipHole -bHoleN
+* rAngCon      5 +bAngCon +bPlaAng -bPlaOrth -pNW  -bHoleN
+rHoleN       5 +bHoleN
+               | +pHoleE_W -pHoleE_E +pAngW_S -pHole_ZY +pHole_ZX -bWallN2 +bAngBody
+rKlyWalE     5 +bKlyW_E
+rKlyWalS     5 +bKlyW_W2
+rBlkE        5 +bBlkE -bWallE
+rBlkW        5 +bBlkW -bWallW1 -bWChs1V -bWChs2V -bWChs3V -bWChs0V -WallStk
+DetWU        5 +DetWU
+DetWD        5 +DetWD
+DetEU        5 +DetEU
+DetED        5 +DetED
+DetMU        5 +DetMU
+DetMD        5 +DetMD
+DetNeut      5 +DetNeut
+DetNeut2     5 +DetNeut2
+rDetTun      5 +bDetTun
+rDetCeil     5 +bDetCeil
+rDetRoof     5 +bDetRoof
+rSChs1H      5 +bSChs1H
+rSChs1V      5 +bSChs1V -bSChs1H
+rSChs2H      5 +bSChs2H
+rSChs2V      5 +bSChs2V -bSChs2H
+rSChs3H      5 +bSChs3H
+rSChs3V      5 +bSChs3V -bSChs3H
+rSChs4H      5 +bSChs4H
+rCrBig       5 +bCrBig
+rCrMed       5 +bCrMed
+rCrSmT       5 +bCrSmT
+rCrSmB       5 +bCrSmB
+rSChs6H      5 +bSChs6H
+rSChs6V      5 +bSChs6V -bSChs6H
+rAngAir      5 +bWallS1 -AngS -bSChs6H
+rDrBigS      5 +bDrBigS
+rB3TunC      5 +bB3TunC -bB3TunA
+rB3TunA      5 +bB3TunA
+rB3Htch1     5 +bB3Htch1
+rB3Htch2     5 +bB3Htch2
+#if 0
+rB3Plg2      5 +bB3Plg2 -bB3PlgA2
+#endif
+#if 0
+rB3PlgA2     5 +bB3PlgA2
+#endif
+rB3Htch3     5 +bB3Htch3
+#if 0
+rB3Plg3      5 +bB3Plg3
+#endif
+rB3Htch4     5 +bB3Htch4
+rB3SACon     5 +bB3SACon -bB3SAAir
+rB3SAAir     5 +bB3SAAir
+rSoilS       5 +bSoilS
+SoilF        5 +bSoilF -bFloor1 -bB3TunC
+rSAFlr       5 +bSAFlr -bWSEx1 -bFlrW
+rWChs0H      5 +bWChs0H
+rWChs0V      5 +bWChs0V
+rWChs1H      5 +bWChs1H
+rWChs1V      5 +bWChs1V
+rWChs2H      5 +bWChs2H
+rWChs2V      5 +bWChs2V
+rWChs3H      5 +bWChs3H
+rWChs3V      5 +bWChs3V
+SoilW        5 +bSoilW -bExConcW
+ExConcW      5 +bExConcW
+SoilN        5 +bSoilN
+rConSW       5 +bConSW -bSChs6V
+rHallBlk     5 +bHallBlk
+rSAWallW     5 +bSAWallW
+rSAFlrB1     5 +bSAFlrB1 -bWSEx1
+rFlrW        5 +bFlrW
+#if 0
+rICMstl      5 +bICMstl -bICMair
+#endif
+#if 0
+rICMair      5 +bICMair
+#endif
+END
+GEOEND
+LOW-MAT       Eu-151       63.       -2.      296.                    EUROPIUM
+LOW-MAT       Eu-153       63.       -2.      296.                    EUROPIUM
+* ..+....1....+....2....+....3....+....4....+....5....+....6....+....7..
+ASSIGNMA    BLCKHOLE   BLKBODY
+* 104 Air dry (near sea level)
+MATERIAL                       .00120484                              AIR
+COMPOUND   -1.248E-4    CARBON  -.755267  NITROGEN  -.231781    OXYGENAIR
+COMPOUND   -0.012827     ARGON                                        AIR
+MAT-PROP                            85.7       AIR
+STERNHEI     10.5961    1.7418    4.2759   0.10914    3.3994          AIR
+* Polyethylene (C2_H4)n
+MATERIAL                             .94                              POLYETHY
+COMPOUND    -.143711  HYDROGEN  -.856289    CARBON                    POLYETHY
+MAT-PROP                            57.4  POLYETHY
+STERNHEI      3.0016      .137    2.5177    .12108    3.4292          POLYETHY
+MATERIAL          5.    10.811      2.37                              BORON
+MATERIAL                            0.95                              B-PE
+* 5% Borated PE
+COMPOUND       -.116  HYDROGEN     -.612    CARBON    -0.222    OXYGENB-PE
+COMPOUND        -.05     BORON                                        B-PE
+MATERIAL         20.    40.078      1.55       21.                    CALCIUM
+* This composition is based on 1% H content for water from the NTS (Nevada Test Site) dry soil,
+* and average mineral concentrations from the U.S. Geological Survey Professional Paper 1270, Table 2, Western U.S.).
+* This paper addresses mineral content and not organic components which are typically made of C,N,O and H from water.
+* As for the actual composition, Anne's fractional composition of oxygen is a catch all for all the organic material.
+MATERIAL                             1.8                              SOIL
+COMPOUND       -0.01  HYDROGEN      -.52    OXYGEN     -.017    CARBONSOIL
+COMPOUND         -.3   SILICON    -.0097    SODIUM     -.058  ALUMINUMSOIL
+COMPOUND       -.021      IRON     -.018  POTASSIU     -.018   CALCIUMSOIL
+COMPOUND      -.0074  MAGNESIU    -.0024  TITANIUM    -.0013    SULFURSOIL
+MATERIAL         24.   51.9961      7.18                              CHROMIUM
+* Stainless-Steel (typical)
+* Stainless-Steel is produced with Cr content ranging from
+* 4 - 19 Atomic Percent, and with C content from 0 - 4 percent.
+MATERIAL                             8.0                              Stainles
+COMPOUND        18.0  CHROMIUM      74.0      IRON       8.0    NICKELStainles
+MATERIAL         25. 54.938049      7.21                              MANGANES
+MATERIAL         15. 30.973761      1.82                              PHOSPHO
+MATERIAL         16.    32.066      2.07                              SULFUR
+* Steel316LN
+* Stainless steel AISI316LN
+MATERIAL                             7.8                              SS316LN
+COMPOUND     -.67145      IRON    -0.185  CHROMIUM   -0.1125    NICKELSS316LN
+COMPOUND       -0.02  MANGANES     -0.01   SILICON   -4.5E-4   PHOSPHOSS316LN
+COMPOUND      -3.E-4    SULFUR    -3.E-4    CARBON    -5.E-5    COPPERSS316LN
+MATERIAL         30.     65.39     7.133                              ZINC
+MATERIAL         19.   39.0983      .862                              POTASSIU
+MATERIAL         55. 132.90545     1.873                              CESIUM
+MATERIAL         27.   58.9332       8.9                              COBALT
+MATERIAL         63.  150.9197    5.2227                              Eu-151
+MATERIAL         63.  152.9212   5.29195                              Eu-153
+MATERIAL         63.               5.264                              Nat-Eu
+COMPOUND       .4781    Eu-151     .5219    Eu-153                    Nat-Eu
+* Concrete portland.
+* Add Cs, Co, and Eu trace elements from UofS tested concrete.
+* Co: 5.2 ppm
+* Eu 0.67 ppm
+* Cs: 0.9 ppm
+MATERIAL                             2.3                              PortConc
+COMPOUND       -0.01  HYDROGEN    -0.001    CARBON  -.529107    OXYGENPortConc
+COMPOUND      -0.016    SODIUM    -0.002  MAGNESIU  -.033872  ALUMINUMPortConc
+COMPOUND    -.337021   SILICON     -.013  POTASSIU     -.044   CALCIUMPortConc
+COMPOUND      -0.014      IRON   -5.2E-6    COBALT   -6.7E-7    Nat-EuPortConc
+COMPOUND      -9.E-7    CESIUM                                        PortConc
+* 6061-T6 Al alloy
+MATERIAL                          2.6988                              6061-T6
+COMPOUND        -.96  ALUMINUM     -.008   SILICON     -.007      IRON6061-T6
+COMPOUND       -.004    COPPER   -0.0015  MANGANES    -0.012  MAGNESIU6061-T6
+COMPOUND      -.0035  CHROMIUM    -.0025      ZINC   -0.0015  TANTALUM6061-T6
+* ASTM A36 steel
+MATERIAL                            7.85                              A36steel
+COMPOUND      -.9813      IRON    -.0027    CARBON    -0.002    COPPERA36steel
+COMPOUND     -0.0103  MANGANES    -4.E-4   PHOSPHO   -0.0028   SILICONA36steel
+COMPOUND      -5.E-4    SULFUR    -5.E-5    COBALT                    A36steel
+* Rater Magnet steel.  Si added to low carbon steel, reducing density.  up to 5% Si.  (the composition below is not exact).
+MATERIAL                            7.55                              RMsteel
+COMPOUND    -0.96819      IRON    -3.E-5    CARBON      -.03   SILICONRMsteel
+COMPOUND      -7.E-4  MANGANES    -1.E-5    SULFUR   -0.0001   PHOSPHORMsteel
+ASSIGNMA         AIR  AirSpace
+ASSIGNMA         AIR    BoreEW
+ASSIGNMA         AIR    NW_air
+ASSIGNMA         AIR  BD_StAir
+ASSIGNMA        IRON    Target
+ASSIGNMA    TANTALUM  DLTarget
+ASSIGNMA    Stainles   DLChamb
+ASSIGNMA      VACUUM  DLVacuum
+ASSIGNMA    Stainles   rBmPipe
+ASSIGNMA      VACUUM    rBmVac
+ASSIGNMA      VACUUM   rBD_Vac
+ASSIGNMA    Stainles  rBP0Wall  rBP2Wall
+ASSIGNMA      VACUUM   rBP0Vac                    
+ASSIGNMA      VACUUM   rBP1Vac                            1.
+ASSIGNMA      VACUUM   rBP2Vac                            
+* Beam Pipe wall insdie MB4
+ASSIGNMA    Stainles  rBPMB4SB                            0.
+* Beam Pipe vac inside MB4
+ASSIGNMA      VACUUM  rBPMB4VB                            0.
+ASSIGNMA    Stainles  rBmPipe2
+ASSIGNMA      VACUUM   rBmVac2
+ASSIGNMA    Stainles  rBmPipe3
+ASSIGNMA      VACUUM   rBmVac3
+ASSIGNMA    Stainles  rBmPipe4
+ASSIGNMA      VACUUM   rBmVac4
+ASSIGNMA    PortConc     Fl1_1     Fl1_7
+ASSIGNMA    PortConc    Floor2
+ASSIGNMA    PortConc      Roof
+ASSIGNMA    PortConc  AirGap22
+ASSIGNMA    PortConc  AirGap21
+ASSIGNMA    PortConc     rFe22      rFe1
+ASSIGNMA    PortConc  AirGap20
+ASSIGNMA    PortConc  AirGap19
+ASSIGNMA    PortConc  AirGap18
+ASSIGNMA    PortConc  AirGap17
+ASSIGNMA    PortConc  AirGap16
+ASSIGNMA    PortConc  AirGap15
+ASSIGNMA    PortConc  AirGap14
+ASSIGNMA    PortConc  AirGap13
+ASSIGNMA    PortConc  AirGap12
+ASSIGNMA    PortConc  AirGap11
+ASSIGNMA    PortConc  AirGap10
+ASSIGNMA    PortConc   AirGap9
+ASSIGNMA    PortConc   AirGap8
+ASSIGNMA    PortConc   AirGap7
+ASSIGNMA    PortConc   AirGap6
+ASSIGNMA    PortConc   AirGap5
+ASSIGNMA    PortConc   AirGap4
+ASSIGNMA    PortConc   AirGap3
+ASSIGNMA    PortConc   AirGap2
+ASSIGNMA    PortConc   AirGap1
+ASSIGNMA    PortConc     WN1_1     WN1_7
+ASSIGNMA    PortConc    WallN2
+ASSIGNMA         AIR   rTunOpe
+ASSIGNMA    PortConc  WallSEx1  WallSEx5
+ASSIGNMA    PortConc   rWallS1
+ASSIGNMA    PortConc   rWallS2
+ASSIGNMA    PortConc   rWallS3
+ASSIGNMA    PortConc   rWallS4
+ASSIGNMA         AIR    rOpSmS
+ASSIGNMA    PortConc  rSEBlk1F  rSEBlk4F
+ASSIGNMA    PortConc  rSEBlk5F  rSEBlkdF
+ASSIGNMA    POLYETHY   rSEDoor
+ASSIGNMA    PortConc  rSEBlk1R  rSEBlkaR
+ASSIGNMA         AIR   rOpBigS  rOpBigS2
+ASSIGNMA         AIR   rBlockS
+ASSIGNMA         AIR    rCanNS
+ASSIGNMA         AIR    rCanEW
+ASSIGNMA    PortConc     WallE
+ASSIGNMA         AIR    rCycOp
+ASSIGNMA    PortConc     rBlkE
+ASSIGNMA    PortConc     WW1_1     WW1_6
+ASSIGNMA    PortConc   ExConcW
+ASSIGNMA    PortConc    WallW2
+ASSIGNMA    PortConc     rBlkW
+ASSIGNMA    PortConc   Ceiling
+ASSIGNMA    PortConc   WallStk
+ASSIGNMA         AIR   rJayUp1   rJayDn3
+ASSIGNMA         AIR  rCrOpAir
+ASSIGNMA    POLYETHY  rCrOpPol
+ASSIGNMA         AIR    rOpSmN
+ASSIGNMA    PortConc  rNEBlk1F  rNEBlkbF
+ASSIGNMA    PortConc  rNEBlk1R
+ASSIGNMA    PortConc    rProtE
+ASSIGNMA    PortConc  rAngWall
+ASSIGNMA         AIR    rHoleN
+ASSIGNMA    PortConc  rKlyWalW
+ASSIGNMA    PortConc  rKlyWalE
+ASSIGNMA    PortConc  rKlyWalS
+ASSIGNMA     6061-T6     BD_Al
+ASSIGNMA         AIR    NW_air
+ASSIGNMA       WATER    BD_Wat
+ASSIGNMA        LEAD   BD_PbSh
+ASSIGNMA    PortConc  BD_ConSh
+ASSIGNMA    PortConc   BD_StSh
+ASSIGNMA    PortConc   USConsh
+ASSIGNMA    PortConc   USCshS1   USCshS6
+ASSIGNMA    PortConc   USCshT1   USCshT3
+ASSIGNMA    PortConc    USsSh1
+ASSIGNMA    PortConc    UScSh1
+ASSIGNMA    PortConc    USsSh2
+ASSIGNMA    PortConc   UcSh2_1
+ASSIGNMA    PortConc   UcSh2_2
+ASSIGNMA    PortConc    USsSh3
+ASSIGNMA    PortConc   UcSh3_1
+ASSIGNMA    PortConc   UcSh3_2
+ASSIGNMA    PortConc    USsSh4
+ASSIGNMA    PortConc    UScSh4
+ASSIGNMA         AIR    USHole
+ASSIGNMA         AIR     Clamp
+ASSIGNMA         AIR   InAirG1   InAirG8
+ASSIGNMA    A36steel  InSteel1  InSteel8
+ASSIGNMA        LEAD   InSt4_1
+ASSIGNMA        LEAD  InSteel3
+ASSIGNMA    PortConc  InSteel8
+ASSIGNMA    PortConc  InSteel7
+ASSIGNMA    PortConc    InS6_2
+ASSIGNMA    PortConc    InS6_1
+ASSIGNMA    PortConc  InSteel5
+ASSIGNMA    PortConc   InSt4_2
+ASSIGNMA    PortConc  InSteel2
+ASSIGNMA    PortConc  InSteel1
+ASSIGNMA         AIR   SS_us_b     SS_BD
+ASSIGNMA    A36steel   SS_pt_1   SS_pt_3
+ASSIGNMA    PortConc   SS_pt_3
+ASSIGNMA    PortConc   SS_pt_2
+ASSIGNMA    PortConc   SS_pt_1
+ASSIGNMA    A36steel   SS_pb_1   SS_pb_2
+ASSIGNMA    PortConc   SS_pb_2
+ASSIGNMA    PortConc   SS_pb_1
+ASSIGNMA         AIR    rPbAir
+ASSIGNMA     SS316LN   rBPM6bS
+ASSIGNMA         AIR   rBPM6bA
+ASSIGNMA     SS316LN   rBPM6aS
+ASSIGNMA         AIR   rBPM6aA
+ASSIGNMA     SS316LN  rFlange1
+ASSIGNMA     SS316LN   rFlange
+ASSIGNMA     SS316LN  rBellows
+ASSIGNMA     SS316LN    rDB6SS
+ASSIGNMA         AIR   rDB6Air
+ASSIGNMA     SS316LN  rDB6CylS
+ASSIGNMA         AIR  rDB6CylA
+ASSIGNMA     SS316LN  rDB6BoxS
+ASSIGNMA         AIR  rDB6BoxA
+ASSIGNMA     SS316LN    rIV6SS
+ASSIGNMA         AIR   rIV6Air
+* Removed for DarkLight
+* ASSIGNMA     RMsteel  rRMVYoke
+* ASSIGNMA      COPPER  rRMVCoil
+* ASSIGNMA         AIR   rRMVAir
+* ASSIGNMA      VACUUM  rRMV_Vac                            0.
+* ASSIGNMA     RMsteel  rRMHYoke
+* ASSIGNMA      COPPER  rRMHCoil
+* ASSIGNMA         AIR   rRMHAir
+* ASSIGNMA      VACUUM  rRMH_Vac
+* Removed for DarkLight
+* ASSIGNMA        LEAD    USshPb
+* ASSIGNMA    POLYETHY    USshPE                            0.
+ASSIGNMA    A36steel   MB4Yoke
+ASSIGNMA      COPPER  MB4Coils
+ASSIGNMA         AIR    MB4Air
+ASSIGNMA      VACUUM      MB4V
+ASSIGNMA     SS316LN  rMB4BVac                            0.
+ASSIGNMA     SS316LN     rQ6SS
+ASSIGNMA         AIR    rQ6Air
+ASSIGNMA     SS316LN    rQ6pSS
+ASSIGNMA      COPPER    rQ6pCu
+ASSIGNMA     SS316LN     rQ5SS
+ASSIGNMA         AIR    rQ5Air
+ASSIGNMA     SS316LN    rQ5pSS
+ASSIGNMA      COPPER    rQ5pCu
+ASSIGNMA         AIR     DetWU
+ASSIGNMA         AIR     DetWD
+ASSIGNMA         AIR     DetEU
+ASSIGNMA         AIR     DetED
+ASSIGNMA         AIR     DetMU
+ASSIGNMA         AIR     DetMD
+ASSIGNMA         AIR   DetNeut  DetNeut2
+ASSIGNMA         AIR   rDetTun  rDetRoof
+ASSIGNMA         AIR   rSChs1H   rSChs6V
+ASSIGNMA         AIR   rAngAir
+ASSIGNMA         AIR   rOpSmS2
+ASSIGNMA    PortConc   rDrBigS
+ASSIGNMA         AIR   rB3TunA
+ASSIGNMA    PortConc   rB3TunC
+ASSIGNMA    PortConc  rB3Htch1
+ASSIGNMA         AIR  rB3Htch2
+ASSIGNMA         AIR  rB3Htch3
+ASSIGNMA         AIR  rB3Htch4
+*ASSIGNMA    PortConc   rB3Plg2
+*ASSIGNMA         AIR  rB3PlgA2
+*ASSIGNMA    PortConc   rB3Plg3
+ASSIGNMA    PortConc  rB3SACon
+ASSIGNMA         AIR  rB3SAAir
+ASSIGNMA        SOIL    rSoilS
+ASSIGNMA        SOIL     SoilF
+ASSIGNMA        SOIL     SoilW
+ASSIGNMA        SOIL     SoilN
+ASSIGNMA    PortConc    rSAFlr
+ASSIGNMA         AIR   rWChs0H   rWChs3V
+ASSIGNMA    PortConc    rConSW
+ASSIGNMA    PortConc  rHallBlk
+ASSIGNMA    PortConc  rSAWallW
+ASSIGNMA    PortConc  rSAFlrB1
+ASSIGNMA    PortConc     rFlrW
+ASSIGNMA         AIR  AirSpace
+ASSIGNMA         AIR    MB4Air
+*ASSIGNMA     SS316LN   rICMstl                                  VACUUM
+*ASSIGNMA         AIR   rICMair                                  VACUUM
+* Set electron and photon production thresholds to 100 & 10 keV (material)
+!@what.1= -100*keV
+!@what.2= 10*keV
+EMFCUT        -1.E-4     1.E-5       1.0  HYDROGEN  @LASTMAT        1.PROD-CUT
+MGNFIELD         30.                           0.0       0.0       0.0
+* Set electron and photon transport cut-offs to 100 & 10 keV (region)
+!@what.1= -100*keV
+!@what.2= 10*keV
+EMFCUT        -1.E-4     1.E-5       0.0  AirSpace  @LASTREG        1.
+RADDECAY          1.        1.        3.   300000.   1000010
+* Beam intensity: 1.3 mA.  Running for 1 month per year for 20 years
+* 1.33333E-3 C/s * 6.2415E18 e/C  = 8.322E15
+* There are 8760 hours per year, and 720 hours per month
+* Divide into 15 + 5 years.
+* First 15 years beam on all the time at a scaled beam intensity by fraction of the time beam on (720/8760) = (720/8760) *1.33333 mA = 0.082 * 8.322E15 = 6.824e14
+* The remaining 5 years, beam is on for 720 hours at full intensity of 1.3 mA, off for 8040 hours.  skip the last Delta_t for time off
+*
+!@what.1= 15*year
+!@what.3=1*month
+!@what.5=11*month
+IRRPROFI   4.73364E8  6.824E14  2629800.  8.322E15 28927800.       0.0
+!@what.1= 1* month
+!@what.3= 11*month
+!@what.5= 1*month
+IRRPROFI    2629800.  8.322E15 28927800.       0.0  2629800.  8.322E15
+!@what.1= 11*month
+!@what.3= 1*month
+!@what.5= 11*month
+IRRPROFI   28927800.       0.0  2629800.  8.322E15 28927800.       0.0
+!@what.1= 1*month
+IRRPROFI    2629800.  8.322E15
+!@what.1= 0*sec
+!@what.2= 1*hour
+!@what.3= 8*hour
+!@what.4= 1*day
+!@what.5= 1*week
+!@what.6= 30*day
+DCYTIMES                 3600.    28800.    86400.   604800.  2592000.
+!@what.1= 90*day
+!@what.2= 180*day
+!@what.3= 365*day
+DCYTIMES    7776000. 15552000. 31536000.
+#define BD_W 12.5
+#define BD_Ht 8.7
+#define BD_Hb 7.8
+#define BD_L 130
+* Sometime in 2013
+#define BD_FF -146
+* before Jan 20, 2014
+#define BD_FF_orig -161.5
+* Jan 20, 2014
+#define BD_FF_new -149.9
+#define Beam_Y 76
+* Beam center in Z is 98.5 cm from the North Wall which is at Z = 3040 cm.  ===> Beam_Z = 3040 - 98.5
+#define Beam_Z 2941.5
+#define Res_DR 0.0
+#define Activity 0.0
+#define DepEn 0.0
+!@what.7=75*MeV
+!@what.8=10*keV
+*USRTRACK         -1.    PHOTON      -81.  rCageAir    2.69E6      100.Ph_in_Cage
+*USRTRACK        .075     1.E-5                                         &
+* Dx = 144.76 cm, Dy = 186 cm  , Dz = 100 cm
+!@what.7=75*MeV
+*USRTRACK         -1.   DOSE-EQ      -82.  rCageAir    2.69E6       15.DE_N_in_Cg
+*USRTRACK        .075     1E-14                                         &
+*AUXSCORE    USRTRACK   NEUTRON          DE_N_in_Cg
+* Dose Eq from e+/e-
+* 20 x 20 x 20 cm
+*USRBIN                 DOSE-EQ      -61.      350.      900.     3300.DE_epem
+*USRBIN         -900.     -200.     2000.      125.      110.      130. &
+*AUXSCORE      USRBIN     E+&E-             DE_epem                    AMB74
+* Absorbed dose in the ccd camera air region (4.34 * 4.34 * 7.7 = 145 cc)
+!@what.7= 10*MeV
+!@what.8=10*keV
+*USRTRACK         -1.   DOSE-EQ      -99.  rDB4CCAi      145.       50.AD_DB4_CCD
+*USRTRACK        0.01     1.E-5                                         &
+* Dose Eq from gammas
+* 20 x 20 x 20 cm
+USRBIN           10.   DOSE-EQ      -51.      350.      610.     3300.DE_g
+USRBIN         -900.     -200.     2000.      125.       81.      130. &
+AUXSCORE      USRBIN    PHOTON                DE_g                    AMB74
+* Dose Eq from neutrons
+USRBIN           10.   DOSE-EQ      -52.      350.      610.     3300.DE_n
+USRBIN         -900.     -200.     2000.      125.       81.      130. &
+AUXSCORE      USRBIN   NEUTRON                DE_n                    AMB74
+* Dose Eq from all particles
+USRBIN           10.   DOSE-EQ      -53.      350.      610.     3300.DE
+USRBIN         -900.     -200.     2000.      125.       81.      130. &
+* Beam Particle fluence in BD area (small)
+USRBIN           10.  BEAMPART      -40.       0.0       85.     2952.BP_Fl
+USRBIN         -160.       70.     2931.       80.      150.      210. &
+* Dose Eq from Photons
+* 5 cm bins in x, y, and z
+USRBIN           10.   DOSE-EQ      -62.      350.      400.     3250.DE_epem_sm
+USRBIN         -300.     -160.     2650.      130.      112.      120. &
+AUXSCORE      USRBIN     E+&E-          DE_epem_sm                    AMB74
+* Dose Eq from Photons
+* 5 cm bins in x, y, and z
+USRBIN           10.   DOSE-EQ      -54.      350.      400.     3250.DE_g_sm
+USRBIN         -300.     -160.     2650.      130.      112.      120. &
+AUXSCORE      USRBIN    PHOTON             DE_g_sm                    AMB74
+* Dose Eq from neutrons
+USRBIN           10.   DOSE-EQ      -55.      350.      400.     3250.DE_n_sm
+USRBIN         -300.     -160.     2650.      130.      112.      120. &
+AUXSCORE      USRBIN   NEUTRON             DE_n_sm                    AMB74
+* Total Dose Eq
+USRBIN           10.   DOSE-EQ      -56.      350.      400.     3250.DE_sm
+USRBIN         -300.     -160.     2650.      130.      112.      120. &
+* US Dose Eq from Photons
+* 2 cm bin in x
+* 1 cm bins in y and z
+USRBIN           10.   DOSE-EQ      -63.     -250.      140.     3050.DE_epem_us
+USRBIN         -700.       0.0     2650.      150.      140.      100. &
+AUXSCORE      USRBIN     E+&E-          DE_epem_us                    AMB74
+* US Dose Eq from Photons
+* 2 cm bin in x
+* 1 cm bins in y and z
+USRBIN           10.   DOSE-EQ      -57.     -250.      140.     3050.DE_g_us
+USRBIN         -700.       0.0     2650.      150.      140.      100. &
+AUXSCORE      USRBIN    PHOTON             DE_g_us                    AMB74
+* US Dose Eq from neutrons
+USRBIN           10.   DOSE-EQ      -58.     -250.      140.     3050.DE_n_us
+USRBIN         -700.       0.0     2650.      150.      140.      100. &
+AUXSCORE      USRBIN   NEUTRON             DE_n_us                    AMB74
+* US Total Dose Eq
+USRBIN           10.   DOSE-EQ      -59.     -250.      140.     3050.DE_us
+USRBIN         -700.       0.0     2650.      150.      140.      100. &
+#if Res_DR 
+* Dose Eq from all particles, 0 sec after EOB
+* 5 cm bins
+USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE0s
+USRBIN         -500.       0.0     2700.       50.       66.       68. &
+DCYSCORE          1.                          DE0s                    USRBIN
+* Dose Eq from all particles, 1 hour after EOB
+USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE1h
+USRBIN         -500.       0.0     2700.       50.       66.       68. &
+DCYSCORE          2.                          DE1h                    USRBIN
+* Dose Eq from all particles, 12 hours  after EOB
+USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE8h
+USRBIN         -500.       0.0     2700.       50.       66.       68. &
+DCYSCORE          3.                          DE8h                    USRBIN
+* Dose Eq from all particles, 1 day after EOB
+USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE1d
+USRBIN         -500.       0.0     2700.       50.       66.       68. &
+DCYSCORE          4.                          DE1d                    USRBIN
+* Dose Eq from all particles, 10 days after EOB
+USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE1w
+USRBIN         -500.       0.0     2700.       50.       66.       68. &
+DCYSCORE          5.                          DE1w                    USRBIN
+* Dose Eq from all particles, 30 days after EOB
+USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE1m
+USRBIN         -500.       70.     2700.       50.       66.       68. &
+DCYSCORE          6.                          DE1m                    USRBIN
+* Dose Eq from all particles, 60 days after EOB
+USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE3m
+USRBIN         -500.       0.0     2700.       50.       66.       68. &
+DCYSCORE          7.                          DE3m                    USRBIN
+* Dose Eq from all particles, 90 days after EOB
+USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE6m
+USRBIN         -500.       0.0     2700.       50.       66.       68. &
+DCYSCORE          8.                          DE6m                    USRBIN
+* Dose Eq from all particles, 1 year after EOB
+USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE1y
+USRBIN         -500.       0.0     2700.       50.       66.       68. &
+DCYSCORE          9.                          DE1y                    USRBIN
+#endif  
+#ifdef DepEn 
+* Deposited energy in the Beam Dump shielding area:
+* 1 cm bins
+USRBIN           10.    ENERGY      -90.       20.      160.     3010.DepEn
+USRBIN         -162.      -10.     2860.      182.      170.      150. &
+#endif  
+#if Activity 
+RESNUCLE          3.      -21.       31.       29.     BD_Al          RN_BD_Al
+RESNUCLE          3.      -22.        9.       11.    BD_Wat          RN_BD_Wat
+RESNUCLE          3.      -23.       83.       55.   BD_PbSh          RN_BD_Pb
+RESNUCLE          3.      -24.       30.       24.   BD_StSh          RN_BD_St
+RESNUCLE          3.      -25.       64.       44.  BD_ConSh          RN_BD_Con
+RESNUCLE          3.      -26.       64.       41.     WN1_1          RN_NW1
+RESNUCLE          3.      -26.       64.       41.     WN1_2          RN_NW2
+RESNUCLE          3.      -26.       64.       41.     WN1_3          RN_NW3
+RESNUCLE          3.      -26.       64.       41.     WN1_4          RN_NW4
+RESNUCLE          3.      -26.       64.       41.     WN1_5          RN_NW5
+RESNUCLE          3.      -26.       64.       41.     WN1_6          RN_NW6
+RESNUCLE          3.      -26.       64.       41.     WN1_7          RN_NW7
+RESNUCLE          3.      -27.       15.       17.     SoilN          RN_SoilN
+RESNUCLE          3.      -28.       64.       41.     WW1_1          RN_WW1
+RESNUCLE          3.      -28.       64.       41.     WW1_2          RN_WW2
+RESNUCLE          3.      -28.       64.       41.     WW1_3          RN_WW3
+RESNUCLE          3.      -28.       64.       41.     WW1_4          RN_WW4
+RESNUCLE          3.      -28.       64.       41.     WW1_5          RN_WW5
+RESNUCLE          3.      -28.       64.       41.     WW1_6          RN_WW6
+RESNUCLE          3.      -91.       64.       41.     Fl1_1          RN_Floor
+RESNUCLE          3.      -92.       15.       17.     SoilF          RN_SoilF
+*RESNUCLE          3.      -94.       64.       41.   ExConcW          RN_ExWW
+*RESNUCLE          3.      -95.       15.       17.     SoilW          RN_SoilW
+RESNUCLE          3.      -31.       31.       29.     BD_Al          BD_Al_1d
+RESNUCLE          3.      -32.        9.       11.    BD_Wat          BD_Wat_1d
+RESNUCLE          3.      -33.       83.       55.   BD_PbSh          BD_Pb_1d
+RESNUCLE          3.      -34.       30.       24.   BD_StSh          BD_st_1d
+RESNUCLE          3.      -35.       64.       44.  BD_ConSh          BD_Con_1d
+RESNUCLE          3.      -36.       64.       41.     WN1_1          NW1_1d
+RESNUCLE          3.      -36.       64.       41.     WN1_2          NW2_1d
+RESNUCLE          3.      -36.       64.       41.     WN1_3          NW3_1d
+RESNUCLE          3.      -36.       64.       41.     WN1_4          NW4_1d
+RESNUCLE          3.      -36.       64.       41.     WN1_5          NW5_1d
+RESNUCLE          3.      -36.       64.       41.     WN1_6          NW6_1d
+RESNUCLE          3.      -36.       64.       41.     WN1_7          NW7_1d
+RESNUCLE          3.      -37.       15.       17.     SoilN          SoilN_1d
+RESNUCLE          3.      -38.       64.       41.     WW1_1          WW1_1d
+RESNUCLE          3.      -38.       64.       41.     WW1_2          WW2_1d
+RESNUCLE          3.      -38.       64.       41.     WW1_3          WW3_1d
+RESNUCLE          3.      -38.       64.       41.     WW1_4          WW4_1d
+RESNUCLE          3.      -38.       64.       41.     WW1_5          WW5_1d
+RESNUCLE          3.      -38.       64.       41.     WW1_6          WW6_1d
+RESNUCLE          3.      -93.       64.       41.     Fl1_1          Floor_1d
+RESNUCLE          3.      -94.       15.       17.     SoilF          SoilF_1d
+DCYSCORE          4.                      BD_Al_1d  SoilF_1d          RESNUCLE
+RESNUCLE          3.      -41.       31.       29.     BD_Al          BD_Al_1y
+RESNUCLE          3.      -42.        9.       11.    BD_Wat          BD_Wat_1y
+RESNUCLE          3.      -43.       83.       55.   BD_PbSh          BD_Pb_1y
+RESNUCLE          3.      -44.       30.       24.   BD_StSh          BD_st_1y
+RESNUCLE          3.      -45.       64.       44.  BD_ConSh          BD_Con_1y
+RESNUCLE          3.      -46.       64.       41.     WN1_1          NW1_1y
+RESNUCLE          3.      -46.       64.       41.     WN1_2          NW2_1y
+RESNUCLE          3.      -46.       64.       41.     WN1_3          NW3_1y
+RESNUCLE          3.      -46.       64.       41.     WN1_4          NW4_1y
+RESNUCLE          3.      -46.       64.       41.     WN1_5          NW5_1y
+RESNUCLE          3.      -46.       64.       41.     WN1_6          NW6_1y
+RESNUCLE          3.      -46.       64.       41.     WN1_7          NW7_1y
+RESNUCLE          3.      -47.       15.       17.     SoilN          SoilN_1y
+RESNUCLE          3.      -48.       64.       41.     WW1_1          WW1_1y
+RESNUCLE          3.      -48.       64.       41.     WW1_2          WW2_1y
+RESNUCLE          3.      -48.       64.       41.     WW1_3          WW3_1y
+RESNUCLE          3.      -48.       64.       41.     WW1_4          WW4_1y
+RESNUCLE          3.      -48.       64.       41.     WW1_5          WW5_1y
+RESNUCLE          3.      -48.       64.       41.     WW1_6          WW6_1y
+RESNUCLE          3.      -95.       64.       41.     Fl1_1          Floor_1y
+RESNUCLE          3.      -96.       15.       17.     SoilF          SoilF_1y
+DCYSCORE          9.                      BD_Al_1y  SoilF_1y          RESNUCLE
+#endif  
+SCORE       BEAMPART   NEUTRON    PHOTON    ENERGY
+STOP
