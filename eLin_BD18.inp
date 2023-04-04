@@ -12,7 +12,8 @@ Shielding Calculation for eLINAC Beam Dump
 GLOBAL                                         1.0       1.0          OLDFLAIR
 DEFAULTS                                                              PRECISIO
 * 25 MeV beam, sigma = 0.6 cm , FWHM = 2.355 * 0.6 = 1.413
-BEAM           -.052                        -1.413    -1.413       1.0ELECTRON
+* BEAM           -.030                        -1.413    -1.413       1.0ELECTRON
+BEAM           -.030                        -0.141    -0.141       1.0ELECTRON
 BEAMAXES         0.0        1.       0.0        1.       0.0       0.0
 * Beam starts at point (x,y,z) and along x-axis into the dump, assuming Beamline height is 2.5ft
 * Origin is (West wall, Hall floor, South wall)
@@ -23,7 +24,7 @@ BEAMAXES         0.0        1.       0.0        1.       0.0       0.0
 * X = -135
 !@what.2= Beam_Y
 !@what.3= 3040-98.5
-BEAMPOS        -490.       76.    2941.5
+BEAMPOS       -493.1       76.    2941.5
 #if 0
 * Physics and biasing control cards heavy recoils and ions are treated
 EVENTYPE                              1.                              EVAP
