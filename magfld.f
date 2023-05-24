@@ -66,8 +66,8 @@
       !DL target sits at (-460, 76, 2941.5)
       
       STRK0 = 0.3 ! strenght of permanent magnet quad
-      STRK1 = -0.129 !0.012705*QM5 current in beam optics model of -9.913 A
-      STRK2 = 0.085  !0.012705*QM6 current in beam optics model of 6.696 A
+      STRK1 = -0.382 !0.012705*QM5*length/aperture current in beam optics model of -9.915 A
+      STRK2 = 0.258  !0.012705*QM6*length/aperture current in beam optics model of 6.704  A
 
       APR = 2.6 !cm for MQs
  
@@ -76,10 +76,10 @@
       z_local = z - 2941.5
 
       x1 = 20. + 9.3/2 ! -435.35 cm
-      x2 = x1 + 9.3 + 28.5 ! -397.55cm
-      x3 = x2 + 9.3 + 25. ! -363.25cm
+      x2 = x1 + 9.3/2 + 28.5 + 9.3/2 ! -397.55cm
+      x3 = x2 + 9.3/2 + 25. + 9.3/2 ! -363.25cm
       x4 = x3 + 9.3/2 + 3.527 + 3.211 + 6. + 5. ! -340.862cm 
-      x5 = x4 + 10. + 5.5 !-325.362cm
+      x5 = x4 + 5. + 5.5 + 5.!-325.362cm
 
       !Aveen here is when you gonna do
 
@@ -128,7 +128,7 @@ c     Bx,By,Bz the 3 component of the magnetic field in TESLA
       !if beam is outside of the aperture, 
       !or too far away from the magnet (>6*aperture, where the field should have dropped by nearly 4 orders of magnitue, good enough), 
       !return zero magnetic field
-      if(((x**2+y**2).GT.APR**2).OR.(ABS(z_-Z0).GE.(6*APR))) then
+      if(((x**2+y**2).GT.APR**2).OR.(ABS(z_-z0).GE.(6*APR))) then
             Bx = 0.0
             By = 0.0
             Bz = 0.0
@@ -141,15 +141,15 @@ c     Bx,By,Bz the 3 component of the magnetic field in TESLA
       z = (z_-z0)/al
 
       !now the field components, copy-pasted directly from mathematica
-      Bx_loc = (0.5*STRK*(Sin(2*x))/(Cos(2*x) + Cosh(2*z)))
-      By_loc = (-0.5*STRK*(Sin(2*y))/(Cos(2*y) + Cosh(2*z)))
+      Bx_loc = (-0.5*STRK*(Sin(2*x))/(Cos(2*x) + Cosh(2*z)))
+      By_loc = (0.5*STRK*(Sin(2*y))/(Cos(2*y) + Cosh(2*z)))
       
       !now rotate back Bx and By -45 deg
       Bx = Bx + 1./SQRT(2.0)*( Bx_loc + By_loc)
       By = By + 1./SQRT(2.0)*(-Bx_loc + By_loc)
 
       !Increment Bz as is, since the rotation is done around z 
-      Bz = Bz + 0.5*STRK*Sinh(2*z)*(1/(Cos(2*y)+Cosh(2*z))
+      Bz = Bz - 0.5*STRK*Sinh(2*z)*(1/(Cos(2*y)+Cosh(2*z))
      *- 1/(Cos(2*x)+Cosh(2*z)))
       
       return
