@@ -11,9 +11,9 @@ TITLE
 Shielding Calculation for eLINAC Beam Dump
 GLOBAL                                         1.0       1.0          OLDFLAIR
 DEFAULTS                                                              PRECISIO
-* 25 MeV beam, sigma = 0.6 cm , FWHM = 2.355 * 0.6 = 1.413
+* 25 MeV beam, 2sigma = 0.06 cm , FWHM = 2.355 * 0.03 = 0.071
 * BEAM           -.030                        -1.413    -1.413       1.0ELECTRON
-BEAM           -.030                        -0.141    -0.141       1.0ELECTRON
+BEAM           -.030                        -0.070    -0.070       1.0ELECTRON
 BEAMAXES         0.0        1.       0.0        1.       0.0       0.0
 * Beam starts at point (x,y,z) and along x-axis into the dump, assuming Beamline height is 2.5ft
 * Origin is (West wall, Hall floor, South wall)
@@ -95,7 +95,7 @@ BIASING          0.0        1.    98304.  rFlange1                    PRINT
 USERDUMP        100.       49.                                        USpart.dat
 *USERDUMP        100.       49.                                        USpart.dat
 ROT-DEFI         0.0       0.0      -45.                              AngW
-RANDOMIZ          1.1140504738
+RANDOMIZ          1. 114050473
 START       2000000.                                     0.0
 GEOBEGIN                                                              COMBNAME
     0    0          
@@ -1763,14 +1763,16 @@ BOX bICMair    -1047.5 39.0 630.0 112.42098152481 0.0 160.55380068064
               78.638596251743 0.0 -55.0633378897 0.0 130.0 0.0
 #endif
 * DarkLight Target
-RPP bDLfoil   -460.0001 -460. 73.5 78.5 2938.959 2944.03 
-RCC bDLcham   -457.415 67.105 2941.5 0. 17.79 0. 12.945
-RCC bDLvacc   -457.415 69.015 2941.5 0. 13.97 0. 12.705
+RCC bDLColl   -150 76 2941.5 -5.5 0 0 4.65
+RPP bDLCHol   -155.5 -150. 73.8 78.3 2939.55 2943.45
+RPP bDLfoil   -447.0001 -447. 73.5 78.5 2938.959 2944.03 
+RCC bDLcham   -444.415 67.105 2941.5 0. 17.79 0. 12.945
+RCC bDLvacc   -444.415 69.015 2941.5 0. 13.97 0. 12.705
 END
 * Black hole
 BLKBODY      5 +blkbody -void
 * Void around
-AirSpace     5 +void -bTarget -bDLfoil -bDLcham -bDLvacc -bFloor1 -bFloor2 -bSoilF -bRoof -bWallN1B -bWallN1T -bWallN2
+AirSpace     5 +void -bTarget -bDLfoil -bDLcham -bDLvacc -bDLColl -bFloor1 -bFloor2 -bSoilF -bRoof -bWallN1B -bWallN1T -bWallN2
                -(bAngBody -pAngW_N +pAngW_S)
                -bSoilN
                -bWSEx1 -bWallE
@@ -1948,8 +1950,8 @@ UcSh3_1      5 +bUcSh3_1   -bb_CO6_1 -bBP0Wall+pWallN1
 UcSh3_2      5 +bUcSh3_2 -bb_CO6_2 -bBP0Wall+pWallN1
 USsSh4       5 +bUSsSh4 -bUSb_CO7-bBP0Wall+pWallN1
 UScSh4       5 +bUScSh4  -bUSb_CO8 -bBP0Wall+pWallN1
-USHole       5 +bUSCO_b1 -bClamp -bBP0Wall
-Clamp        5 +bClamp -bBP0Wall
+USHole       5 +bUSCO_b1 -bClamp -bBP0Wall -bDLColl
+Clamp        5 +bClamp -bBP0Wall -bDLColl
 InSteel1     5 +bUSb_CO1 -bUSc_CO1
 InSteel2     5 +bUSb_CO2 -bUSc_CO2
 InSteel3     5 +bUSb_CO3 -bUSc_CO3
@@ -2065,13 +2067,13 @@ rBmVac3      5 +bBmVac3 -bTarget
 rBmPipe4     5 +bBmPipe4 -bBmVac4 -bTarget
 rBmVac4      5 +bBmVac4 -bTarget
 * - West running Beam pipe, filled with vacuum
-rBP0Wall     5 +bBP0Wall -bBP0Vac
+rBP0Wall     5 +bBP0Wall -bBP0Vac -bDLColl
 * - West running Beam pipe, filled with vacuum
 * rBP1Wall     5 +bBP1Wall -bBP1Vac -bRMVYi2  -bRMHYi2 -bMB4BV -bDLfoil
 * Removed for DarkLight
 rBP1Wall     5 +bBP1Wall -bBP1Vac -bMB4BV -bDLfoil -bDLcham -bDLvacc
 rBP2Wall     5 +bBP2Wall -bBP2Vac -bMB4BV -bDLfoil -bDLcham -bDLvacc
-rBP0Vac      5 +bBP0Vac
+rBP0Vac      5 +bBP0Vac -bDLColl -bDLCHol
 *Removed for DarkLight
 * rBP1Vac      5 +bBP1Vac -bRMVYi2 -bRMHYi2 -bMB4BV -bDLfoil
 rBP1Vac      5 +bBP1Vac -bMB4BV -bDLfoil
@@ -2087,6 +2089,8 @@ Target       5 +bTarget
 DLTarget     5 +bDLfoil
 DLChamb      5 +bDLcham -bDLvacc -bBP1Vac
 DLVacuum     5 +bDLvacc -bDLfoil -bBP1Vac
+DLColl       5 +bDLColl -bDLCHol
+DLCHol       5 +bDLCHol
 * Floor
 Fl1_1        5 +bFloor1 -pFl1_1 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
 * Floor
@@ -2407,7 +2411,9 @@ ASSIGNMA         AIR  BD_StAir
 ASSIGNMA        IRON    Target
 ASSIGNMA    TANTALUM  DLTarget
 ASSIGNMA    Stainles   DLChamb
+ASSIGNMA      VACUUM    DLCHol
 ASSIGNMA      VACUUM  DLVacuum
+ASSIGNMA    ALUMINUM    DLColl
 ASSIGNMA    Stainles   rBmPipe
 ASSIGNMA      VACUUM    rBmVac
 ASSIGNMA      VACUUM   rBD_Vac
@@ -2613,7 +2619,9 @@ ASSIGNMA         AIR    MB4Air
 !@what.1= -100*keV
 !@what.2= 10*keV
 EMFCUT        -1.E-4     1.E-5       1.0  HYDROGEN  @LASTMAT        1.PROD-CUT
-MGNFIELD         30.                           0.0       0.0       0.0
+MGNFIELD         30.   0.00001                 0.0       0.0       0.0
+STEPSIZE      -.0005       10.  DLTarget       0.0       0.0       0.0
+STEPSIZE      -.0005       10.   rBP1Vac       0.0       0.0       0.0
 * Set electron and photon transport cut-offs to 100 & 10 keV (region)
 !@what.1= -100*keV
 !@what.2= 10*keV
@@ -2699,44 +2707,44 @@ AUXSCORE      USRBIN   NEUTRON                DE_n                    AMB74
 USRBIN           10.   DOSE-EQ      -53.      350.      610.     3300.DE
 USRBIN         -900.     -200.     2000.      125.       81.      130. &
 * Beam Particle fluence in BD area (small)
-USRBIN           10.  BEAMPART      -40.       0.0       85.     2952.BP_Fl
-USRBIN         -160.       70.     2931.       80.      150.      210. &
+USRBIN           10.  BEAMPART      -40.      20.0      78.5     2944.BP_Fl
+USRBIN         -480.      73.5    2939.       80.      150.      210. &
 * Dose Eq from Photons
 * 5 cm bins in x, y, and z
-USRBIN           10.   DOSE-EQ      -62.      350.      400.     3250.DE_epem_sm
-USRBIN         -300.     -160.     2650.      130.      112.      120. &
-AUXSCORE      USRBIN     E+&E-          DE_epem_sm                    AMB74
+* USRBIN           10.   DOSE-EQ      -62.      350.      400.     3250.DE_epem_sm
+* USRBIN         -300.     -160.     2650.      130.      112.      120. &
+* AUXSCORE      USRBIN     E+&E-          DE_epem_sm                    AMB74
 * Dose Eq from Photons
 * 5 cm bins in x, y, and z
-USRBIN           10.   DOSE-EQ      -54.      350.      400.     3250.DE_g_sm
-USRBIN         -300.     -160.     2650.      130.      112.      120. &
-AUXSCORE      USRBIN    PHOTON             DE_g_sm                    AMB74
+* USRBIN           10.   DOSE-EQ      -54.      350.      400.     3250.DE_g_sm
+* USRBIN         -300.     -160.     2650.      130.      112.      120. &
+* AUXSCORE      USRBIN    PHOTON             DE_g_sm                    AMB74
 * Dose Eq from neutrons
-USRBIN           10.   DOSE-EQ      -55.      350.      400.     3250.DE_n_sm
-USRBIN         -300.     -160.     2650.      130.      112.      120. &
-AUXSCORE      USRBIN   NEUTRON             DE_n_sm                    AMB74
+* USRBIN           10.   DOSE-EQ      -55.      350.      400.     3250.DE_n_sm
+* USRBIN         -300.     -160.     2650.      130.      112.      120. &
+* AUXSCORE      USRBIN   NEUTRON             DE_n_sm                    AMB74
 * Total Dose Eq
-USRBIN           10.   DOSE-EQ      -56.      350.      400.     3250.DE_sm
-USRBIN         -300.     -160.     2650.      130.      112.      120. &
+* USRBIN           10.   DOSE-EQ      -56.      350.      400.     3250.DE_sm
+* USRBIN         -300.     -160.     2650.      130.      112.      120. &
 * US Dose Eq from Photons
 * 2 cm bin in x
 * 1 cm bins in y and z
-USRBIN           10.   DOSE-EQ      -63.     -250.      140.     3050.DE_epem_us
-USRBIN         -700.       0.0     2650.      150.      140.      100. &
-AUXSCORE      USRBIN     E+&E-          DE_epem_us                    AMB74
+* USRBIN           10.   DOSE-EQ      -63.     -250.      140.     3050.DE_epem_us
+* USRBIN         -700.       0.0     2650.      150.      140.      100. &
+* AUXSCORE      USRBIN     E+&E-          DE_epem_us                    AMB74
 * US Dose Eq from Photons
 * 2 cm bin in x
 * 1 cm bins in y and z
-USRBIN           10.   DOSE-EQ      -57.     -250.      140.     3050.DE_g_us
-USRBIN         -700.       0.0     2650.      150.      140.      100. &
-AUXSCORE      USRBIN    PHOTON             DE_g_us                    AMB74
+* USRBIN           10.   DOSE-EQ      -57.     -250.      140.     3050.DE_g_us
+* USRBIN         -700.       0.0     2650.      150.      140.      100. &
+* AUXSCORE      USRBIN    PHOTON             DE_g_us                    AMB74
 * US Dose Eq from neutrons
-USRBIN           10.   DOSE-EQ      -58.     -250.      140.     3050.DE_n_us
-USRBIN         -700.       0.0     2650.      150.      140.      100. &
-AUXSCORE      USRBIN   NEUTRON             DE_n_us                    AMB74
+* USRBIN           10.   DOSE-EQ      -58.     -250.      140.     3050.DE_n_us
+* USRBIN         -700.       0.0     2650.      150.      140.      100. &
+* AUXSCORE      USRBIN   NEUTRON             DE_n_us                    AMB74
 * US Total Dose Eq
-USRBIN           10.   DOSE-EQ      -59.     -250.      140.     3050.DE_us
-USRBIN         -700.       0.0     2650.      150.      140.      100. &
+* USRBIN           10.   DOSE-EQ      -59.     -250.      140.     3050.DE_us
+* USRBIN         -700.       0.0     2650.      150.      140.      100. &
 #if Res_DR 
 * Dose Eq from all particles, 0 sec after EOB
 * 5 cm bins
@@ -2744,37 +2752,37 @@ USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE0s
 USRBIN         -500.       0.0     2700.       50.       66.       68. &
 DCYSCORE          1.                          DE0s                    USRBIN
 * Dose Eq from all particles, 1 hour after EOB
-USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE1h
-USRBIN         -500.       0.0     2700.       50.       66.       68. &
-DCYSCORE          2.                          DE1h                    USRBIN
+* USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE1h
+* USRBIN         -500.       0.0     2700.       50.       66.       68. &
+* DCYSCORE          2.                          DE1h                    USRBIN
 * Dose Eq from all particles, 12 hours  after EOB
-USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE8h
-USRBIN         -500.       0.0     2700.       50.       66.       68. &
-DCYSCORE          3.                          DE8h                    USRBIN
+* USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE8h
+* USRBIN         -500.       0.0     2700.       50.       66.       68. &
+* DCYSCORE          3.                          DE8h                    USRBIN
 * Dose Eq from all particles, 1 day after EOB
-USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE1d
-USRBIN         -500.       0.0     2700.       50.       66.       68. &
-DCYSCORE          4.                          DE1d                    USRBIN
+* USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE1d
+* USRBIN         -500.       0.0     2700.       50.       66.       68. &
+* DCYSCORE          4.                          DE1d                    USRBIN
 * Dose Eq from all particles, 10 days after EOB
-USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE1w
-USRBIN         -500.       0.0     2700.       50.       66.       68. &
-DCYSCORE          5.                          DE1w                    USRBIN
+* USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE1w
+* USRBIN         -500.       0.0     2700.       50.       66.       68. &
+* DCYSCORE          5.                          DE1w                    USRBIN
 * Dose Eq from all particles, 30 days after EOB
-USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE1m
-USRBIN         -500.       70.     2700.       50.       66.       68. &
-DCYSCORE          6.                          DE1m                    USRBIN
+* USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE1m
+* USRBIN         -500.       70.     2700.       50.       66.       68. &
+* DCYSCORE          6.                          DE1m                    USRBIN
 * Dose Eq from all particles, 60 days after EOB
-USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE3m
-USRBIN         -500.       0.0     2700.       50.       66.       68. &
-DCYSCORE          7.                          DE3m                    USRBIN
+* USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE3m
+* USRBIN         -500.       0.0     2700.       50.       66.       68. &
+* DCYSCORE          7.                          DE3m                    USRBIN
 * Dose Eq from all particles, 90 days after EOB
-USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE6m
-USRBIN         -500.       0.0     2700.       50.       66.       68. &
-DCYSCORE          8.                          DE6m                    USRBIN
+* USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE6m
+* USRBIN         -500.       0.0     2700.       50.       66.       68. &
+* DCYSCORE          8.                          DE6m                    USRBIN
 * Dose Eq from all particles, 1 year after EOB
-USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE1y
-USRBIN         -500.       0.0     2700.       50.       66.       68. &
-DCYSCORE          9.                          DE1y                    USRBIN
+* USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE1y
+* USRBIN         -500.       0.0     2700.       50.       66.       68. &
+* DCYSCORE          9.                          DE1y                    USRBIN
 #endif  
 #ifdef DepEn 
 * Deposited energy in the Beam Dump shielding area:
@@ -2783,73 +2791,73 @@ USRBIN           10.    ENERGY      -90.       20.      160.     3010.DepEn
 USRBIN         -162.      -10.     2860.      182.      170.      150. &
 #endif  
 #if Activity 
-RESNUCLE          3.      -21.       31.       29.     BD_Al          RN_BD_Al
-RESNUCLE          3.      -22.        9.       11.    BD_Wat          RN_BD_Wat
-RESNUCLE          3.      -23.       83.       55.   BD_PbSh          RN_BD_Pb
-RESNUCLE          3.      -24.       30.       24.   BD_StSh          RN_BD_St
-RESNUCLE          3.      -25.       64.       44.  BD_ConSh          RN_BD_Con
-RESNUCLE          3.      -26.       64.       41.     WN1_1          RN_NW1
-RESNUCLE          3.      -26.       64.       41.     WN1_2          RN_NW2
-RESNUCLE          3.      -26.       64.       41.     WN1_3          RN_NW3
-RESNUCLE          3.      -26.       64.       41.     WN1_4          RN_NW4
-RESNUCLE          3.      -26.       64.       41.     WN1_5          RN_NW5
-RESNUCLE          3.      -26.       64.       41.     WN1_6          RN_NW6
-RESNUCLE          3.      -26.       64.       41.     WN1_7          RN_NW7
-RESNUCLE          3.      -27.       15.       17.     SoilN          RN_SoilN
-RESNUCLE          3.      -28.       64.       41.     WW1_1          RN_WW1
-RESNUCLE          3.      -28.       64.       41.     WW1_2          RN_WW2
-RESNUCLE          3.      -28.       64.       41.     WW1_3          RN_WW3
-RESNUCLE          3.      -28.       64.       41.     WW1_4          RN_WW4
-RESNUCLE          3.      -28.       64.       41.     WW1_5          RN_WW5
-RESNUCLE          3.      -28.       64.       41.     WW1_6          RN_WW6
-RESNUCLE          3.      -91.       64.       41.     Fl1_1          RN_Floor
-RESNUCLE          3.      -92.       15.       17.     SoilF          RN_SoilF
-*RESNUCLE          3.      -94.       64.       41.   ExConcW          RN_ExWW
-*RESNUCLE          3.      -95.       15.       17.     SoilW          RN_SoilW
-RESNUCLE          3.      -31.       31.       29.     BD_Al          BD_Al_1d
-RESNUCLE          3.      -32.        9.       11.    BD_Wat          BD_Wat_1d
-RESNUCLE          3.      -33.       83.       55.   BD_PbSh          BD_Pb_1d
-RESNUCLE          3.      -34.       30.       24.   BD_StSh          BD_st_1d
-RESNUCLE          3.      -35.       64.       44.  BD_ConSh          BD_Con_1d
-RESNUCLE          3.      -36.       64.       41.     WN1_1          NW1_1d
-RESNUCLE          3.      -36.       64.       41.     WN1_2          NW2_1d
-RESNUCLE          3.      -36.       64.       41.     WN1_3          NW3_1d
-RESNUCLE          3.      -36.       64.       41.     WN1_4          NW4_1d
-RESNUCLE          3.      -36.       64.       41.     WN1_5          NW5_1d
-RESNUCLE          3.      -36.       64.       41.     WN1_6          NW6_1d
-RESNUCLE          3.      -36.       64.       41.     WN1_7          NW7_1d
-RESNUCLE          3.      -37.       15.       17.     SoilN          SoilN_1d
-RESNUCLE          3.      -38.       64.       41.     WW1_1          WW1_1d
-RESNUCLE          3.      -38.       64.       41.     WW1_2          WW2_1d
-RESNUCLE          3.      -38.       64.       41.     WW1_3          WW3_1d
-RESNUCLE          3.      -38.       64.       41.     WW1_4          WW4_1d
-RESNUCLE          3.      -38.       64.       41.     WW1_5          WW5_1d
-RESNUCLE          3.      -38.       64.       41.     WW1_6          WW6_1d
-RESNUCLE          3.      -93.       64.       41.     Fl1_1          Floor_1d
-RESNUCLE          3.      -94.       15.       17.     SoilF          SoilF_1d
-DCYSCORE          4.                      BD_Al_1d  SoilF_1d          RESNUCLE
-RESNUCLE          3.      -41.       31.       29.     BD_Al          BD_Al_1y
-RESNUCLE          3.      -42.        9.       11.    BD_Wat          BD_Wat_1y
-RESNUCLE          3.      -43.       83.       55.   BD_PbSh          BD_Pb_1y
-RESNUCLE          3.      -44.       30.       24.   BD_StSh          BD_st_1y
-RESNUCLE          3.      -45.       64.       44.  BD_ConSh          BD_Con_1y
-RESNUCLE          3.      -46.       64.       41.     WN1_1          NW1_1y
-RESNUCLE          3.      -46.       64.       41.     WN1_2          NW2_1y
-RESNUCLE          3.      -46.       64.       41.     WN1_3          NW3_1y
-RESNUCLE          3.      -46.       64.       41.     WN1_4          NW4_1y
-RESNUCLE          3.      -46.       64.       41.     WN1_5          NW5_1y
-RESNUCLE          3.      -46.       64.       41.     WN1_6          NW6_1y
-RESNUCLE          3.      -46.       64.       41.     WN1_7          NW7_1y
-RESNUCLE          3.      -47.       15.       17.     SoilN          SoilN_1y
-RESNUCLE          3.      -48.       64.       41.     WW1_1          WW1_1y
-RESNUCLE          3.      -48.       64.       41.     WW1_2          WW2_1y
-RESNUCLE          3.      -48.       64.       41.     WW1_3          WW3_1y
-RESNUCLE          3.      -48.       64.       41.     WW1_4          WW4_1y
-RESNUCLE          3.      -48.       64.       41.     WW1_5          WW5_1y
-RESNUCLE          3.      -48.       64.       41.     WW1_6          WW6_1y
-RESNUCLE          3.      -95.       64.       41.     Fl1_1          Floor_1y
-RESNUCLE          3.      -96.       15.       17.     SoilF          SoilF_1y
-DCYSCORE          9.                      BD_Al_1y  SoilF_1y          RESNUCLE
+* RESNUCLE          3.      -21.       31.       29.     BD_Al          RN_BD_Al
+* RESNUCLE          3.      -22.        9.       11.    BD_Wat          RN_BD_Wat
+* RESNUCLE          3.      -23.       83.       55.   BD_PbSh          RN_BD_Pb
+* RESNUCLE          3.      -24.       30.       24.   BD_StSh          RN_BD_St
+* RESNUCLE          3.      -25.       64.       44.  BD_ConSh          RN_BD_Con
+* RESNUCLE          3.      -26.       64.       41.     WN1_1          RN_NW1
+* RESNUCLE          3.      -26.       64.       41.     WN1_2          RN_NW2
+* RESNUCLE          3.      -26.       64.       41.     WN1_3          RN_NW3
+* RESNUCLE          3.      -26.       64.       41.     WN1_4          RN_NW4
+* RESNUCLE          3.      -26.       64.       41.     WN1_5          RN_NW5
+* RESNUCLE          3.      -26.       64.       41.     WN1_6          RN_NW6
+* RESNUCLE          3.      -26.       64.       41.     WN1_7          RN_NW7
+* RESNUCLE          3.      -27.       15.       17.     SoilN          RN_SoilN
+* RESNUCLE          3.      -28.       64.       41.     WW1_1          RN_WW1
+* RESNUCLE          3.      -28.       64.       41.     WW1_2          RN_WW2
+* RESNUCLE          3.      -28.       64.       41.     WW1_3          RN_WW3
+* RESNUCLE          3.      -28.       64.       41.     WW1_4          RN_WW4
+* RESNUCLE          3.      -28.       64.       41.     WW1_5          RN_WW5
+* RESNUCLE          3.      -28.       64.       41.     WW1_6          RN_WW6
+* RESNUCLE          3.      -91.       64.       41.     Fl1_1          RN_Floor
+* RESNUCLE          3.      -92.       15.       17.     SoilF          RN_SoilF
+* RESNUCLE          3.      -94.       64.       41.   ExConcW          RN_ExWW
+* RESNUCLE          3.      -95.       15.       17.     SoilW          RN_SoilW
+* RESNUCLE          3.      -31.       31.       29.     BD_Al          BD_Al_1d
+* RESNUCLE          3.      -32.        9.       11.    BD_Wat          BD_Wat_1d
+* RESNUCLE          3.      -33.       83.       55.   BD_PbSh          BD_Pb_1d
+* RESNUCLE          3.      -34.       30.       24.   BD_StSh          BD_st_1d
+* RESNUCLE          3.      -35.       64.       44.  BD_ConSh          BD_Con_1d
+* RESNUCLE          3.      -36.       64.       41.     WN1_1          NW1_1d
+* RESNUCLE          3.      -36.       64.       41.     WN1_2          NW2_1d
+* RESNUCLE          3.      -36.       64.       41.     WN1_3          NW3_1d
+* RESNUCLE          3.      -36.       64.       41.     WN1_4          NW4_1d
+* RESNUCLE          3.      -36.       64.       41.     WN1_5          NW5_1d
+* RESNUCLE          3.      -36.       64.       41.     WN1_6          NW6_1d
+* RESNUCLE          3.      -36.       64.       41.     WN1_7          NW7_1d
+* RESNUCLE          3.      -37.       15.       17.     SoilN          SoilN_1d
+* RESNUCLE          3.      -38.       64.       41.     WW1_1          WW1_1d
+* RESNUCLE          3.      -38.       64.       41.     WW1_2          WW2_1d
+* RESNUCLE          3.      -38.       64.       41.     WW1_3          WW3_1d
+* RESNUCLE          3.      -38.       64.       41.     WW1_4          WW4_1d
+* RESNUCLE          3.      -38.       64.       41.     WW1_5          WW5_1d
+* RESNUCLE          3.      -38.       64.       41.     WW1_6          WW6_1d
+* RESNUCLE          3.      -93.       64.       41.     Fl1_1          Floor_1d
+* RESNUCLE          3.      -94.       15.       17.     SoilF          SoilF_1d
+* DCYSCORE          4.                      BD_Al_1d  SoilF_1d          RESNUCLE
+* RESNUCLE          3.      -41.       31.       29.     BD_Al          BD_Al_1y
+* RESNUCLE          3.      -42.        9.       11.    BD_Wat          BD_Wat_1y
+* RESNUCLE          3.      -43.       83.       55.   BD_PbSh          BD_Pb_1y
+* RESNUCLE          3.      -44.       30.       24.   BD_StSh          BD_st_1y
+* RESNUCLE          3.      -45.       64.       44.  BD_ConSh          BD_Con_1y
+* RESNUCLE          3.      -46.       64.       41.     WN1_1          NW1_1y
+* RESNUCLE          3.      -46.       64.       41.     WN1_2          NW2_1y
+* RESNUCLE          3.      -46.       64.       41.     WN1_3          NW3_1y
+* RESNUCLE          3.      -46.       64.       41.     WN1_4          NW4_1y
+* RESNUCLE          3.      -46.       64.       41.     WN1_5          NW5_1y
+* RESNUCLE          3.      -46.       64.       41.     WN1_6          NW6_1y
+* RESNUCLE          3.      -46.       64.       41.     WN1_7          NW7_1y
+* RESNUCLE          3.      -47.       15.       17.     SoilN          SoilN_1y
+* RESNUCLE          3.      -48.       64.       41.     WW1_1          WW1_1y
+* RESNUCLE          3.      -48.       64.       41.     WW1_2          WW2_1y
+* RESNUCLE          3.      -48.       64.       41.     WW1_3          WW3_1y
+* RESNUCLE          3.      -48.       64.       41.     WW1_4          WW4_1y
+* RESNUCLE          3.      -48.       64.       41.     WW1_5          WW5_1y
+* RESNUCLE          3.      -48.       64.       41.     WW1_6          WW6_1y
+* RESNUCLE          3.      -95.       64.       41.     Fl1_1          Floor_1y
+* RESNUCLE          3.      -96.       15.       17.     SoilF          SoilF_1y
+* DCYSCORE          9.                      BD_Al_1y  SoilF_1y          RESNUCLE
 #endif  
 SCORE       BEAMPART   NEUTRON    PHOTON    ENERGY
 STOP
