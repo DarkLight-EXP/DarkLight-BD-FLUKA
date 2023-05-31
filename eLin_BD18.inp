@@ -13,7 +13,7 @@ GLOBAL                                         1.0       1.0          OLDFLAIR
 DEFAULTS                                                              PRECISIO
 * 25 MeV beam, 2sigma = 0.06 cm , FWHM = 2.355 * 0.03 = 0.071
 * BEAM           -.030                        -1.413    -1.413       1.0ELECTRON
-BEAM           -.030                        -0.070    -0.070       1.0ELECTRON
+BEAM           -.030                        -0.070    -0.052       1.0ELECTRON
 BEAMAXES         0.0        1.       0.0        1.       0.0       0.0
 * Beam starts at point (x,y,z) and along x-axis into the dump, assuming Beamline height is 2.5ft
 * Origin is (West wall, Hall floor, South wall)
@@ -89,6 +89,7 @@ BIASING          0.0        1.    16384.    InS6_2                    PRINT
 BIASING          0.0        1.    49152.    USsSh4                    PRINT
 BIASING          0.0        1.    49152.  InSteel7                    PRINT
 BIASING          0.0        1.    98304.    UScSh4                    PRINT
+BIASING          0.0        1.    98304.    UScSh5                    PRINT
 BIASING          0.0        1.    98304.  InSteel8                    PRINT
 BIASING          0.0        1.    98304.  AirSpace                    PRINT
 BIASING          0.0        1.    98304.  rFlange1                    PRINT
@@ -501,30 +502,30 @@ RCC bBP2Wall   -499.25 76. 2941.8397 -86.602540378443877 0.0 -49.999999999999993
 RCC bBP2Vac    -499.25 76. 2941.8397 -86.602540378443877 0.0 -49.999999999999993
               2.3749000000000002
 * Flange 1: diameter 11.4 cm, 3.81 cm thick, ss
-!@what.1= BD_FF_new - 28.62 - 73.38 - 11.6
-!@what.2= Beam_Y
-!@what.3= Beam_Z
-RCC bFl_G1     -263.5 76. 2941.5 -3.81 0.0 0.0 5.7
+*!@what.1= BD_FF_new - 28.62 - 73.38 - 11.6
+*!@what.2= Beam_Y
+*!@what.3= Beam_Z
+RCC bFl_G1     -283.5 76. 2941.5 -3.81 0.0 0.0 5.7
 * 24 wafers, each 0.05 mm, extended space= 12 mm (8 mm ss + 4 mm air)
-!@what.1= BD_FF_orig- 28.62 - 73.38  - 5.55
-!@what.2= Beam_Y
-!@what.3= Beam_Z
-RCC bBellow1   -269.05000000000001 76. 2941.5 -0.8 0.0 0.0 5.
+*!@what.1= BD_FF_orig- 28.62 - 73.38  - 5.55
+*!@what.2= Beam_Y
+*!@what.3= Beam_Z
+RCC bBellow1   -289.05000000000001 76. 2941.5 -0.8 0.0 0.0 5.
 * 24 wafers, each 0.05 mm, extended space= 12 mm (8 mm ss + 4 mm air)
-!@what.1= BD_FF_orig - 28.62 - 73.38 - 10.55
-!@what.2= Beam_Y
-!@what.3= Beam_Z
-RCC bBellow2   -274.05000000000001 76. 2941.5 +0.8 0.0 0.0 5.
+*!@what.1= BD_FF_orig - 28.62 - 73.38 - 10.55
+*!@what.2= Beam_Y
+*!@what.3= Beam_Z
+RCC bBellow2   -294.05000000000001 76. 2941.5 +0.8 0.0 0.0 5.
 * BPM6 Stainless steel, 0.851 cm thick
 * Xmin = BD_FF_orig - 28.62 - 73.38 - 9.75
 * Xmax = BD_FF_orig - 28.62 - 73.38 - 6.35
-!@what.1= BD_FF_orig - 28.62 - 73.38 - 9.75
-!@what.2= BD_FF_orig - 28.62 - 73.38 - 6.35
-!@what.3= Beam_Y - 3.391
-!@what.4= Beam_Y + 3.391
-!@what.5= Beam_Z - 3.391
-!@what.6= Beam_Z + 3.391
-RPP bBPM6bS    -273.25 -269.85000000000002 72.608999999999995 79.391000000000005
+*!@what.1= BD_FF_orig - 28.62 - 73.38 - 9.75
+*!@what.2= BD_FF_orig - 28.62 - 73.38 - 6.35
+*!@what.3= Beam_Y - 3.391
+*!@what.4= Beam_Y + 3.391
+*!@what.5= Beam_Z - 3.391
+*!@what.6= Beam_Z + 3.391
+RPP bBPM6bS    -293.25 -289.85000000000002 72.608999999999995 79.391000000000005
               2938.1089999999999 2944.8910000000001
 * BPM Air
 !@what.1= BD_FF_orig - 28.62 - 73.38 - 9.75 + 0.3211
@@ -546,15 +547,15 @@ PLA pBPM6bN    0.0 .5 .5 -273.25 78.26100000000001 2944.8910000000001
 !@what.6= Beam_Z - 3.391
 PLA pBPM6bS    0.0 .5 -.5 -273.25 78.26100000000001 2938.1089999999999
 * Flange : diameter 11.4 cm, 3.81 cm thick, ss
-!@what.1= BD_FF_orig - 28.62 - 73.38 - 13.64
-!@what.2= Beam_Y
-!@what.3= Beam_Z
-RCC bFl_E1     -277.13999999999999 76. 2941.5 -3.15 0.0 0.0 4.28
+*!@what.1= BD_FF_orig - 28.62 - 73.38 - 13.64
+*!@what.2= Beam_Y
+*!@what.3= Beam_Z
+RCC bFl_E1     -295.13999999999999 76. 2941.5 -3.15 0.0 0.0 4.28
 * Flange : diameter 11.4 cm, 3.81 cm thick, ss
 !@what.1= BD_FF_orig - 28.62 - 73.38 - 34.10
 !@what.2= Beam_Y
 !@what.3= Beam_Z
-RCC bFl_E2     -297.60000000000002 76. 2941.5 -3.81 0.0 0.0 4.8
+RCC bFl_E2     -317.60000000000002 76. 2941.5 -3.81 0.0 0.0 4.8
 * 24 wafers, each 0.05 mm, extended space= 12 mm (8 mm ss + 4 mm air)
 !@what.1= BD_FF_orig - 28.62 - 73.38 - 40.8
 !@what.2= Beam_Y
@@ -1616,6 +1617,7 @@ RPP bUSsSh4    -251.81999999999999 -238.52000000000001 50. 176. 2841.5 3040.
 !@what.4= Beam_Y + 100
 !@what.5= Beam_Z  -100
 RPP bUScSh4    -263.5 -251.81999999999999 50. 176. 2841.5 3040.
+RPP bUScSh5    -283.5 -263.5 50. 176. 2841.5 3040.
 * 10 cm PE  to shield back shine from the dump
 * Extending to FF of Pb collimation style shielding
 * Removed for DarkLight
@@ -1765,9 +1767,9 @@ BOX bICMair    -1047.5 39.0 630.0 112.42098152481 0.0 160.55380068064
 * DarkLight Target
 RCC bDLColl   -150 76 2941.5 -5.5 0 0 4.65
 RPP bDLCHol   -155.5 -150. 73.8 78.3 2939.55 2943.45
-RPP bDLfoil   -447.0001 -447. 73.5 78.5 2938.959 2944.03 
-RCC bDLcham   -444.415 67.105 2941.5 0. 17.79 0. 12.945
-RCC bDLvacc   -444.415 69.015 2941.5 0. 13.97 0. 12.705
+RPP bDLfoil   -465.5201 -465.52 73.5 78.5 2938.959 2944.03 
+RCC bDLcham   -462.935 67.105 2941.5 0. 17.79 0. 12.945
+RCC bDLvacc   -462.935 69.015 2941.5 0. 13.97 0. 12.705
 END
 * Black hole
 BLKBODY      5 +blkbody -void
@@ -1789,7 +1791,7 @@ AirSpace     5 +void -bTarget -bDLfoil -bDLcham -bDLvacc -bDLColl -bFloor1 -bFlo
                -bSoilW -bSAFlr -bConSW -bHallBlk -bSAWallW -bSAFlrB1 -bFlrW
                -bShBulk
                -bUSsSh1  -bUScSh1 -bUSsSh2  -bUcSh2_2   -bUcSh2_1  -bUSsSh3  -bUcSh3_2  -bUcSh3_1 -bUSsSh4
-               -bUScSh4
+               -bUScSh4 -bUScSh5
                -bUSConc
                -bUSCshS1 -bUSCshS2 -bUSCshS3 -bUSCshS4 -bUSCshS5 -bUSCshS6
                -bUSCshT1 -bUSCshT2 -bUSCshT3
@@ -1804,7 +1806,7 @@ AirSpace     5 +void -bTarget -bDLfoil -bDLcham -bDLvacc -bDLColl -bFloor1 -bFlo
                -bBPM6aS -bBPM6bS
                -bDB6SS -bDB6CylS -bDB6BoxS
                -bBellow1 -bBellow2 -bBellow3 -bBellow4
-               -bUSConc -bUScSh4
+               -bUSConc -bUScSh4 -bUScSh5
 
 * Removed for DarkLight
 * -bRMVYo - bRMVCni - bRMVCno - bRMVCsi - bRMVCso
@@ -1812,7 +1814,7 @@ AirSpace     5 +void -bTarget -bDLfoil -bDLcham -bDLvacc -bDLColl -bFloor1 -bFlo
 * -bUSshPE -bUSshPb
 NW_air       5 +pWallN1 +bWallN1T  -bWallW1 -bShBulk -bUSsSh1  -bUScSh1  -bUSsSh2  -bUcSh2_2   -bUcSh2_1 -bUSsSh3
                -bUcSh3_2 -bUcSh3_1
-               -bUSsSh4 -bUScSh4
+               -bUSsSh4 -bUScSh4 -bUScSh5
 * Beam Dump - 6061-T6 Al
 BD_Al        5 +bBD_6061 +pBD_xyz1+pBD_yz1 +pBD_yx1
                |+bBD_6061 +pBD_xyz1-pBD_yz1 +pBD_yz2 + pBD_yx1
@@ -1950,6 +1952,7 @@ UcSh3_1      5 +bUcSh3_1   -bb_CO6_1 -bBP0Wall+pWallN1
 UcSh3_2      5 +bUcSh3_2 -bb_CO6_2 -bBP0Wall+pWallN1
 USsSh4       5 +bUSsSh4 -bUSb_CO7-bBP0Wall+pWallN1
 UScSh4       5 +bUScSh4  -bUSb_CO8 -bBP0Wall+pWallN1
+UScSh5       5 +bUScSh5  -bBP1Wall +pWallN1
 USHole       5 +bUSCO_b1 -bClamp -bBP0Wall -bDLColl
 Clamp        5 +bClamp -bBP0Wall -bDLColl
 InSteel1     5 +bUSb_CO1 -bUSc_CO1
@@ -2514,6 +2517,7 @@ ASSIGNMA    PortConc   UcSh3_1
 ASSIGNMA    PortConc   UcSh3_2
 ASSIGNMA    PortConc    USsSh4
 ASSIGNMA    PortConc    UScSh4
+ASSIGNMA    PortConc    UScSh5
 ASSIGNMA         AIR    USHole
 ASSIGNMA         AIR     Clamp
 ASSIGNMA         AIR   InAirG1   InAirG8
@@ -2634,20 +2638,22 @@ RADDECAY          1.        1.        3.   300000.   1000010
 * First 15 years beam on all the time at a scaled beam intensity by fraction of the time beam on (720/8760) = (720/8760) *1.33333 mA = 0.082 * 8.322E15 = 6.824e14
 * The remaining 5 years, beam is on for 720 hours at full intensity of 1.3 mA, off for 8040 hours.  skip the last Delta_t for time off
 *
-!@what.1= 15*year
-!@what.3=1*month
-!@what.5=11*month
-IRRPROFI   4.73364E8  6.824E14  2629800.  8.322E15 28927800.       0.0
-!@what.1= 1* month
-!@what.3= 11*month
-!@what.5= 1*month
-IRRPROFI    2629800.  8.322E15 28927800.       0.0  2629800.  8.322E15
-!@what.1= 11*month
-!@what.3= 1*month
-!@what.5= 11*month
-IRRPROFI   28927800.       0.0  2629800.  8.322E15 28927800.       0.0
-!@what.1= 1*month
-IRRPROFI    2629800.  8.322E15
+*!@what.1= 15*year
+*!@what.3=1*month
+*!@what.5=11*month
+*IRRPROFI   4.73364E8  6.824E14  2629800.  8.322E15 28927800.       0.0
+*!@what.1= 1* month
+*!@what.3= 11*month
+*!@what.5= 1*month
+*IRRPROFI    2629800.  8.322E15 28927800.       0.0  2629800.  8.322E15
+*!@what.1= 11*month
+*!@what.3= 1*month
+*!@what.5= 11*month
+*IRRPROFI   28927800.       0.0  2629800.  8.322E15 28927800.       0.0
+*!@what.1= 1*month
+*IRRPROFI    2629800.  8.322E15
+!@what.1= 300*hour
+IRRPROFI    1080000.  2.059E15
 !@what.1= 0*sec
 !@what.2= 1*hour
 !@what.3= 8*hour
@@ -2752,13 +2758,13 @@ USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE0s
 USRBIN         -500.       0.0     2700.       50.       66.       68. &
 DCYSCORE          1.                          DE0s                    USRBIN
 * Dose Eq from all particles, 1 hour after EOB
-* USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE1h
-* USRBIN         -500.       0.0     2700.       50.       66.       68. &
-* DCYSCORE          2.                          DE1h                    USRBIN
+USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE1h
+USRBIN         -500.       0.0     2700.       50.       66.       68. &
+DCYSCORE          2.                          DE1h                    USRBIN
 * Dose Eq from all particles, 12 hours  after EOB
-* USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE8h
-* USRBIN         -500.       0.0     2700.       50.       66.       68. &
-* DCYSCORE          3.                          DE8h                    USRBIN
+USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE8h
+USRBIN         -500.       0.0     2700.       50.       66.       68. &
+DCYSCORE          3.                          DE8h                    USRBIN
 * Dose Eq from all particles, 1 day after EOB
 * USRBIN           10.   DOSE-EQ      -60.       0.0      400.     3040.DE1d
 * USRBIN         -500.       0.0     2700.       50.       66.       68. &
