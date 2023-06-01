@@ -13,7 +13,7 @@ GLOBAL                                         1.0       1.0          OLDFLAIR
 DEFAULTS                                                              PRECISIO
 * 25 MeV beam, 2sigma = 0.06 cm , FWHM = 2.355 * 0.03 = 0.071
 * BEAM           -.030                        -1.413    -1.413       1.0ELECTRON
-BEAM           -.030                        -0.070    -0.052       1.0ELECTRON
+BEAM           -.030                       -0.142    -0.0289       1.0ELECTRON
 BEAMAXES         0.0        1.       0.0        1.       0.0       0.0
 * Beam starts at point (x,y,z) and along x-axis into the dump, assuming Beamline height is 2.5ft
 * Origin is (West wall, Hall floor, South wall)
@@ -2624,8 +2624,8 @@ ASSIGNMA         AIR    MB4Air
 !@what.2= 10*keV
 EMFCUT        -1.E-4     1.E-5       1.0  HYDROGEN  @LASTMAT        1.PROD-CUT
 MGNFIELD         30.   0.00001                 0.0       0.0       0.0
-STEPSIZE      -.0005       10.  DLTarget       0.0       0.0       0.0
-STEPSIZE      -.0005       10.   rBP1Vac       0.0       0.0       0.0
+STEPSIZE      -.0005        .1  DLTarget       0.0       0.0       0.0
+STEPSIZE      -.0005        .1   rBP1Vac       0.0       0.0       0.0
 * Set electron and photon transport cut-offs to 100 & 10 keV (region)
 !@what.1= -100*keV
 !@what.2= 10*keV
