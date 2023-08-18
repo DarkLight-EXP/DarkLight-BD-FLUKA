@@ -14,6 +14,7 @@ DEFAULTS                                                              PRECISIO
 * 25 MeV beam, 2sigma = 0.06 cm , FWHM = 2.355 * 0.03 = 0.071
 * BEAM           -.030                        -1.413    -1.413       1.0ELECTRON
 BEAM           -.030                       -0.142    -0.0289       1.0ELECTRON
+* BEAM           -.030                       -0.142     -0.001       1.0ELECTRON
 BEAMAXES         0.0        1.       0.0        1.       0.0       0.0
 * Beam starts at point (x,y,z) and along x-axis into the dump, assuming Beamline height is 2.5ft
 * Origin is (West wall, Hall floor, South wall)
@@ -22,9 +23,8 @@ BEAMAXES         0.0        1.       0.0        1.       0.0       0.0
 * - The 0.43 cm shift in y is due to not accounting for the beam dispersion in the simulation.  More realistic irradiation of the BD
 * in the down stream direction and only for thermal and stress analyses.
 * X = -135
-!@what.2= Beam_Y
 !@what.3= 3040-98.5
-BEAMPOS       -493.1       76.    2941.5
+BEAMPOS       -493.1      76.    2941.5
 #if 0
 * Physics and biasing control cards heavy recoils and ions are treated
 EVENTYPE                              1.                              EVAP
@@ -93,7 +93,7 @@ BIASING          0.0        1.    98304.    UScSh5                    PRINT
 BIASING          0.0        1.    98304.  InSteel8                    PRINT
 BIASING          0.0        1.    98304.  AirSpace                    PRINT
 BIASING          0.0        1.    98304.  rFlange1                    PRINT
-USERDUMP        100.       49.                                        USpart.dat
+*USERDUMP        100.       49.                                        USpart.dat
 *USERDUMP        100.       49.                                        USpart.dat
 ROT-DEFI         0.0       0.0      -45.                              AngW
 RANDOMIZ          1. 114050473
@@ -479,13 +479,15 @@ RCC bBP0Vac    -149.90000000000001 76. 2941.5 -113.6 0.0 0.0 3.0099
 !@what.1= BD_FF_new - 113.6
 !@what.2= Beam_Y
 !@what.3= Beam_Z
-!@what.7= 2.54
+*!@what.7= 2.54
 RCC bBP1Wall   -263.5 76. 2941.5 -237. 0.0 0.0 2.54
+*RCC bBP1Wall   -263.5 76. 2941.5 -237. 0.0 0.0 3.0
 !@what.1= BD_FF_new - 113.6
 !@what.2= Beam_Y
 !@what.3= Beam_Z
-!@what.7= 2.54- 0.1651
-RCC bBP1Vac    -263.5 76. 2941.5 -237. 0.0 0.0 2.3749000000000002
+*!@what.7= 2.54- 0.1651
+RCC bBP1Vac    -263.5 76. 2941.5 -237. 0.0 0.0 2.3749
+*RCC bBP1Vac    -263.5 76/ 2941.5 -237. 0.0 0.0 2.8749
 * - Bent pipe at MB4
 * - Outer diameter = 5.08 cm
 !@what.2= Beam_Y
@@ -550,22 +552,22 @@ PLA pBPM6bS    0.0 .5 -.5 -273.25 78.26100000000001 2938.1089999999999
 *!@what.1= BD_FF_orig - 28.62 - 73.38 - 13.64
 *!@what.2= Beam_Y
 *!@what.3= Beam_Z
-RCC bFl_E1     -295.13999999999999 76. 2941.5 -3.15 0.0 0.0 4.28
+*RCC bFl_E1     -295.13999999999999 76. 2941.5 -3.15 0.0 0.0 4.28
 * Flange : diameter 11.4 cm, 3.81 cm thick, ss
-!@what.1= BD_FF_orig - 28.62 - 73.38 - 34.10
-!@what.2= Beam_Y
-!@what.3= Beam_Z
-RCC bFl_E2     -317.60000000000002 76. 2941.5 -3.81 0.0 0.0 4.8
+*!@what.1= BD_FF_orig - 28.62 - 73.38 - 34.10
+*!@what.2= Beam_Y
+*!@what.3= Beam_Z
+*RCC bFl_E2     -317.60000000000002 76. 2941.5 -3.81 0.0 0.0 4.8
 * 24 wafers, each 0.05 mm, extended space= 12 mm (8 mm ss + 4 mm air)
 !@what.1= BD_FF_orig - 28.62 - 73.38 - 40.8
 !@what.2= Beam_Y
 !@what.3= Beam_Z
 RCC bBellow3   -304.30000000000001 76. 2941.5 -0.8 0.0 0.0 5.
 * Flange : diameter 9.6 cm, 1.9 cm thick, ss
-!@what.1= BD_FF_orig - 28.62 - 73.38 - 41.6
-!@what.2= Beam_Y
-!@what.3= Beam_Z
-RCC bFl_L1     -305.10000000000002 76. 2941.5 -1.9 0.0 0.0 5.7
+*!@what.1= BD_FF_orig - 28.62 - 73.38 - 41.6
+*!@what.2= Beam_Y
+*!@what.3= Beam_Z
+*RCC bFl_L1     -305.10000000000002 76. 2941.5 -1.9 0.0 0.0 5.7
 !@what.1= BD_FF_orig - 145.5
 !@what.2= Beam_Y
 !@what.3= Beam_Z
@@ -623,15 +625,15 @@ RPP bBPM6aS    -323.29999999999995 -319.89999999999998 72.608999999999995
 RPP bBPM6aA    -322.97899999999993 -320.221 73.459999999999994
               78.540000000000006 2938.96 2944.04
 * Top plane (North side)
-!@what.4= BD_FF_orig - 145.15 - 13.25 - 3.4 + 0.321
-!@what.5= Beam_Y + 3.391 - 1.13
-!@what.6= Beam_Z + 3.391
+*!@what.4= BD_FF_orig - 145.15 - 13.25 - 3.4 + 0.321
+*!@what.5= Beam_Y + 3.391 - 1.13
+*!@what.6= Beam_Z + 3.391
 PLA pBPM6aN    0.0 .5 .5 -322.97899999999993 78.26100000000001
               2944.8910000000001
 * Top Plane (South side)
-!@what.4= BD_FF_orig - 145.15 - 13.25 - 3.4 + 0.321
-!@what.5= Beam_Y + 3.391 - 1.13
-!@what.6= Beam_Z - 3.391
+*!@what.4= BD_FF_orig - 145.15 - 13.25 - 3.4 + 0.321
+*!@what.5= Beam_Y + 3.391 - 1.13
+*!@what.6= Beam_Z - 3.391
 PLA pBPM6aS    0.0 .5 -.5 -322.97899999999993 78.26100000000001
               2938.1089999999999
 * 24 wafers, each 0.05 mm, extended space= 12 mm (8 mm ss + 4 mm air)
@@ -647,59 +649,59 @@ RCC bFl_L2     -327. 76. 2941.5 -1.9 0.0 0.0 5.7
 !@what.1= BD_FF_orig  - 167.4
 !@what.2= Beam_Y
 !@what.3= Beam_Z
-RCC bIV6CylW   -328.89999999999998 76. 2941.5 -0.71 0.0 0.0 9.
+* RCC bIV6CylW   -328.89999999999998 76. 2941.5 -0.71 0.0 0.0 9.
 * IV6 valve - main box SS
-!@what.1= BD_FF_orig  - 173.89
-!@what.2= BD_FF_orig  - 168.11
-!@what.3= Beam_Y - 15.6/2
-!@what.4= Beam_Y + 15.6/2
-!@what.5= Beam_Z - 8.55
-!@what.6= Beam_Z + 16.5
-RPP bIV6BoxS   -335.38999999999999 -329.61000000000001 68.200000000000003
-              83.799999999999997 2932.9499999999998 2958.
+*!@what.1= BD_FF_orig  - 173.89
+*!@what.2= BD_FF_orig  - 168.11
+*!@what.3= Beam_Y - 15.6/2
+*!@what.4= Beam_Y + 15.6/2
+*!@what.5= Beam_Z - 8.55
+*!@what.6= Beam_Z + 16.5
+*RPP bIV6BoxS   -335.38999999999999 -329.61000000000001 68.200000000000003
+*              83.799999999999997 2932.9499999999998 2958.
 * IV6 valve - Flange SS
-!@what.1= BD_FF_orig  - 171 -7.625/2
-!@what.2= BD_FF_orig - 171 +7.625/2
-!@what.3= Beam_Y - 7.625/2
-!@what.4= Beam_Y + 7.625/2
-!@what.5= Beam_Z + 16.55
-!@what.6= Beam_Z + 16.5 + 4.4
-RPP bIV6Fl     -336.3125 -328.6875 72.1875 79.8125 2958.0500000000002
-              2962.4000000000001
-!@what.1= BD_FF_orig  - 171
-!@what.2= Beam_Y
-!@what.3= Beam_Z + 16.5 + 4.4
-RCC bIV6C1S    -332.5 76. 2962.4000000000001 0.0 0.0 16.8 2.225
-!@what.1= BD_FF_orig  - 171
-!@what.2= Beam_Y
-!@what.3= Beam_Z + 16.5 + 4.4
-RCC bIV6C1A    -332.5 76. 2962.4000000000001 0.0 0.0 16.8 1.725
-!@what.1= BD_FF_orig  - 171
-!@what.2= Beam_Y
-!@what.3= Beam_Z + 16.5 + 4.4+ 16.8
-RCC bIV6C2S    -332.5 76. 2979.2000000000003 0.0 0.0 18.9 4.9
-!@what.1= BD_FF_orig  - 171
-!@what.2= Beam_Y
-!@what.3= Beam_Z + 16.5 + 4.4 + 16.8 + 1
-RCC bIV6C2A    -332.5 76. 2980.2000000000003 0.0 0.0 16.9 4.4
+*!@what.1= BD_FF_orig  - 171 -7.625/2
+*!@what.2= BD_FF_orig - 171 +7.625/2
+*!@what.3= Beam_Y - 7.625/2
+*!@what.4= Beam_Y + 7.625/2
+*!@what.5= Beam_Z + 16.55
+*!@what.6= Beam_Z + 16.5 + 4.4
+*RPP bIV6Fl     -336.3125 -328.6875 72.1875 79.8125 2958.0500000000002
+*              2962.4000000000001
+*!@what.1= BD_FF_orig  - 171
+*!@what.2= Beam_Y
+*!@what.3= Beam_Z + 16.5 + 4.4
+*RCC bIV6C1S    -332.5 76. 2962.4000000000001 0.0 0.0 16.8 2.225
+*!@what.1= BD_FF_orig  - 171
+*!@what.2= Beam_Y
+*!@what.3= Beam_Z + 16.5 + 4.4
+*RCC bIV6C1A    -332.5 76. 2962.4000000000001 0.0 0.0 16.8 1.725
+*!@what.1= BD_FF_orig  - 171
+*!@what.2= Beam_Y
+*!@what.3= Beam_Z + 16.5 + 4.4+ 16.8
+*RCC bIV6C2S    -332.5 76. 2979.2000000000003 0.0 0.0 18.9 4.9
+*!@what.1= BD_FF_orig  - 171
+*!@what.2= Beam_Y
+*!@what.3= Beam_Z + 16.5 + 4.4 + 16.8 + 1
+*RCC bIV6C2A    -332.5 76. 2980.2000000000003 0.0 0.0 16.9 4.4
 * IV6 valve - main box Air
-!@what.1= BD_FF_orig  - 173.89 + 0.05
-!@what.2= BD_FF_orig  - 168.11 - 0.05
-!@what.3= Beam_Y - 15.6/2 + 0.05
-!@what.4= Beam_Y + 15.6/2 - 0.05
-!@what.5= Beam_Z - 8.55 + 0.05
-!@what.6= Beam_Z + 16.5 - 0.05
-RPP bIV6BoxA   -335.33999999999997 -329.66000000000003 68.25 83.75 2933.
-              2957.9499999999998
-!@what.1= BD_FF_orig  - 174.60
-!@what.2= Beam_Y
-!@what.3= Beam_Z
-RCC bIV6CylE   -336.10000000000002 76. 2941.5 +0.71 0.0 0.0 9.
+*!@what.1= BD_FF_orig  - 173.89 + 0.05
+*!@what.2= BD_FF_orig  - 168.11 - 0.05
+*!@what.3= Beam_Y - 15.6/2 + 0.05
+*!@what.4= Beam_Y + 15.6/2 - 0.05
+*!@what.5= Beam_Z - 8.55 + 0.05
+*!@what.6= Beam_Z + 16.5 - 0.05
+*RPP bIV6BoxA   -335.33999999999997 -329.66000000000003 68.25 83.75 2933.
+*              2957.9499999999998
+*!@what.1= BD_FF_orig  - 174.60
+*!@what.2= Beam_Y
+*!@what.3= Beam_Z
+*RCC bIV6CylE   -336.10000000000002 76. 2941.5 +0.71 0.0 0.0 9.
 * Flange 1: diameter 9.6 cm, 1.9 cm thick, ss
-!@what.1= BD_FF_orig  - 174.60
-!@what.2= Beam_Y
-!@what.3= Beam_Z
-RCC bFl_L3     -336.10000000000002 76. 2941.5 -1.9 0.0 0.0 5.7
+*!@what.1= BD_FF_orig  - 174.60
+*!@what.2= Beam_Y
+*!@what.3= Beam_Z
+*RCC bFl_L3     -336.10000000000002 76. 2941.5 -1.9 0.0 0.0 5.7
 
 
 #if 0
@@ -742,112 +744,128 @@ RPP bUSPb2     -408.25 -407. 26. 126. 2891.5 2991.5
 !@what.6= Beam_Z + 50
 RPP bUSPE2     -410.75 -408.25 26. 126. 2891.5 2991.5
 #endif
-!@what.1= BD_FF_orig - 254 - 9.5 + 60
-!@what.2= BD_FF_orig- 254 + 60
+*!@what.1= BD_FF_orig - 254 - 9.5 + 60
+*!@what.2= BD_FF_orig- 254 + 60
 !@what.3= Beam_Y - 15
 !@what.4= Beam_Y + 15
 !@what.5= Beam_Z - 15
 !@what.6= Beam_Z + 15
-RPP bQ6oSS     -365. -355.5 61. 91. 2926.5 2956.5
-!@what.1= BD_FF_orig - 254 - 9.5 + 60
-!@what.2= BD_FF_orig- 254 + 60
+*RPP bQ6oSS     -365. -355.5 61. 91. 2926.5 2956.5
+RPP bQ6oSS     -336.38 -326.88 61. 91. 2926.5 2956.5
+*!@what.1= BD_FF_orig - 254 - 9.5 + 60
+*!@what.2= BD_FF_orig- 254 + 60
 !@what.3= Beam_Y - 12.5
 !@what.4= Beam_Y + 12.5
 !@what.5= Beam_Z - 12.5
 !@what.6= Beam_Z + 12.5
-RPP bQ6iSS     -365. -355.5 63.5 88.5 2929. 2954.
-!@what.1= BD_FF_orig- 254 - 9.5 + 60
-!@what.2= BD_FF_orig -254 + 60
+*RPP bQ6iSS     -365. -355.5 63.5 88.5 2929. 2954.
+RPP bQ6iSS     -336.38 -326.88 61. 91. 2926.5 2956.5
+*!@what.1= BD_FF_orig- 254 - 9.5 + 60
+*!@what.2= BD_FF_orig -254 + 60
 !@what.3= Beam_Y -12.5
 !@what.4= Beam_Y + 12.5
 !@what.5= Beam_Z - 4.92/2
 !@what.6= Beam_Z + 4.92/2
-RPP bQ6pSStb   -365. -355.5 63.5 88.5 2939.04 2943.96
-!@what.1= BD_FF_orig - 254 - 9.5 + 60
-!@what.2= BD_FF_orig -254 + 60
+*RPP bQ6pSStb   -365. -355.5 63.5 88.5 2939.04 2943.96
+RPP bQ6pSStb   -336.38 -326.88 63.5 88.5 2939.04 2943.96
+*!@what.1= BD_FF_orig - 254 - 9.5 + 60
+*!@what.2= BD_FF_orig -254 + 60
 !@what.3= Beam_Y -4.92/2
 !@what.4= Beam_Y + 4.92/2
 !@what.5= Beam_Z - 12.5
 !@what.6= Beam_Z + 12.5
-RPP bQ6pSSns   -365. -355.5 73.540000000000006 78.459999999999994 2929. 2954.
-!@what.1= BD_FF_orig - 254 - 9.5 + 60
-!@what.2= BD_FF_orig - 254 + 60
+*RPP bQ6pSSns   -365. -355.5 73.540000000000006 78.459999999999994 2929. 2954.
+RPP bQ6pSSns   -336.38 -326.88 73.54 78.46 2929. 2954.
+*!@what.1= BD_FF_orig - 254 - 9.5 + 60
+*!@what.2= BD_FF_orig - 254 + 60
 !@what.3= Beam_Y - 3.35
 !@what.4= Beam_Y + 3.35
 !@what.5= Beam_Z - 3.35
 !@what.6= Beam_Z + 3.35
-RPP bQ6boxp    -365. -355.5 72.650000000000006 79.349999999999994
-              2938.1500000000001 2944.8499999999999
-!@what.1= BD_FF_orig - 254 - 9.5/2 + 60
+*RPP bQ6boxp    -365. -355.5 72.650000000000006 79.349999999999994
+*2938.1500000000001 2944.8499999999999
+RPP bQ6boxp    -336.38 -326.88 72.65 79.35 2938.15 2944.85
+*!@what.1= BD_FF_orig - 254 - 9.5/2 + 60
 !@what.2= Beam_Y - 12.5
 !@what.3= Beam_Z
-RCC bQ6cCutb   -360.25 63.5 2941.5 0.0 25.0 0.0 6.82
-!@what.1= BD_FF_orig - 254 - 9.5/2 + 60
+*RCC bQ6cCutb   -360.25 63.5 2941.5 0.0 25.0 0.0 6.82
+RCC bQ6cCutb   -331.63 63.5 2941.5 0.0 25.0 0.0 6.82
+*!@what.1= BD_FF_orig - 254 - 9.5/2 + 60
 !@what.2= Beam_Y
 !@what.3= Beam_Z -12.5
 !@what.6= 25.0
-RCC bQ6cCuns   -360.25 76. 2929. 0.0 0.0 25. 6.82
-!@what.1= BD_FF_orig - 254 - 9.5 + 60
-!@what.2= BD_FF_orig - 254 + 60
+*RCC bQ6cCuns   -360.25 76. 2929. 0.0 0.0 25. 6.82
+RCC bQ6cCuns    -331.63 76. 2929. 0.0 0.0 25. 6.82
+*!@what.1= BD_FF_orig - 254 - 9.5 + 60
+*!@what.2= BD_FF_orig - 254 + 60
 !@what.3= Beam_Y - 7.6
 !@what.4= Beam_Y + 7.6
 !@what.5= Beam_Z - 7.6
 !@what.6= Beam_Z + 7.6
-RPP bQ6boxc    -365. -355.5 68.400000000000006 83.599999999999994
-              2933.9000000000001 2949.0999999999999
-!@what.1= BD_FF_orig - 284 - 9.5 + 60
-!@what.2= BD_FF_orig - 284 + 60
+*RPP bQ6boxc    -365. -355.5 68.400000000000006 83.599999999999994
+*2933.9000000000001 2949.0999999999999
+RPP bQ6boxc    -336.38 -326.88 68.4 83.6 2933.9 2949.1
+*!@what.1= BD_FF_orig - 284 - 9.5 + 60
+*!@what.2= BD_FF_orig - 284 + 60
 !@what.3= Beam_Y - 15
 !@what.4= Beam_Y + 15
 !@what.5= Beam_Z - 15
 !@what.6= Beam_Z + 15
-RPP bQ5oSS     -395. -385.5 61. 91. 2926.5 2956.5
-!@what.1= BD_FF_orig - 284 - 9.5 + 60
-!@what.2= BD_FF_orig - 284 + 60
+*RPP bQ5oSS     -395. -385.5 61. 91. 2926.5 2956.5
+RPP bQ5oSS     -353.45 -343.95 61. 91. 2926.5 2956.5
+*!@what.1= BD_FF_orig - 284 - 9.5 + 60
+*!@what.2= BD_FF_orig - 284 + 60
 !@what.3= Beam_Y - 12.5
 !@what.4= Beam_Y + 12.5
 !@what.5= Beam_Z - 12.5
 !@what.6= Beam_Z + 12.5
-RPP bQ5iSS     -395. -385.5 63.5 88.5 2929. 2954.
-!@what.1= BD_FF_orig - 284 - 9.5 + 60
-!@what.2= BD_FF_orig  - 284 + 60
+*RPP bQ5iSS     -395. -385.5 63.5 88.5 2929. 2954.
+RPP bQ5iSS     -353.45 -343.95 63.5 88.5 2929. 2954.
+*!@what.1= BD_FF_orig - 284 - 9.5 + 60
+*!@what.2= BD_FF_orig  - 284 + 60
 !@what.3= Beam_Y -12.5
 !@what.4= Beam_Y + 12.5
 !@what.5= Beam_Z - 4.92/2
 !@what.6= Beam_Z + 4.92/2
-RPP bQ5pSStb   -395. -385.5 63.5 88.5 2939.04 2943.96
-!@what.1= BD_FF_orig - 284 - 9.5 + 60
-!@what.2= BD_FF_orig -284 + 60
+*RPP bQ5pSStb   -395. -385.5 63.5 88.5 2939.04 2943.96
+RPP bQ5pSStb   -353.45 -343.95 63.5 88.5 2939.04 2943.96
+*!@what.1= BD_FF_orig - 284 - 9.5 + 60
+*!@what.2= BD_FF_orig -284 + 60
 !@what.3= Beam_Y -4.92/2
 !@what.4= Beam_Y + 4.92/2
 !@what.5= Beam_Z - 12.5
 !@what.6= Beam_Z + 12.5
-RPP bQ5pSSns   -395. -385.5 73.540000000000006 78.459999999999994 2929. 2954.
-!@what.1= BD_FF_orig - 284 - 9.5 + 60
-!@what.2= BD_FF_orig - 284 + 60
+*RPP bQ5pSSns   -395. -385.5 73.540000000000006 78.459999999999994 2929. 2954.
+RPP bQ5pSSns   -353.45 -343.95 73.54 78.46 2929. 2954.
+*!@what.1= BD_FF_orig - 284 - 9.5 + 60
+*!@what.2= BD_FF_orig - 284 + 60
 !@what.3= Beam_Y - 3.35
 !@what.4= Beam_Y + 3.35
 !@what.5= Beam_Z - 3.35
 !@what.6= Beam_Z + 3.35
-RPP bQ5boxp    -395. -385.5 72.650000000000006 79.349999999999994
-              2938.1500000000001 2944.8499999999999
-!@what.1= BD_FF_orig - 284 - 9.5/2 + 60
+*RPP bQ5boxp    -395. -385.5 72.650000000000006 79.349999999999994
+*2938.1500000000001 2944.8499999999999
+RPP bQ5boxp    -353.45 -343.95 72.65 79.35 2938.15 2944.85
+*!@what.1= BD_FF_orig - 284 - 9.5/2 + 60
 !@what.2= Beam_Y - 12.5
 !@what.3= Beam_Z
-RCC bQ5cCutb   -390.25 63.5 2941.5 0.0 25.0 0.0 6.82
-!@what.1= BD_FF_orig - 284 - 9.5/2 + 60
+*RCC bQ5cCutb   -390.25 63.5 2941.5 0.0 25.0 0.0 6.82
+RCC bQ5cCutb   -348.7 63.5 2941.5 0.0 25.0 0.0 6.82
+*!@what.1= BD_FF_orig - 284 - 9.5/2 + 60
 !@what.2= Beam_Y
 !@what.3= Beam_Z -12.5
 !@what.6= 25.0
-RCC bQ5cCuns   -390.25 76. 2929. 0.0 0.0 25. 6.82
-!@what.1= BD_FF_orig - 284 - 9.5 + 60
-!@what.2= BD_FF_orig - 284 + 60
+*RCC bQ5cCuns   -390.25 76. 2929. 0.0 0.0 25. 6.82
+RCC bQ5cCuns   -348.7 76. 2929. 0.0 0.0 25. 6.82
+*!@what.1= BD_FF_orig - 284 - 9.5 + 60
+*!@what.2= BD_FF_orig - 284 + 60
 !@what.3= Beam_Y - 7.6
 !@what.4= Beam_Y + 7.6
 !@what.5= Beam_Z - 7.6
 !@what.6= Beam_Z + 7.6
-RPP bQ5boxc    -395. -385.5 68.400000000000006 83.599999999999994
-              2933.9000000000001 2949.0999999999999
+*RPP bQ5boxc    -395. -385.5 68.400000000000006 83.599999999999994
+*2933.9000000000001 2949.0999999999999
+RPP bQ5boxc    -353.45 -343.95 68.4 83.6 2933.9 2949.1
 * MB4 yoke
 !@what.1= BD_FF_orig - 331.6 - 14.3
 !@what.2= BD_FF_orig - 331.6
@@ -1617,7 +1635,7 @@ RPP bUSsSh4    -251.81999999999999 -238.52000000000001 50. 176. 2841.5 3040.
 !@what.4= Beam_Y + 100
 !@what.5= Beam_Z  -100
 RPP bUScSh4    -263.5 -251.81999999999999 50. 176. 2841.5 3040.
-RPP bUScSh5    -283.5 -263.5 50. 176. 2841.5 3040.
+RPP bUScSh5    -283.5 -263.5 00. 176. 2841.5 3040.
 * 10 cm PE  to shield back shine from the dump
 * Extending to FF of Pb collimation style shielding
 * Removed for DarkLight
@@ -1768,13 +1786,21 @@ BOX bICMair    -1047.5 39.0 630.0 112.42098152481 0.0 160.55380068064
 RCC bDLColl   -150 76 2941.5 -5.5 0 0 4.65
 RPP bDLCHol   -155.5 -150. 73.8 78.3 2939.55 2943.45
 RPP bDLfoil   -465.5201 -465.52 73.5 78.5 2938.959 2944.03 
+RPP bDLlead   -490. -283.5 100. 110. 2910. 3040.
+RPP bDLlea1   -490. -283.5 0. 100. 2910. 2915.
 RCC bDLcham   -462.935 67.105 2941.5 0. 17.79 0. 12.945
-RCC bDLvacc   -462.935 69.015 2941.5 0. 13.97 0. 12.705
+RCC bDLChSh   -462.935 69.015 2941.5 0. 13.97 0. 12.705
+RCC bDLvacc   -462.935 71.515 2941.5 0. 8.97 0. 10.205
+
+* DarkLight Permanent Quads
+RCC bDLPMo1    -445.52 76. 2941.5 9.3 0.0 0.0 3.5
+RCC bDLPMo2    -407.72 76. 2941.5 9.3 0.0 0.0 3.5
+RCC bDLPMo3    -373.42 76. 2941.5 9.3 0.0 0.0 3.5
 END
 * Black hole
 BLKBODY      5 +blkbody -void
 * Void around
-AirSpace     5 +void -bTarget -bDLfoil -bDLcham -bDLvacc -bDLColl -bFloor1 -bFloor2 -bSoilF -bRoof -bWallN1B -bWallN1T -bWallN2
+AirSpace     5 +void -bTarget -bDLfoil -bDLcham -bDLlead -bDLlea1 -bDLvacc -bDLChSh -bDLColl -bFloor1 -bFloor2 -bSoilF -bRoof -bWallN1B -bWallN1T -bWallN2
                -(bAngBody -pAngW_N +pAngW_S)
                -bSoilN
                -bWSEx1 -bWallE
@@ -1801,12 +1827,16 @@ AirSpace     5 +void -bTarget -bDLfoil -bDLcham -bDLvacc -bDLColl -bFloor1 -bFlo
                -bMB4Y
                -bClamp
                -bBP0Wall  -bBP1Wall
-               -bFl_G1 - bFl_E1 -bFl_E2 - bFl_L1 - bFl_L2 - bFl_L3
-               -bIV6CylW -bIV6CylE -bIV6BoxS -bIV6Fl  -bIV6C1S -bIV6C2S
-               -bBPM6aS -bBPM6bS
+               -bFl_G1
+               -bBPM6bS -bBPM6aS
                -bDB6SS -bDB6CylS -bDB6BoxS
-               -bBellow1 -bBellow2 -bBellow3 -bBellow4
-               -bUSConc -bUScSh4 -bUScSh5
+	       -bUSConc -bUScSh4 -bUScSh5
+	       -bDLPMo1 -bDLPMo2 -bDLPMo3
+*-bBellow1 -bBellow2 -bBellow3 -bBellow4
+*-bUSConc -bUScSh4 -bUScSh5 -bBPM6aS
+
+* - bFl_E1 -bFl_E2 - bFl_L1 - bFl_L2 -bFl_L3
+* -bIV6CylW -bIV6CylE -bIV6BoxS -bIV6Fl  -bIV6C1S -bIV6C2S
 
 * Removed for DarkLight
 * -bRMVYo - bRMVCni - bRMVCno - bRMVCsi - bRMVCso
@@ -1975,24 +2005,24 @@ InAG6_1      5 +bc_CO6_1 -bBP0Wall
 InAG6_2      5 +bc_CO6_2 -bBP0Wall
 InAirG7      5 +bUSc_CO7 -bBP0Wall
 InAirG8      5 +bUSc_CO8 -bBP0Wall
-rBPM6bS      5 +bBPM6bS -bBPM6bA  -bBP1Wall +pBPM6bN +pBPM6bS
-rBPM6bA      5 +bBPM6bA -bBP1Wall
-               |+bBPM6bS -pBPM6bN
-               |  +bBPM6bS -pBPM6bS
-rBPM6aS      5 +bBPM6aS -bBPM6aA  -bBP1Wall +pBPM6aN +pBPM6aS
+rBPM6bS      5 +bBPM6bS  -bBP1Wall +pBPM6bN +pBPM6bS
+rBPM6bA      5 +bBPM6bS -pBPM6bN
+              |  +bBPM6bS -pBPM6bS -bBP1Wall
+*+bBPM6bA	      
+rBPM6aS      5 +bBPM6aS  -bBP1Wall +pBPM6aN +pBPM6aS -bBPM6aA
 rBPM6aA      5 +bBPM6aA -bBP1Wall
-               |+bBPM6aS -pBPM6aN
-               |  +bBPM6aS -pBPM6aS
+	     |+bBPM6aS -pBPM6aN
+	     |  +bBPM6aS -pBPM6aS
 rFlange1     5 +bFl_G1 - bBP1Wall
-rFlange      5 +bFl_E1 - bBP1Wall
-               |+bFl_E2 - bBP1Wall
-               | +bFl_L1 - bBP1Wall
-               | +bFl_L2 - bBP1Wall
-               | +bFl_L3 - bBP1Wall
-rBellows     5 +bBellow1 -bBP1Wall -bBPM6bS
-               |+bBellow2 -bBP1Wall -bBPM6bS
-               |+bBellow3 -bBP1Wall
-               |+bBellow4 -bBP1Wall
+*rFlange      5 +bFl_E1 - bBP1Wall
+*               |+bFl_E2 - bBP1Wall
+*               | +bFl_L1 - bBP1Wall
+*               | +bFl_L2 - bBP1Wall
+*               | +bFl_L3 - bBP1Wall
+*rBellows5 +bBellow1 -bBP1Wall -bBPM6bS
+*|+bBellow2 -bBP1Wall -bBPM6bS
+*|+bBellow3 -bBP1Wall
+*|+bBellow4 -bBP1Wall
 rDB6SS       5 +bDB6SS -bDB6Air -bBP1Wall
 rDB6Air      5 +bDB6Air -bBP1Wall
 rDB6CylS     5 +bDB6CylS -bDB6CylA -bDB6SS
@@ -2010,15 +2040,15 @@ MB4Coils     5 +bMB4CNT
                |+ bMB4CSB
 rMB4BVac     5 +bMB4BV -bBP1Wall -bBP2Wall
 MB4V         5 +bMB4Vac - bMB4BV
-rIV6SS       5 +bIV6CylW -bBP1Wall
-               |+bIV6CylE - bBP1Wall
-               |+bIV6BoxS -bIV6BoxA - bBP1Wall
-               |+bIV6Fl
-               |+bIV6C1S -bIV6C1A
-               |+bIV6C2S -bIV6C2A
-rIV6Air      5 +bIV6BoxA - bBP1Wall
-               |+bIV6C1A
-               |+bIV6C2A
+*rIV6SS       5 +bIV6CylW -bBP1Wall
+*               |+bIV6CylE - bBP1Wall
+*               |+bIV6BoxS -bIV6BoxA - bBP1Wall
+*               |+bIV6Fl
+*               |+bIV6C1S -bIV6C1A
+*               |+bIV6C2S -bIV6C2A
+*rIV6Air      5 +bIV6BoxA - bBP1Wall
+*               |+bIV6C1A
+*               |+bIV6C2A
 
 * Removed for DarkLight
 * rRMVCoil     5 + bRMVCno -  bRMVCni
@@ -2074,8 +2104,8 @@ rBP0Wall     5 +bBP0Wall -bBP0Vac -bDLColl
 * - West running Beam pipe, filled with vacuum
 * rBP1Wall     5 +bBP1Wall -bBP1Vac -bRMVYi2  -bRMHYi2 -bMB4BV -bDLfoil
 * Removed for DarkLight
-rBP1Wall     5 +bBP1Wall -bBP1Vac -bMB4BV -bDLfoil -bDLcham -bDLvacc
-rBP2Wall     5 +bBP2Wall -bBP2Vac -bMB4BV -bDLfoil -bDLcham -bDLvacc
+rBP1Wall     5 +bBP1Wall -bBP1Vac -bMB4BV -bDLfoil -bDLcham -bDLvacc -bDLChSh
+rBP2Wall     5 +bBP2Wall -bBP2Vac -bMB4BV -bDLfoil -bDLcham -bDLvacc -bDLChSh
 rBP0Vac      5 +bBP0Vac -bDLColl -bDLCHol
 *Removed for DarkLight
 * rBP1Vac      5 +bBP1Vac -bRMVYi2 -bRMHYi2 -bMB4BV -bDLfoil
@@ -2090,10 +2120,16 @@ rBPMB4VB     5 +bBP1Vac + bMB4Y -bBP2Wall
 Target       5 +bTarget
 * DarkLight Target
 DLTarget     5 +bDLfoil
-DLChamb      5 +bDLcham -bDLvacc -bBP1Vac
+DLlead       5 +bDLlead
+DLlead1      5 +bDLlea1
+DLChSh       5 +bDLChSh -bDLvacc -bBP1Vac
+DLChamb      5 +bDLcham -bDLChSh -bBP1Vac
 DLVacuum     5 +bDLvacc -bDLfoil -bBP1Vac
-DLColl       5 +bDLColl -bDLCHol
+DLColl       5 +bDLColl -bDLCHol 
 DLCHol       5 +bDLCHol
+DLPM1        5 +bDLPMo1 -bBP1Wall 
+DLPM2        5 +bDLPMo2 -bBP1Wall 
+DLPM3        5 +bDLPMo3 -bBP1Wall 
 * Floor
 Fl1_1        5 +bFloor1 -pFl1_1 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
 * Floor
@@ -2413,7 +2449,13 @@ ASSIGNMA         AIR    NW_air
 ASSIGNMA         AIR  BD_StAir
 ASSIGNMA        IRON    Target
 ASSIGNMA    TANTALUM  DLTarget
+ASSIGNMA        LEAD    DLlead
+ASSIGNMA        LEAD   DLlead1
 ASSIGNMA    Stainles   DLChamb
+ASSIGNMA    Stainles     DLPM1
+ASSIGNMA    Stainles     DLPM2
+ASSIGNMA    Stainles     DLPM3
+ASSIGNMA        LEAD    DLChSh
 ASSIGNMA      VACUUM    DLCHol
 ASSIGNMA      VACUUM  DLVacuum
 ASSIGNMA    ALUMINUM    DLColl
@@ -2546,16 +2588,16 @@ ASSIGNMA         AIR   rBPM6bA
 ASSIGNMA     SS316LN   rBPM6aS
 ASSIGNMA         AIR   rBPM6aA
 ASSIGNMA     SS316LN  rFlange1
-ASSIGNMA     SS316LN   rFlange
-ASSIGNMA     SS316LN  rBellows
+*ASSIGNMA     SS316LN   rFlange
+*ASSIGNMA     SS316LN  rBellows
 ASSIGNMA     SS316LN    rDB6SS
 ASSIGNMA         AIR   rDB6Air
 ASSIGNMA     SS316LN  rDB6CylS
 ASSIGNMA         AIR  rDB6CylA
 ASSIGNMA     SS316LN  rDB6BoxS
 ASSIGNMA         AIR  rDB6BoxA
-ASSIGNMA     SS316LN    rIV6SS
-ASSIGNMA         AIR   rIV6Air
+*ASSIGNMA     SS316LN    rIV6SS
+*ASSIGNMA         AIR   rIV6Air
 * Removed for DarkLight
 * ASSIGNMA     RMsteel  rRMVYoke
 * ASSIGNMA      COPPER  rRMVCoil
@@ -2703,15 +2745,15 @@ DCYTIMES    7776000. 15552000. 31536000.
 * Dose Eq from gammas
 * 20 x 20 x 20 cm
 USRBIN           10.   DOSE-EQ      -51.      350.      610.     3300.DE_g
-USRBIN         -900.     -200.     2000.      125.       81.      130. &
+USRBIN         -900.     -200.     2000.      250.      162.      260. &
 AUXSCORE      USRBIN    PHOTON                DE_g                    AMB74
 * Dose Eq from neutrons
 USRBIN           10.   DOSE-EQ      -52.      350.      610.     3300.DE_n
-USRBIN         -900.     -200.     2000.      125.       81.      130. &
+USRBIN         -900.     -200.     2000.      250.      162.      260. &
 AUXSCORE      USRBIN   NEUTRON                DE_n                    AMB74
 * Dose Eq from all particles
 USRBIN           10.   DOSE-EQ      -53.      350.      610.     3300.DE
-USRBIN         -900.     -200.     2000.      125.       81.      130. &
+USRBIN         -900.     -200.     2000.      250.      162.      260. &
 * Beam Particle fluence in BD area (small)
 USRBIN           10.  BEAMPART      -40.      20.0      78.5     2944.BP_Fl
 USRBIN         -480.      73.5    2939.       80.      150.      210. &
