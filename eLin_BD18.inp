@@ -13,7 +13,8 @@ GLOBAL                                         1.0       1.0          OLDFLAIR
 DEFAULTS                                                              PRECISIO
 * 25 MeV beam, 2sigma = 0.06 cm , FWHM = 2.355 * 0.03 = 0.071
 * BEAM           -.030                        -1.413    -1.413       1.0ELECTRON
-BEAM           -.030                       -0.142    -0.0289       1.0ELECTRON
+BEAM           -.030                       -0.071     -0.053       1.0ELECTRON
+* BEAM           -.030                       -0.001     -0.003       1.0ELECTRON
 * BEAM           -.030                       -0.142     -0.001       1.0ELECTRON
 BEAMAXES         0.0        1.       0.0        1.       0.0       0.0
 * Beam starts at point (x,y,z) and along x-axis into the dump, assuming Beamline height is 2.5ft
@@ -34,68 +35,72 @@ PHYSICS           3.                                                  EVAPORAT
 PHYSICS           1.                                                  COALESCE
 * All photonuclear interactions are activated in the required materials
 PHOTONUC          1.                        VACUUM  @LASTMAT        1.
-BIASING          0.0        1.        1.     WN1_1                    PRINT
-BIASING          0.0        1.        1.     WW1_1                    PRINT
-BIASING          0.0        1.        1.     Fl1_1                    PRINT
-BIASING          0.0        1.        5.     WN1_2                    PRINT
-BIASING          0.0        1.        5.     WW1_2                    PRINT
-BIASING          0.0        1.        5.     Fl1_2                    PRINT
-BIASING          0.0        1.       25.     WN1_3                    PRINT
-BIASING          0.0        1.       25.     WW1_3                    PRINT
-BIASING          0.0        1.       25.     Fl1_3                    PRINT
-BIASING          0.0        1.      125.     WN1_4                    PRINT
-BIASING          0.0        1.      125.     WW1_4                    PRINT
-BIASING          0.0        1.      125.     Fl1_4                    PRINT
-BIASING          0.0        1.      625.     WN1_5                    PRINT
-BIASING          0.0        1.      625.     WW1_5                    PRINT
-BIASING          0.0        1.      625.     Fl1_5                    PRINT
-BIASING          0.0        1.     3125.     WN1_6                    PRINT
-BIASING          0.0        1.     3125.     WW1_6                    PRINT
-BIASING          0.0        1.     3125.     Fl1_6                    PRINT
-BIASING          0.0        1.    15625.     WN1_7                    PRINT
-BIASING          0.0        1.    15625.     Fl1_7                    PRINT
+*BIASING          0.0        1.        1.     WN1_1                    PRINT
+*BIASING          0.0        1.        1.     WW1_1                    PRINT
+*BIASING          0.0        1.        1.     Fl1_1                    PRINT
+*BIASING          0.0        1.        5.     WN1_2                    PRINT
+*BIASING          0.0        1.        5.     WW1_2                    PRINT
+*BIASING          0.0        1.        5.     Fl1_2                    PRINT
+*BIASING          0.0        1.       25.     WN1_3                    PRINT
+*BIASING          0.0        1.       25.     WW1_3                    PRINT
+*BIASING          0.0        1.       25.     Fl1_3                    PRINT
+*BIASING          0.0        1.      125.     WN1_4                    PRINT
+*BIASING          0.0        1.      125.     WW1_4                    PRINT
+*BIASING          0.0        1.      125.     Fl1_4                    PRINT
+*BIASING          0.0        1.      625.     WN1_5                    PRINT
+*BIASING          0.0        1.      625.     WW1_5                    PRINT
+*BIASING          0.0        1.      625.     Fl1_5                    PRINT
+*BIASING          0.0        1.     3125.     WN1_6                    PRINT
+*BIASING          0.0        1.     3125.     WW1_6                    PRINT
+*BIASING          0.0        1.     3125.     Fl1_6                    PRINT
+*BIASING          0.0        1.    15625.     WN1_7                    PRINT
+*BIASING          0.0        1.    15625.     Fl1_7                    PRINT
 * Maximum allowed = 100000
 * region importance (allowed values range from 0.0001 to 100000.0)
-BIASING          0.0        1.        1.    USsSh1                    PRINT
-BIASING          0.0        1.        1.  InSteel1                    PRINT
-BIASING          0.0        1.        1.   USCshS1                    PRINT
-BIASING          0.0        1.        1.   SS_pt_1                    PRINT
-BIASING          0.0        1.        1.   USCshT1                    PRINT
-BIASING          0.0        1.        4.    UScSh1                    PRINT
-BIASING          0.0        1.        4.   USCshS2                    PRINT
-BIASING          0.0        1.        4.  InSteel2                    PRINT
-BIASING          0.0        1.        4.   USCshS3                    PRINT
-BIASING          0.0        1.        4.   SS_pt_2                    PRINT
-BIASING          0.0        1.        4.   SS_pb_1                    PRINT
-BIASING          0.0        1.        4.   USCshT2                    PRINT
-BIASING          0.0        1.       16.    USsSh2                    PRINT
-BIASING          0.0        1.       16.  InSteel3                    PRINT
-BIASING          0.0        1.       16.   SS_pt_3                    PRINT
-BIASING          0.0        1.       16.   SS_pb_2                    PRINT
-BIASING          0.0        1.       16.   USCshT3                    PRINT
-BIASING          0.0        1.       64.   UcSh2_1                    PRINT
-BIASING          0.0        1.       64.   USCshS4                    PRINT
-BIASING          0.0        1.       64.   InSt4_1                    PRINT
-BIASING          0.0        1.      256.   UcSh2_2                    PRINT
-BIASING          0.0        1.      256.   USCshS5                    PRINT
-BIASING          0.0        1.      256.   InSt4_2                    PRINT
-BIASING          0.0        1.     1024.    USsSh3                    PRINT
-BIASING          0.0        1.     1024.   USCshS6                    PRINT
-BIASING          0.0        1.     1024.  InSteel5                    PRINT
-BIASING          0.0        1.     4096.   UcSh3_1                    PRINT
-BIASING          0.0        1.     4096.    InS6_1                    PRINT
-BIASING          0.0        1.    16384.   UcSh3_2                    PRINT
-BIASING          0.0        1.    16384.    InS6_2                    PRINT
-BIASING          0.0        1.    49152.    USsSh4                    PRINT
-BIASING          0.0        1.    49152.  InSteel7                    PRINT
-BIASING          0.0        1.    98304.    UScSh4                    PRINT
-BIASING          0.0        1.    98304.    UScSh5                    PRINT
-BIASING          0.0        1.    98304.  InSteel8                    PRINT
-BIASING          0.0        1.    98304.  AirSpace                    PRINT
-BIASING          0.0        1.    98304.  rFlange1                    PRINT
+*BIASING          0.0        1.        1.    USsSh1                    PRINT
+*BIASING          0.0        1.        1.  InSteel1                    PRINT
+*BIASING          0.0        1.        1.   USCshS1                    PRINT
+*BIASING          0.0        1.        1.   SS_pt_1                    PRINT
+*BIASING          0.0        1.        1.   USCshT1                    PRINT
+*BIASING          0.0        1.        4.    UScSh1                    PRINT
+*BIASING          0.0        1.        4.   USCshS2                    PRINT
+*BIASING          0.0        1.        4.  InSteel2                    PRINT
+*BIASING          0.0        1.        4.   USCshS3                    PRINT
+*BIASING          0.0        1.        4.   SS_pt_2                    PRINT
+*BIASING          0.0        1.        4.   SS_pb_1                    PRINT
+*BIASING          0.0        1.        4.   USCshT2                    PRINT
+*BIASING          0.0        1.       16.    USsSh2                    PRINT
+*BIASING          0.0        1.       16.  InSteel3                    PRINT
+*BIASING          0.0        1.       16.   SS_pt_3                    PRINT
+*BIASING          0.0        1.       16.   SS_pb_2                    PRINT
+*BIASING          0.0        1.       16.   USCshT3                    PRINT
+*BIASING          0.0        1.       64.   UcSh2_1                    PRINT
+*BIASING          0.0        1.       64.   USCshS4                    PRINT
+*BIASING          0.0        1.       64.   InSt4_1                    PRINT
+*BIASING          0.0        1.      256.   UcSh2_2                    PRINT
+*BIASING          0.0        1.      256.   USCshS5                    PRINT
+*BIASING          0.0        1.      256.   InSt4_2                    PRINT
+*BIASING          0.0        1.     1024.    USsSh3                    PRINT
+*BIASING          0.0        1.     1024.   USCshS6                    PRINT
+*BIASING          0.0        1.     1024.  InSteel5                    PRINT
+*BIASING          0.0        1.     4096.   UcSh3_1                    PRINT
+*BIASING          0.0        1.     4096.    InS6_1                    PRINT
+*BIASING          0.0        1.    16384.   UcSh3_2                    PRINT
+*BIASING          0.0        1.    16384.    InS6_2                    PRINT
+*BIASING          0.0        1.    49152.    USsSh4                    PRINT
+*BIASING          0.0        1.    49152.  InSteel7                    PRINT
+*BIASING          0.0        1.    98304.    UScSh4                    PRINT
+*BIASING          0.0        1.    98304.    UScSh5                    PRINT
+*BIASING          0.0        1.    98304.  InSteel8                    PRINT
+*BIASING          0.0        1.    98304.  AirSpace                    PRINT
+*BIASING          0.0        1.    98304.  rFlange1                    PRINT
 *USERDUMP        100.       49.                                        USpart.dat
 *USERDUMP        100.       49.                                        USpart.dat
 ROT-DEFI         0.0       0.0      -45.                              AngW
+ROT-DEFI        2002       0.0       20.      450.       0.0   -2941.5SpecR
+ROT-DEFI        2002       0.0       0.0     -452.       0.0    2946.5SpecR
+ROT-DEFI        3002       0.0      -35.      450.       0.0   -2941.5SpecL
+ROT-DEFI        3002       0.0       0.0     -452        0.0    2934.5SpecL
 RANDOMIZ          1. 114050473
 START       2000000.                                     0.0
 GEOBEGIN                                                              COMBNAME
@@ -1785,9 +1790,9 @@ BOX bICMair    -1047.5 39.0 630.0 112.42098152481 0.0 160.55380068064
 * DarkLight Target
 RCC bDLColl   -150 76 2941.5 -5.5 0 0 4.65
 RPP bDLCHol   -155.5 -150. 73.8 78.3 2939.55 2943.45
-RPP bDLfoil   -465.5201 -465.52 73.5 78.5 2938.959 2944.03 
-RPP bDLlead   -490. -283.5 100. 110. 2910. 3040.
-RPP bDLlea1   -490. -283.5 0. 100. 2910. 2915.
+RPP bDLfoil   -465.5201 -465.52 74.73 77.27 2940.23 2942.77 
+RPP bDLlead   -490. -283.5 100. 101. 2910. 3040.
+RPP bDLlea1   -490. -283.5 0. 100. 2910. 2911.
 RCC bDLcham   -462.935 67.105 2941.5 0. 17.79 0. 12.945
 RCC bDLChSh   -462.935 69.015 2941.5 0. 13.97 0. 12.705
 RCC bDLvacc   -462.935 71.515 2941.5 0. 8.97 0. 10.205
@@ -1796,6 +1801,22 @@ RCC bDLvacc   -462.935 71.515 2941.5 0. 8.97 0. 10.205
 RCC bDLPMo1    -445.52 76. 2941.5 9.3 0.0 0.0 3.5
 RCC bDLPMo2    -407.72 76. 2941.5 9.3 0.0 0.0 3.5
 RCC bDLPMo3    -373.42 76. 2941.5 9.3 0.0 0.0 3.5
+*DarkLight Spectrometer
+$start_transform SpecR
+RPP SREnt      -455. -437.9 73. 79. 2940. 2943. 
+RPP SREntV     -455. -435.9 74. 78. 2941. 2942.
+RCC SREntFl    -437.9 76. 2941.5 2. 0.0 0.0 5.
+RPP SRChB      -435.9 -400. 71.5 80.5 2939. 2944.
+RPP SRChBV     -435.9 -401. 72. 80. 2940. 2943.
+RPP SRChT      -415. -390. 80.5 100. 2936. 2947.
+RPP SRChTV     -414. -391. 81. 100. 2937. 2946.
+RPP SRChMV     -414. -401. 80. 81. 2940. 2943.
+$end_transform
+$start_transform SpecL
+RPP SLEnt      -455. -437.9 73. 79. 2940. 2943. 
+RPP SLEntV     -455. -435.9 74. 78. 2941. 2942.
+RCC SLEntFl    -437.9 76. 2941.5 2. 0.0 0.0 5.    
+$end_transform
 END
 * Black hole
 BLKBODY      5 +blkbody -void
@@ -1832,6 +1853,8 @@ AirSpace     5 +void -bTarget -bDLfoil -bDLcham -bDLlead -bDLlea1 -bDLvacc -bDLC
                -bDB6SS -bDB6CylS -bDB6BoxS
 	       -bUSConc -bUScSh4 -bUScSh5
 	       -bDLPMo1 -bDLPMo2 -bDLPMo3
+	       -SREnt -SREntFl -SRChB -SRChT
+	       -SLEnt -SLEntFl
 *-bBellow1 -bBellow2 -bBellow3 -bBellow4
 *-bUSConc -bUScSh4 -bUScSh5 -bBPM6aS
 
@@ -2122,14 +2145,27 @@ Target       5 +bTarget
 DLTarget     5 +bDLfoil
 DLlead       5 +bDLlead
 DLlead1      5 +bDLlea1
-DLChSh       5 +bDLChSh -bDLvacc -bBP1Vac
-DLChamb      5 +bDLcham -bDLChSh -bBP1Vac
+DLChSh       5 +bDLChSh -bDLvacc -bBP1Vac -SREntV -SLEntV
+DLChamb      5 +bDLcham -bDLChSh -bBP1Vac -SREnt -SLEnt
 DLVacuum     5 +bDLvacc -bDLfoil -bBP1Vac
 DLColl       5 +bDLColl -bDLCHol 
 DLCHol       5 +bDLCHol
+*DL Permanent Magnets
 DLPM1        5 +bDLPMo1 -bBP1Wall 
 DLPM2        5 +bDLPMo2 -bBP1Wall 
 DLPM3        5 +bDLPMo3 -bBP1Wall 
+*DL Spec
+rSpecR       5 +SREnt -SREntV -bDLvacc -bDLChSh
+	     | +SREntFl -SREntV
+	     | +SRChB -SRChBV -SRChMV
+	     | +SRChT -SRChTV -SRChMV
+rSpecRV      5 +SREntV -bDLvacc
+	     | +SRChBV
+	     | +SRChTV
+	     | +SRChMV
+rSpecL       5 +SLEnt -SLEntV -bDLvacc -bDLChSh
+	     | +SLEntFl -SLEntV
+rSpecLV      5 +SLEntV -bDLvacc
 * Floor
 Fl1_1        5 +bFloor1 -pFl1_1 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
 * Floor
@@ -2365,6 +2401,7 @@ rICMair      5 +bICMair
 #endif
 END
 GEOEND
+*LOW-PWXS    1.0                                        3.0  @LASTMAT
 LOW-MAT       Eu-151       63.       -2.      296.                    EUROPIUM
 LOW-MAT       Eu-153       63.       -2.      296.                    EUROPIUM
 * ..+....1....+....2....+....3....+....4....+....5....+....6....+....7..
@@ -2449,9 +2486,13 @@ ASSIGNMA         AIR    NW_air
 ASSIGNMA         AIR  BD_StAir
 ASSIGNMA        IRON    Target
 ASSIGNMA    TANTALUM  DLTarget
-ASSIGNMA        LEAD    DLlead
-ASSIGNMA        LEAD   DLlead1
+ASSIGNMA         AIR    DLlead
+ASSIGNMA         AIR   DLlead1
 ASSIGNMA    Stainles   DLChamb
+ASSIGNMA    Stainles    rSpecR
+ASSIGNMA      VACUUM   rSpecRV
+ASSIGNMA    Stainles    rSpecL
+ASSIGNMA      VACUUM   rSpecLV
 ASSIGNMA    Stainles     DLPM1
 ASSIGNMA    Stainles     DLPM2
 ASSIGNMA    Stainles     DLPM3
@@ -2462,7 +2503,7 @@ ASSIGNMA    ALUMINUM    DLColl
 ASSIGNMA    Stainles   rBmPipe
 ASSIGNMA      VACUUM    rBmVac
 ASSIGNMA      VACUUM   rBD_Vac
-ASSIGNMA    Stainles  rBP0Wall  rBP2Wall
+ASSIGNMA    ALUMINUM  rBP0Wall  rBP2Wall
 ASSIGNMA      VACUUM   rBP0Vac                    
 ASSIGNMA      VACUUM   rBP1Vac                            1.
 ASSIGNMA      VACUUM   rBP2Vac                            
@@ -2661,17 +2702,20 @@ ASSIGNMA         AIR  AirSpace
 ASSIGNMA         AIR    MB4Air
 *ASSIGNMA     SS316LN   rICMstl                                  VACUUM
 *ASSIGNMA         AIR   rICMair                                  VACUUM
+*Assign point-wise neutron cross sections
+*This gives an error in FLAIR. According to experts this error should be ignored in this version of FLAIR.
+LOW-PWXS      1.0                              3.0  @LASTMAT
 * Set electron and photon production thresholds to 100 & 10 keV (material)
-!@what.1= -100*keV
-!@what.2= 10*keV
-EMFCUT        -1.E-4     1.E-5       1.0  HYDROGEN  @LASTMAT        1.PROD-CUT
+!@what.1= -10*keV
+!@what.2= 5*keV
+EMFCUT        -1.E-5     5.E-6       1.0  HYDROGEN  @LASTMAT        1.PROD-CUT
 MGNFIELD         30.   0.00001                 0.0       0.0       0.0
 STEPSIZE      -.0005        .1  DLTarget       0.0       0.0       0.0
 STEPSIZE      -.0005        .1   rBP1Vac       0.0       0.0       0.0
 * Set electron and photon transport cut-offs to 100 & 10 keV (region)
-!@what.1= -100*keV
-!@what.2= 10*keV
-EMFCUT        -1.E-4     1.E-5       0.0  AirSpace  @LASTREG        1.
+!@what.1= -10*keV
+!@what.2= 5*keV
+EMFCUT        -1.E-5     5.E-6       0.0  AirSpace  @LASTREG        1.
 RADDECAY          1.        1.        3.   300000.   1000010
 * Beam intensity: 1.3 mA.  Running for 1 month per year for 20 years
 * 1.33333E-3 C/s * 6.2415E18 e/C  = 8.322E15
@@ -2757,6 +2801,16 @@ USRBIN         -900.     -200.     2000.      250.      162.      260. &
 * Beam Particle fluence in BD area (small)
 USRBIN           10.  BEAMPART      -40.      20.0      78.5     2944.BP_Fl
 USRBIN         -480.      73.5    2939.       80.      150.      210. &
+USRBDX            1.  BEAMPART     -104.  DLTarget   rBP1Vac     6.45 PB_Fl
+USRBDX            1.   NEUTRON     -105.  DLTarget   rBP1Vac     6.45 NB_Fl
+USRBDX            1.  BEAMPART     -106.   rBP1Vac  DLTarget     6.45 PF_Fl
+USRBDX            1.   NEUTRON     -107.   rBP1Vac  DLTarget     6.45 NF_Fl
+USRBDX           11.  BEAMPART     -108.   rBP1Vac  DLTarget     6.45 BD_Fl
+USRBDX           11.   NEUTRON     -109.   rBP1Vac  DLTarget     6.45 ND_Fl
+USRBDX           11.  BEAMPART     -110.  DLTarget   rBP1Vac     6.45 BB_Fl
+USRBDX           11.   NEUTRON     -111.  DLTarget   rBP1Vac     6.45 NN_Fl
+USRBDX            1.   NEUTRON     -112.  DLVacuum   rSpecRV       5. NR_Fl
+USRBDX            1.   NEUTRON     -113.  DLVacuum   rSpecLV       5. NL_Fl
 * Dose Eq from Photons
 * 5 cm bins in x, y, and z
 * USRBIN           10.   DOSE-EQ      -62.      350.      400.     3250.DE_epem_sm
