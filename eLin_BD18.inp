@@ -35,65 +35,78 @@ PHYSICS           3.                                                  EVAPORAT
 PHYSICS           1.                                                  COALESCE
 * All photonuclear interactions are activated in the required materials
 PHOTONUC          1.                        VACUUM  @LASTMAT        1.
-*BIASING          0.0        1.        1.     WN1_1                    PRINT
-*BIASING          0.0        1.        1.     WW1_1                    PRINT
-*BIASING          0.0        1.        1.     Fl1_1                    PRINT
-*BIASING          0.0        1.        5.     WN1_2                    PRINT
-*BIASING          0.0        1.        5.     WW1_2                    PRINT
-*BIASING          0.0        1.        5.     Fl1_2                    PRINT
-*BIASING          0.0        1.       25.     WN1_3                    PRINT
-*BIASING          0.0        1.       25.     WW1_3                    PRINT
-*BIASING          0.0        1.       25.     Fl1_3                    PRINT
-*BIASING          0.0        1.      125.     WN1_4                    PRINT
-*BIASING          0.0        1.      125.     WW1_4                    PRINT
-*BIASING          0.0        1.      125.     Fl1_4                    PRINT
-*BIASING          0.0        1.      625.     WN1_5                    PRINT
-*BIASING          0.0        1.      625.     WW1_5                    PRINT
-*BIASING          0.0        1.      625.     Fl1_5                    PRINT
-*BIASING          0.0        1.     3125.     WN1_6                    PRINT
-*BIASING          0.0        1.     3125.     WW1_6                    PRINT
-*BIASING          0.0        1.     3125.     Fl1_6                    PRINT
-*BIASING          0.0        1.    15625.     WN1_7                    PRINT
-*BIASING          0.0        1.    15625.     Fl1_7                    PRINT
+BIASING          0.0        1.        1.     WN1_1                    PRINT
+BIASING          0.0        1.        1.     WW1_1                    PRINT
+BIASING          0.0        1.        1.     Fl1_1                    PRINT
+BIASING          0.0        1.        5.     WN1_2                    PRINT
+BIASING          0.0        1.        5.     WW1_2                    PRINT
+BIASING          0.0        1.        5.     Fl1_2                    PRINT
+BIASING          0.0        1.       25.     WN1_3                    PRINT
+BIASING          0.0        1.       25.     WW1_3                    PRINT
+BIASING          0.0        1.       25.     Fl1_3                    PRINT
+BIASING          0.0        1.      125.     WN1_4                    PRINT
+BIASING          0.0        1.      125.     WW1_4                    PRINT
+BIASING          0.0        1.      125.     Fl1_4                    PRINT
+BIASING          0.0        1.      625.     WN1_5                    PRINT
+BIASING          0.0        1.      625.     WW1_5                    PRINT
+BIASING          0.0        1.      625.     Fl1_5                    PRINT
+BIASING          0.0        1.     3125.     WN1_6                    PRINT
+BIASING          0.0        1.     3125.     WW1_6                    PRINT
+BIASING          0.0        1.     3125.     Fl1_6                    PRINT
+BIASING          0.0        1.    15625.     WN1_7                    PRINT
+BIASING          0.0        1.    15625.     Fl1_7                    PRINT
+BIASING          0.0        1.        1.      C1_1                    PRINT
+BIASING          0.0        1.        2.      C1_2                    PRINT
+BIASING          0.0        1.        4.      C1_3                    PRINT
+BIASING          0.0        1.        8.      C1_4                    PRINT
+BIASING          0.0        1.       16.      C1_5                    PRINT
+BIASING          0.0        1.       32.      C1_6                    PRINT
+BIASING          0.0        1.       64.      C1_7                    PRINT
+BIASING          0.0        1.      128.      C1_8                    PRINT
+BIASING          0.0        1.      256.      C1_9                    PRINT
+BIASING          0.0        1.      512.     C1_10                    PRINT
+BIASING          0.0        1.     1024.     C1_11                    PRINT
+BIASING          0.0        1.     2048.     C1_12                    PRINT
+BIASING          0.0        1.     4096.     C1_13                    PRINT
 * Maximum allowed = 100000
 * region importance (allowed values range from 0.0001 to 100000.0)
-*BIASING          0.0        1.        1.    USsSh1                    PRINT
-*BIASING          0.0        1.        1.  InSteel1                    PRINT
-*BIASING          0.0        1.        1.   USCshS1                    PRINT
-*BIASING          0.0        1.        1.   SS_pt_1                    PRINT
-*BIASING          0.0        1.        1.   USCshT1                    PRINT
-*BIASING          0.0        1.        4.    UScSh1                    PRINT
-*BIASING          0.0        1.        4.   USCshS2                    PRINT
-*BIASING          0.0        1.        4.  InSteel2                    PRINT
-*BIASING          0.0        1.        4.   USCshS3                    PRINT
-*BIASING          0.0        1.        4.   SS_pt_2                    PRINT
-*BIASING          0.0        1.        4.   SS_pb_1                    PRINT
-*BIASING          0.0        1.        4.   USCshT2                    PRINT
-*BIASING          0.0        1.       16.    USsSh2                    PRINT
-*BIASING          0.0        1.       16.  InSteel3                    PRINT
-*BIASING          0.0        1.       16.   SS_pt_3                    PRINT
-*BIASING          0.0        1.       16.   SS_pb_2                    PRINT
-*BIASING          0.0        1.       16.   USCshT3                    PRINT
-*BIASING          0.0        1.       64.   UcSh2_1                    PRINT
-*BIASING          0.0        1.       64.   USCshS4                    PRINT
-*BIASING          0.0        1.       64.   InSt4_1                    PRINT
-*BIASING          0.0        1.      256.   UcSh2_2                    PRINT
-*BIASING          0.0        1.      256.   USCshS5                    PRINT
-*BIASING          0.0        1.      256.   InSt4_2                    PRINT
-*BIASING          0.0        1.     1024.    USsSh3                    PRINT
-*BIASING          0.0        1.     1024.   USCshS6                    PRINT
-*BIASING          0.0        1.     1024.  InSteel5                    PRINT
-*BIASING          0.0        1.     4096.   UcSh3_1                    PRINT
-*BIASING          0.0        1.     4096.    InS6_1                    PRINT
-*BIASING          0.0        1.    16384.   UcSh3_2                    PRINT
-*BIASING          0.0        1.    16384.    InS6_2                    PRINT
-*BIASING          0.0        1.    49152.    USsSh4                    PRINT
-*BIASING          0.0        1.    49152.  InSteel7                    PRINT
-*BIASING          0.0        1.    98304.    UScSh4                    PRINT
-*BIASING          0.0        1.    98304.    UScSh5                    PRINT
-*BIASING          0.0        1.    98304.  InSteel8                    PRINT
-*BIASING          0.0        1.    98304.  AirSpace                    PRINT
-*BIASING          0.0        1.    98304.  rFlange1                    PRINT
+BIASING          0.0        1.        1.    USsSh1                    PRINT
+BIASING          0.0        1.        1.  InSteel1                    PRINT
+BIASING          0.0        1.        1.   USCshS1                    PRINT
+BIASING          0.0        1.        1.   SS_pt_1                    PRINT
+BIASING          0.0        1.        1.   USCshT1                    PRINT
+BIASING          0.0        1.        4.    UScSh1                    PRINT
+BIASING          0.0        1.        4.   USCshS2                    PRINT
+BIASING          0.0        1.        4.  InSteel2                    PRINT
+BIASING          0.0        1.        4.   USCshS3                    PRINT
+BIASING          0.0        1.        4.   SS_pt_2                    PRINT
+BIASING          0.0        1.        4.   SS_pb_1                    PRINT
+BIASING          0.0        1.        4.   USCshT2                    PRINT
+BIASING          0.0        1.       16.    USsSh2                    PRINT
+BIASING          0.0        1.       16.  InSteel3                    PRINT
+BIASING          0.0        1.       16.   SS_pt_3                    PRINT
+BIASING          0.0        1.       16.   SS_pb_2                    PRINT
+BIASING          0.0        1.       16.   USCshT3                    PRINT
+BIASING          0.0        1.       64.   UcSh2_1                    PRINT
+BIASING          0.0        1.       64.   USCshS4                    PRINT
+BIASING          0.0        1.       64.   InSt4_1                    PRINT
+BIASING          0.0        1.      256.   UcSh2_2                    PRINT
+BIASING          0.0        1.      256.   USCshS5                    PRINT
+BIASING          0.0        1.      256.   InSt4_2                    PRINT
+BIASING          0.0        1.     1024.    USsSh3                    PRINT
+BIASING          0.0        1.     1024.   USCshS6                    PRINT
+BIASING          0.0        1.     1024.  InSteel5                    PRINT
+BIASING          0.0        1.     4096.   UcSh3_1                    PRINT
+BIASING          0.0        1.     4096.    InS6_1                    PRINT
+BIASING          0.0        1.    16384.   UcSh3_2                    PRINT
+BIASING          0.0        1.    16384.    InS6_2                    PRINT
+BIASING          0.0        1.    49152.    USsSh4                    PRINT
+BIASING          0.0        1.    49152.  InSteel7                    PRINT
+BIASING          0.0        1.    98304.    UScSh4                    PRINT
+BIASING          0.0        1.    98304.    UScSh5                    PRINT
+BIASING          0.0        1.    98304.  InSteel8                    PRINT
+BIASING          0.0        1.    98304.  AirSpace                    PRINT
+BIASING          0.0        1.    98304.  rFlange1                    PRINT
 *USERDUMP        100.       49.                                        USpart.dat
 *USERDUMP        100.       49.                                        USpart.dat
 ROT-DEFI         0.0       0.0      -45.                              AngW
@@ -136,7 +149,20 @@ RPP bSoilF     -3080. 330. -510. -121.92 -135. 4540.
 RPP bRoof      -2430. 30. 853. 1005.4 -80. 2329.
 !@what.4= 427+183
 !@what.5= 3040-828
-RPP bCeiling   -2410. 10. 427. 610. 2212. 3040.
+RPP bCeiling   -2410. -530. 427. 610. 2212. 3040.
+RPP bC1_1      -530. 10. 427. 437. 2212. 3040.
+RPP bC1_2      -530. 10. 437. 447. 2212. 3040.
+RPP bC1_3      -530. 10. 447. 457. 2212. 3040.
+RPP bC1_4      -530. 10. 457. 467. 2212. 3040.
+RPP bC1_5      -530. 10. 467. 477. 2212. 3040.
+RPP bC1_6      -530. 10. 477. 487. 2212. 3040.
+RPP bC1_7      -530. 10. 487. 497. 2212. 3040.
+RPP bC1_8      -530. 10. 497. 510. 2212. 3040.
+RPP bC1_9      -530. 10. 510. 530. 2212. 3040.
+RPP bC1_10     -530. 10. 530. 550. 2212. 3040.
+RPP bC1_11     -530. 10. 550. 570. 2212. 3040.
+RPP bC1_12     -530. 10. 570. 590. 2212. 3040.
+RPP bC1_13     -530. 10. 590. 610. 2212. 3040.
 RPP WallStk    -2520.0 120.0 600.0 1006.0 2210.0 2340.0
 * - Extra concrete shielding at edge of Roof Beams, 90x120cm, wide by tall
 RPP bBlkE      -2520.5 -2430.5 840. 960. -80. 2220.
@@ -1826,6 +1852,7 @@ AirSpace     5 +void -bTarget -bDLfoil -bDLcham -bDLlead -bDLlea1 -bDLvacc -bDLC
                -bSoilN
                -bWSEx1 -bWallE
                -bWallW1 -bWallW2  -bCeiling -WallStk
+	       -bC1_1 -bC1_2 -bC1_3 -bC1_4 -bC1_5 -bC1_6 -bC1_7 -bC1_8 -bC1_9 -bC1_10 -bC1_11 -bC1_12 -bC1_13
                -bKlyW_W1 -bKlyW_W2 -bKlyW_E
                -bProtE -bBmPipe - bBmVac -bBlkE -bBlkW -DetWU -DetWD -DetEU -DetED -DetNeut -DetNeut2
                -DetMU -DetMD -bBmPipe2 -bBmVac2  -bBmPipe3 -bBmVac3 -bBlockS
@@ -2185,7 +2212,7 @@ Floor2       5 +bFloor2 -bWallE -bB3TunA -bB3Htch1 -bB3SACon -bB3Htch2 -bB3Htch3
 * Existing roof beams
 Roof         5 +bRoof -bAirGp21 -bAirGp20 -bAirGp19 -bAirGp18 -bAirGp17 -bAirGp16 -bAirGp15
                -bAirGp14 -bAirGp13 -AirGap12 -bAirGp11 -bAirGp10 -bAirGp9 -bAirGap8 -bAirGap7
-               -bAirGap6 -bAirGap5 -bAirGap4 -bAirGap3 -bAirGap2 -bAirGap1 -bAirGp22
+               -bAirGap6 -bAirGap5 -bAirGap4 -bAirGap3 -bAirGap2 -bAirGap1 -bAirGp22 -bJayUp1
 * - Air Gaps in roof beams
 AirGap22     5 +bAirGp22-bFe22
 AirGap21     5 +bAirGp21-bFe21
@@ -2233,6 +2260,7 @@ rFe3         5 +bFe3
 rFe2         5 +bFe2
 rFe1         5 +bFe1
 WN1_1        5 +bWallN1T +pWN1_1 -bWallE -bWallW1 -bRoof -bCeiling -bSoilW  -pWallN1
+               -bC1_1 -bC1_2 -bC1_3 -bC1_4 -bC1_5 -bC1_6 -bC1_7 -bC1_8 -bC1_9 -bC1_10 -bC1_11 -bC1_12 -bC1_13
                | +bWallN1B  +pWN1_1-bWallE -bWallW1 -bFloor1
 WN1_2        5 +bWallN1T -pWN1_1 +pWN1_2 -bWallE -bWallW1 -bRoof -bCeiling -bSoilW
                | +bWallN1B  -pWN1_1 +pWN1_2 -bWallE -bWallW1 -bFloor1
@@ -2291,10 +2319,23 @@ WW1_4        5 +bWallW1  -pWW1_3 +pWW1_4 -bFloor1  -bRoof
 WW1_5        5 +bWallW1  -pWW1_4  +pWW1_5 -bFloor1  -bRoof
 WW1_6        5 +bWallW1  -pWW1_5 -bFloor1  -bRoof
 WallW2       5 +bWallW2 -bFloor1 -bFloor2  -bRoof -bWChs1H -bWChs1V -bWChs2H -bWChs2V -bWChs3H -bWChs3V -bWChs0H
-               -bWChs0V -bCeiling
+               -bWChs0V -bCeiling -bC1_1 -bC1_2 -bC1_3 -bC1_4 -bC1_5 -bC1_6 -bC1_7 -bC1_8 -bC1_9 -bC1_10 -bC1_11 -bC1_12 -bC1_13
 Ceiling      5 +bCeiling -bWallE -bWallW1  -bWallW1
+C1_1	     5 +bC1_1 -bWallE -bWallW1 -bWallW1
+C1_2	     5 +bC1_2 -bWallE -bWallW1 -bWallW1
+C1_3	     5 +bC1_3 -bWallE -bWallW1 -bWallW1
+C1_4	     5 +bC1_4 -bWallE -bWallW1 -bWallW1
+C1_5	     5 +bC1_5 -bWallE -bWallW1 -bWallW1
+C1_6	     5 +bC1_6 -bWallE -bWallW1 -bWallW1
+C1_7	     5 +bC1_7 -bWallE -bWallW1 -bWallW1
+C1_8	     5 +bC1_8 -bWallE -bWallW1 -bWallW1
+C1_9	     5 +bC1_9 -bWallE -bWallW1 -bWallW1
+C1_10	     5 +bC1_10 -bWallE -bWallW1 -bWallW1
+C1_11	     5 +bC1_11 -bWallE -bWallW1 -bWallW1
+C1_12	     5 +bC1_12 -bWallE -bWallW1 -bWallW1
+C1_13	     5 +bC1_13 -bWallE -bWallW1 -bWallW1
 WallStk      5 +WallStk -bCeiling -bRoof -bWallE -bWallW2 -bOpSmN -bJayUp1 -bJayUp2 -bJayDn1 -bJayDn2
-               -bJayUp3 -bJayDn3
+               -bJayUp3 -bJayDn3 -bC1_1 -bC1_2 -bC1_3 -bC1_4 -bC1_5 -bC1_6 -bC1_7 -bC1_8 -bC1_9 -bC1_10 -bC1_11 -bC1_12 -bC1_13
 rJayUp1      5 +bJayUp1
 rJayDn1      5 +bJayDn1 -bJayUp1
 rJayUp2      5 +bJayUp2
@@ -2401,7 +2442,6 @@ rICMair      5 +bICMair
 #endif
 END
 GEOEND
-*LOW-PWXS    1.0                                        3.0  @LASTMAT
 LOW-MAT       Eu-151       63.       -2.      296.                    EUROPIUM
 LOW-MAT       Eu-153       63.       -2.      296.                    EUROPIUM
 * ..+....1....+....2....+....3....+....4....+....5....+....6....+....7..
@@ -2568,6 +2608,7 @@ ASSIGNMA    PortConc   ExConcW
 ASSIGNMA    PortConc    WallW2
 ASSIGNMA    PortConc     rBlkW
 ASSIGNMA    PortConc   Ceiling
+ASSIGNMA    PortConc      C1_1   C1_13
 ASSIGNMA    PortConc   WallStk
 ASSIGNMA         AIR   rJayUp1   rJayDn3
 ASSIGNMA         AIR  rCrOpAir
