@@ -13,7 +13,8 @@ GLOBAL                                         1.0       1.0          OLDFLAIR
 DEFAULTS                                                              PRECISIO
 * 25 MeV beam, 2sigma = 0.06 cm , FWHM = 2.355 * 0.03 = 0.071
 * BEAM           -.030                        -1.413    -1.413       1.0ELECTRON
-BEAM           -.030                       -0.071     -0.053       1.0ELECTRON
+BEAM           -.030                       -0.087     -0.055       1.0ELECTRON
+* BEAM           -.030                       -0.001     -0.001       1.0ELECTRON
 * BEAM           -.030                       -0.001     -0.003       1.0ELECTRON
 * BEAM           -.030                       -0.142     -0.001       1.0ELECTRON
 BEAMAXES         0.0        1.       0.0        1.       0.0       0.0
@@ -24,7 +25,7 @@ BEAMAXES         0.0        1.       0.0        1.       0.0       0.0
 * - The 0.43 cm shift in y is due to not accounting for the beam dispersion in the simulation.  More realistic irradiation of the BD
 * in the down stream direction and only for thermal and stress analyses.
 * X = -135
-!@what.3= 3040-98.5
+* !@what.3= 3040-98.5
 BEAMPOS       -493.1      76.    2941.5
 #if 0
 * Physics and biasing control cards heavy recoils and ions are treated
@@ -1817,8 +1818,6 @@ BOX bICMair    -1047.5 39.0 630.0 112.42098152481 0.0 160.55380068064
 RCC bDLColl   -150 76 2941.5 -5.5 0 0 4.65
 RPP bDLCHol   -155.5 -150. 73.8 78.3 2939.55 2943.45
 RPP bDLfoil   -465.5201 -465.52 74.73 77.27 2940.23 2942.77 
-RPP bDLlead   -490. -283.5 100. 101. 2910. 3040.
-RPP bDLlea1   -490. -283.5 0. 100. 2910. 2911.
 RCC bDLcham   -462.935 67.105 2941.5 0. 17.79 0. 12.945
 RCC bDLChSh   -462.935 69.015 2941.5 0. 13.97 0. 12.705
 RCC bDLvacc   -462.935 71.515 2941.5 0. 8.97 0. 10.205
@@ -1838,16 +1837,24 @@ RPP SRChT      -415. -390. 80.5 100. 2936. 2947.
 RPP SRChTV     -414. -391. 81. 100. 2937. 2946.
 RPP SRChMV     -414. -401. 80. 81. 2940. 2943.
 $end_transform
-$start_transform SpecL
-RPP SLEnt      -455. -437.9 73. 79. 2940. 2943. 
-RPP SLEntV     -455. -435.9 74. 78. 2941. 2942.
-RCC SLEntFl    -437.9 76. 2941.5 2. 0.0 0.0 5.    
-$end_transform
+* $start_transform SpecL
+RPP SLEnt      -450.2 -437.9 73. 79. 2930 2933. 
+RPP SLEntV     -450.2 -436.9 73.5 78.5 2930.1 2932.9
+RPP SLEntFl    -437.9  -415.9 69. 83. 2926.5 2936.6
+RPP SLColV     -436.99 -416.1 69.5 82.5 2927. 2936.
+RPP SLColT     -420. -418. 80.5 82.5 2929. 2933.
+RPP SLColB     -420. -418. 69.5 71.5 2929. 2933.
+RPP SLColL      -420, -418. 69.5 82.5 2927. 2930.5
+RPP SLColR      -420. -418. 69.5 82.5 2932.5 2936.
+*RPP SLChT      -415. -390. 80.5 100. 2926. 2937.
+*RPP SLChTV     -414. -391. 81. 100. 2927. 2936.
+*RPP SLChMV     -414. -401. 80. 81. 2930. 2933.
+* $end_transform
 END
 * Black hole
 BLKBODY      5 +blkbody -void
 * Void around
-AirSpace     5 +void -bTarget -bDLfoil -bDLcham -bDLlead -bDLlea1 -bDLvacc -bDLChSh -bDLColl -bFloor1 -bFloor2 -bSoilF -bRoof -bWallN1B -bWallN1T -bWallN2
+AirSpace     5 +void -bTarget -bDLfoil -bDLcham -bDLvacc -bDLChSh -bDLColl -bFloor1 -bFloor2 -bSoilF -bRoof -bWallN1B -bWallN1T -bWallN2
                -(bAngBody -pAngW_N +pAngW_S)
                -bSoilN
                -bWSEx1 -bWallE
@@ -2170,8 +2177,6 @@ rBPMB4VB     5 +bBP1Vac + bMB4Y -bBP2Wall
 Target       5 +bTarget
 * DarkLight Target
 DLTarget     5 +bDLfoil
-DLlead       5 +bDLlead
-DLlead1      5 +bDLlea1
 DLChSh       5 +bDLChSh -bDLvacc -bBP1Vac -SREntV -SLEntV
 DLChamb      5 +bDLcham -bDLChSh -bBP1Vac -SREnt -SLEnt
 DLVacuum     5 +bDLvacc -bDLfoil -bBP1Vac
@@ -2191,8 +2196,13 @@ rSpecRV      5 +SREntV -bDLvacc
 	     | +SRChTV
 	     | +SRChMV
 rSpecL       5 +SLEnt -SLEntV -bDLvacc -bDLChSh
-	     | +SLEntFl -SLEntV
+	     | +SLEntFl -SLColV -SLEntV
+	     | +SLColL -SLColT -SLColB
+	     | +SLColR -SLColT -SLColB
+	     | +SLColT
+	     | +SLColB
 rSpecLV      5 +SLEntV -bDLvacc
+	     | +SLColV -SLColL -SLColR -SLColT -SLColB
 * Floor
 Fl1_1        5 +bFloor1 -pFl1_1 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
 * Floor
@@ -2526,8 +2536,6 @@ ASSIGNMA         AIR    NW_air
 ASSIGNMA         AIR  BD_StAir
 ASSIGNMA        IRON    Target
 ASSIGNMA    TANTALUM  DLTarget
-ASSIGNMA         AIR    DLlead
-ASSIGNMA         AIR   DLlead1
 ASSIGNMA    Stainles   DLChamb
 ASSIGNMA    Stainles    rSpecR
 ASSIGNMA      VACUUM   rSpecRV
@@ -2536,14 +2544,14 @@ ASSIGNMA      VACUUM   rSpecLV
 ASSIGNMA    Stainles     DLPM1
 ASSIGNMA    Stainles     DLPM2
 ASSIGNMA    Stainles     DLPM3
-ASSIGNMA        LEAD    DLChSh
+ASSIGNMA      VACUUM    DLChSh
 ASSIGNMA      VACUUM    DLCHol
 ASSIGNMA      VACUUM  DLVacuum
 ASSIGNMA    ALUMINUM    DLColl
 ASSIGNMA    Stainles   rBmPipe
 ASSIGNMA      VACUUM    rBmVac
 ASSIGNMA      VACUUM   rBD_Vac
-ASSIGNMA    ALUMINUM  rBP0Wall  rBP2Wall
+ASSIGNMA    Stainles  rBP0Wall  rBP2Wall
 ASSIGNMA      VACUUM   rBP0Vac                    
 ASSIGNMA      VACUUM   rBP1Vac                            1.
 ASSIGNMA      VACUUM   rBP2Vac                            
@@ -2750,9 +2758,9 @@ LOW-PWXS      1.0                              3.0  @LASTMAT
 !@what.1= -10*keV
 !@what.2= 5*keV
 EMFCUT        -1.E-5     5.E-6       1.0  HYDROGEN  @LASTMAT        1.PROD-CUT
-MGNFIELD         30.   0.00001                 0.0       0.0       0.0
-STEPSIZE      -.0005        .1  DLTarget       0.0       0.0       0.0
-STEPSIZE      -.0005        .1   rBP1Vac       0.0       0.0       0.0
+MGNFIELD          1.     1.E-9                 0.0       0.0       0.0
+STEPSIZE       1.E-5       .01  DLTarget       0.0       0.0       0.0
+STEPSIZE       1.E-5       .01   rBP1Vac       0.0       0.0       0.0
 * Set electron and photon transport cut-offs to 100 & 10 keV (region)
 !@what.1= -10*keV
 !@what.2= 5*keV
