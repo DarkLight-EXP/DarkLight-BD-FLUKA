@@ -1829,8 +1829,8 @@ RCC bDLPMo2    -407.72 76. 2941.5 9.3 0.0 0.0 3.5
 RCC bDLPMo3    -373.42 76. 2941.5 9.3 0.0 0.0 3.5
 *DarkLight Spectrometer
 $start_transform SpecR
-RPP SREnt      -452.2 -437.9 68. 79. 2940 2943. 
-RPP SREntV     -452.2 -436.9 68.5 78.5 2940.1 2942.9
+RPP SREnt      -452.2 -437.9 70. 79. 2940 2943. 
+RPP SREntV     -452.2 -436.9 70.5 78.5 2940.1 2942.9
 RPP SREntFl    -437.9  -415.9 65. 83. 2937.5 2945.5
 RPP SRColV     -436.99 -415.9 65.5 82.5 2938. 2945.
 RPP SRColT     -420. -418. 79.5 82.5 2939. 2943.
@@ -1839,21 +1839,22 @@ RPP SRColL     -420, -418. 65.5 82.5 2938. 2940.5
 RPP SRColR     -420. -418. 65.5 82.5 2942.5 2945.
 RCC SRCurT     -416. 106.5 2937.5 0. 0. 8. 23.5
 RCC SRCurB     -416. 109. 2937.5 0. 0. 8. 44.
-RCC SRCurTV    -416. 106.5 2938. 0. 0. 7. 24.
+RCC SRCurTV    -416. 106.5 2938. 0. 0. 7. 23.99
 RCC SRCurBV    -416. 109. 2938. 0. 0. 7. 43.5
 PLA SRCurPT    1. -1.3 0.0 -392. 106. 2941.
-YZP SRCurPE    -416.
+YZP SRCurPE    -415.9
 RPP SRIron     -412. -362. 60. 110. 2930. 2952.
 RCC SRIronT    -407. 94. 2930. 0. 0. 22. 6.
 RCC SRIronL    -370. 108. 2930. 0. 0. 22. 3.
 RCC SRIronE    -410.5 65. 2930. 0. 0. 22. 4.8
 RCC SRIronB    -412. 105. 2930. 0. 0. 22. 44.5
+RCC SRIronN    -412. 105. 2937.5 0. 0. 8. 44.
 PLA SRIronP    1. -3. 0.0 -392. 104. 2931.
 RPP SRSteel    -410. -340. 44. 108. 2925. 2957.
 $end_transform
 $start_transform SpecL
-RPP SLEnt      -454.2 -437.9 68. 79. 2940 2943. 
-RPP SLEntV     -454.2 -436.9 68.5 78.5 2940.1 2942.9
+RPP SLEnt      -454.2 -437.9 70. 79. 2940 2943. 
+RPP SLEntV     -454.2 -436.9 70.5 78.5 2940.1 2942.9
 RPP SLEntFl    -437.9  -415.9 65. 83. 2937.5 2945.5
 RPP SLColV     -436.99 -415.9 65.5 82.5 2938. 2945.
 RPP SLColT     -420. -418. 79.5 82.5 2939. 2943.
@@ -1862,10 +1863,10 @@ RPP SLColL     -420, -418. 65.5 82.5 2938. 2940.5
 RPP SLColR     -420. -418. 65.5 82.5 2942.5 2945.
 RCC SLCurT     -416. 106.5 2937.5 0. 0. 8. 23.5
 RCC SLCurB     -416. 109. 2937.5 0. 0. 8. 44.
-RCC SLCurTV    -416. 106.5 2938. 0. 0. 7. 24.
+RCC SLCurTV    -416. 106.5 2938. 0. 0. 7. 24.01
 RCC SLCurBV    -416. 109. 2938. 0. 0. 7. 43.5
 PLA SLCurPT    1. -1.3 0.0 -392. 106. 2941.
-YZP SLCurPE    -416.
+YZP SLCurPE    -415.9
 RPP SLIron     -412. -362. 60. 110. 2930. 2952.
 RCC SLIronT    -407. 94. 2930. 0. 0. 22. 6.
 RCC SLIronL    -370. 108. 2930. 0. 0. 22. 3.
@@ -1874,13 +1875,7 @@ RCC SLIronB    -412. 105. 2930. 0. 0. 22. 44.5
 PLA SLIronP    1. -3. 0.0 -392. 104. 2931.
 RPP SLSteel    -410. -340. 44. 108. 2925. 2957.
 $end_transform
-RPP SRShiePb   -394.5 -370.5 115. 117.5 2945.0 2958.0
-RPP SRShieV    -392. -373. 105. 115. 2947.5 2955.5
-RPP SRShiePo   -404.5 -360.5 117.5 127.5 2937.5 2965.5
 
-RPP SLShiePb   -394.5 -370.5 115. 117.5 2925.0 2938.0
-RPP SLShieV    -392. -373. 105. 115. 2927.5 2935.5
-RPP SLShiePo   -404.5 -360.5 117.5 127.5 2917.5 2945.5
 END
 * Black hole
 BLKBODY      5 +blkbody -void
@@ -1919,21 +1914,27 @@ AirSpace     5 +void -bTarget -bDLfoil -bDLcham -bDLvacc -bDLChSh -bDLColl -bFlo
 	       -bUSConc -bUScSh4 -bUScSh5
 	       -bDLPMo1 -bDLPMo2 -bDLPMo3
 	       -SLEnt -SLEntFl
-	       -(SLShiePo +SLCurPT)
-	       -(SLSteel -SLIron)
+	       -SLSteel -SLIron
 	       -SLIronE
 	       -SLIronL
 	       -SLIronT
-	       -(+SLCurB -SLCurPT -SLCurPE -SLCurT -SLEntFl -SLColV)
-               -(+SLIron  +SLIronB -SLIronP -(+SLCurB -SLCurT))
- 	       -SREnt -SREntFl
-	       -(SRShiePo +SRCurPT)
-	       -(SRSteel -SRIron)
+	       -SLCurB
+	       -SREnt -SREntFl
+	       -SRSteel -SRIron
 	       -SRIronE
 	       -SRIronL
 	       -SRIronT
-	       -(+SRCurB -SRCurPT -SRCurPE -SRCurT -SREntFl -SRColV)
-               -(+SRIron  +SRIronB -SRIronP -(+SRCurB -SRCurT))     
+	       -SRCurB
+	       | +SLCurT
+	       | +SLIron -SLIronB -SLIronL -SLIronE
+	       | +SLIron +SLIronP -SLIronT -SLCurB
+	       | +SLCurPT -SLCurPE +SLCurB
+	       | +SLCurB -SLCurT -SLEntFl -SLEnt -bDLcham +SLCurPE
+	       | +SRCurT
+	       | +SRIron -SRIronB -SRIronL -SRIronE
+	       | +SRIron +SRIronP -SRIronT -SRCurB
+	       | +SRCurPT -SRCurPE +SRCurB
+	       | +SRCurB -SRCurT -SREntFl -SREnt -bDLcham +SRCurPE
 *-bBellow1 -bBellow2 -bBellow3 -bBellow4
 *-bUSConc -bUScSh4 -bUScSh5 -bBPM6aS
 
@@ -2233,43 +2234,47 @@ DLPM2        5 +bDLPMo2 -bBP1Wall
 DLPM3        5 +bDLPMo3 -bBP1Wall 
 *DL Spec
 rSpecR       5 +SREnt -SREntV -bDLvacc -bDLChSh 
-	     | +SREntFl -SRColV -SREntV -( +SRCurBV -SRCurPE -SRCurPT -SRCurTV -SRColV)
+	     | +SREntFl -SRColV -SREntV 
+	     | -SRCurBV +SRCurPE +SRCurPT +SRCurTV +SRColV
 	     | +SRColL -SRColT -SRColB
 	     | +SRColR -SRColT -SRColB
 	     | +SRColT
-	     | +SRColB
-	     | +SRCurB -SRCurPT -SRCurPE -SRCurT -SREntFl -SRColV
-	      -(+SRCurBV -SRCurPE -SRCurPT -SRCurTV -SRColV)
-rSpecRI      5 +SRIron  +SRIronB -SRIronP -(+SRCurB -SRCurT)
-	     | +SRIronT
-	     | +SRIronL -(SRCurB -SRCurT)
-	     | +SRIronE -(SRCurB -SRCurT)
+	     | +SRColB	     
+	     | +SRCurB -SRCurBV -SRCurPT -SREntFl -SRCurT -SRCurPE
+	     | +SRCurTV -SRCurT -SRCurPT -SRCurPE
+rSpecRI      5 +SRIron -SRCurT +SRIronB -SRIronP -SRCurB
+	     | +SRIronT -SRCurT
+	     | +SRIronL -SRCurB 
+	     | +SRIronE -SRCurB
 rSpecRS      5 +SRSteel -SRIron
 rSpecRV      5 +SREntV -bDLvacc
 	     | +SRColV -SRColL -SRColR -SRColT -SRColB
 	     | +SRCurBV -SRCurPE -SRCurPT -SRCurTV -SRColV
-rSpeRPo      5 +SRShiePo -SRShiePb -SRShieV +SRCurPT
-rSpeRPb      5 +SRShiePb -SRShieV +SRCurPT
-rSpeRV       5 +SRShieV +SRCurPT
+	     | +SRCurTV +SRColV
+*rSpeRPo      5 +SRShiePo -SRShiePb -SRShieV +SRCurPT
+*rSpeRPb      5 +SRShiePb -SRShieV +SRCurPT
+*rSpeRV       5 +SRShieV +SRCurPT
 rSpecL       5 +SLEnt -SLEntV -bDLvacc -bDLChSh 
-	     | +SLEntFl -SLColV -SLEntV -( +SLCurBV -SLCurPE -SLCurPT -SLCurTV -SLColV)
+	     | +SLEntFl -SLColV -SLEntV 
+	     | -SLCurBV +SLCurPE +SLCurPT +SLCurTV +SLColV
 	     | +SLColL -SLColT -SLColB
 	     | +SLColR -SLColT -SLColB
 	     | +SLColT
-	     | +SLColB
-	     | +SLCurB -SLCurPT -SLCurPE -SLCurT -SLEntFl -SLColV
-	      -(+SLCurBV -SLCurPE -SLCurPT -SLCurTV -SLColV)
-rSpecLI      5 +SLIron  +SLIronB -SLIronP -(+SLCurB -SLCurT)
-	     | +SLIronT
-	     | +SLIronL -(SLCurB -SLCurT)
-	     | +SLIronE -(SLCurB -SLCurT)
+	     | +SLColB	     
+	     | +SLCurB -SLCurBV -SLCurPT -SLEntFl -SLCurT -SLCurPE
+	     | +SLCurTV -SLCurT -SLCurPT -SLCurPE
+rSpecLI      5 +SLIron -SLCurT +SLIronB -SLIronP -SLCurB
+	     | +SLIronT -SLCurT
+	     | +SLIronL -SLCurB 
+	     | +SLIronE -SLCurB
 rSpecLS      5 +SLSteel -SLIron
 rSpecLV      5 +SLEntV -bDLvacc
 	     | +SLColV -SLColL -SLColR -SLColT -SLColB
 	     | +SLCurBV -SLCurPE -SLCurPT -SLCurTV -SLColV
-rSpeLPo      5 +SLShiePo -SLShiePb -SLShieV +SLCurPT
-rSpeLPb      5 +SLShiePb -SLShieV +SLCurPT
-rSpeLV       5 +SLShieV +SLCurPT
+	     | +SRCurTV +SRColV
+*rSpeLPo      5 +SLShiePo -SLShiePb -SLShieV +SLCurPT
+*rSpeLPb      5 +SLShiePb -SLShieV +SLCurPT
+*rSpeLV       5 +SLShieV +SLCurPT
 * Floor
 Fl1_1        5 +bFloor1 -pFl1_1 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
 * Floor
@@ -2604,21 +2609,20 @@ ASSIGNMA         AIR  BD_StAir
 ASSIGNMA        IRON    Target
 ASSIGNMA    TANTALUM  DLTarget
 ASSIGNMA    Stainles   DLChamb
-ASSIGNMA      VACUUM    rSpeRV
-ASSIGNMA        LEAD   rSpeRPb
-ASSIGNMA        B-PE   rSpeRPo
+*ASSIGNMA      VACUUM    rSpeRV
+*ASSIGNMA        LEAD   rSpeRPb
+*ASSIGNMA        B-PE   rSpeRPo
 ASSIGNMA    Stainles    rSpecR
 ASSIGNMA      VACUUM   rSpecRV
 ASSIGNMA        IRON   rSpecRI
-ASSIGNMA    Stainles   rSpecRS
-
-ASSIGNMA      VACUUM    rSpeLV
-ASSIGNMA        LEAD   rSpeLPb
-ASSIGNMA        B-PE   rSpeLPo
+ASSIGNMA        IRON   rSpecRS
+*ASSIGNMA      VACUUM    rSpeLV
+*ASSIGNMA        LEAD   rSpeLPb
+*ASSIGNMA        B-PE   rSpeLPo
 ASSIGNMA    Stainles    rSpecL
 ASSIGNMA      VACUUM   rSpecLV
 ASSIGNMA        IRON   rSpecLI
-ASSIGNMA    Stainles   rSpecLS
+ASSIGNMA        IRON   rSpecLS
 ASSIGNMA    Stainles     DLPM1
 ASSIGNMA    Stainles     DLPM2
 ASSIGNMA    Stainles     DLPM3
