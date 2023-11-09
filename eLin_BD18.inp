@@ -13,7 +13,7 @@ GLOBAL                                         1.0       1.0          OLDFLAIR
 DEFAULTS                                                              PRECISIO
 * 25 MeV beam, 2sigma = 0.06 cm , FWHM = 2.355 * 0.03 = 0.071
 * BEAM           -.030                        -1.413    -1.413       1.0ELECTRON
-BEAM           -.030                       -0.087     -0.055       1.0ELECTRON
+BEAM           -.032                       -0.087     -0.055       1.0ELECTRON
 * BEAM           -.030                       -0.001     -0.001       1.0ELECTRON
 * BEAM           -.030                       -0.001     -0.003       1.0ELECTRON
 * BEAM           -.030                       -0.142     -0.001       1.0ELECTRON
@@ -1824,7 +1824,7 @@ RCC bDLChSh   -462.935 69.015 2941.5 0. 13.97 0. 12.705
 RCC bDLvacc   -462.935 71.515 2941.5 0. 8.97 0. 10.205
 
 * DarkLight Permanent Quads
-RCC bDLPMo1    -445.52 76. 2941.5 9.3 0.0 0.0 3.5
+RCC bDLPMo1    -443.52 76. 2941.5 9.3 0.0 0.0 3.5
 RCC bDLPMo2    -407.72 76. 2941.5 9.3 0.0 0.0 3.5
 RCC bDLPMo3    -373.42 76. 2941.5 9.3 0.0 0.0 3.5
 *DarkLight Spectrometer
@@ -2919,16 +2919,16 @@ DCYTIMES    7776000. 15552000. 31536000.
 *USRTRACK        0.01     1.E-5                                         &
 * Dose Eq from gammas
 * 20 x 20 x 20 cm
-USRBIN           10.   DOSE-EQ      -51.      350.      610.     3300.DE_g
-USRBIN         -900.     -200.     2000.      250.      162.      260. &
+USRBIN           10.   DOSE-EQ      -51.      500.      760.     3800.DE_g
+USRBIN         -900.     -200.     1800.      500.      322.      520. &
 AUXSCORE      USRBIN    PHOTON                DE_g                    AMB74
 * Dose Eq from neutrons
-USRBIN           10.   DOSE-EQ      -52.      350.      610.     3300.DE_n
-USRBIN         -900.     -200.     2000.      250.      162.      260. &
+USRBIN           10.   DOSE-EQ      -52.      500.      760.     3800.DE_n
+USRBIN         -900.     -200.     1800.      500.      322.      520. &
 AUXSCORE      USRBIN   NEUTRON                DE_n                    AMB74
 * Dose Eq from all particles
-USRBIN           10.   DOSE-EQ      -53.      350.      610.     3300.DE
-USRBIN         -900.     -200.     2000.      250.      162.      260. &
+USRBIN           10.   DOSE-EQ      -53.      500.      760.     3800.DE
+USRBIN         -900.     -200.     1800.      500.      322.      520. &
 * Beam Particle fluence in BD area (small)
 USRBIN           10.  BEAMPART      -40.      20.0      78.5     2944.BP_Fl
 USRBIN         -480.      73.5    2939.       80.      150.      210. &
