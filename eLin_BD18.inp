@@ -1822,6 +1822,7 @@ RCC bDLColl   -150 76 2941.5 -5.5 0 0 4.65
 RPP bDLCHol   -155.5 -150. 73.8 78.3 2939.55 2943.45
 RPP bDLfoil   -465.5201 -465.52 74.73 77.27 2940.23 2942.77 
 RCC bDLcham   -462.935 67.105 2941.5 0. 17.79 0. 12.945
+RCC DLchpoly   -462.935 67.105 2941.5 0. 17.79 0. 17.945
 RCC bDLChSh   -462.935 69.015 2941.5 0. 13.97 0. 12.705
 RCC bDLvacc   -462.935 71.515 2941.5 0. 8.97 0. 10.205
 
@@ -1869,20 +1870,23 @@ RCC SLCurTV    -416. 106.5 2938. 0. 0. 7. 24.01
 RCC SLCurBV    -416. 109. 2938. 0. 0. 7. 43.5
 PLA SLCurPT    1. -1.3 0.0 -392. 106. 2941.
 YZP SLCurPE    -415.9
-RPP SLIron     -412. -362. 60. 110. 2930. 2952.
+RPP SLIron     -412. -362. 60. 108. 2930. 2952.
 RCC SLIronT    -407. 94. 2930. 0. 0. 22. 6.
 RCC SLIronL    -370. 108. 2930. 0. 0. 22. 3.
 RCC SLIronE    -410.5 65. 2930. 0. 0. 22. 4.8
 RCC SLIronB    -412. 105. 2930. 0. 0. 22. 44.5
 PLA SLIronP    1. -3. 0.0 -392. 104. 2931.
+PLA SLBoxT     1. -1.3 0.0 -392. 119. 2941.
 RPP SLSteel    -410. -340. 44. 108. 2925. 2957.
+RPP SLBoxSh    -400. -350. 108. 125. 2925. 2957.
+RPP SLBoxDe    -399. -351. 108. 125. 2926. 2956.
 $end_transform
 
 END
 * Black hole
 BLKBODY      5 +blkbody -void
 * Void around
-AirSpace     5 +void -bTarget -bDLfoil -bDLcham -bDLvacc -bDLChSh -bDLColl -bFloor1 -bFloor2 -bSoilF -bRoof -bWallN1B -bWallN1T -bWallN2
+AirSpace     5 +void -bTarget -bDLfoil -bDLcham -DLchpoly -bDLvacc -bDLChSh -bDLColl -bFloor1 -bFloor2 -bSoilF -bRoof -bWallN1B -bWallN1T -bWallN2
                -(bAngBody -pAngW_N +pAngW_S)
                -bSoilN
                -bWSEx1 -bWallE
@@ -1915,6 +1919,8 @@ AirSpace     5 +void -bTarget -bDLfoil -bDLcham -bDLvacc -bDLChSh -bDLColl -bFlo
                -bDB6SS -bDB6CylS -bDB6BoxS
 	       -bUSConc -bUScSh4 -bUScSh5
 	       -bDLPMo1 -bDLPMo2 -bDLPMo3
+	       -SLBoxSh
+	       -SLBoxDe
 	       -SLEnt -SLEntFl
 	       -SLSteel -SLIron
 	       -SLIronE
@@ -1927,16 +1933,17 @@ AirSpace     5 +void -bTarget -bDLfoil -bDLcham -bDLvacc -bDLChSh -bDLColl -bFlo
 	       -SRIronL
 	       -SRIronT
 	       -SRCurB
-	       | +SLCurT
+	       | +SLCurT -SLBoxSh -SLBoxDe
 	       | +SLIron -SLIronB -SLIronL -SLIronE
 	       | +SLIron +SLIronP -SLIronT -SLCurB
-	       | +SLCurPT -SLCurPE +SLCurB
-	       | +SLCurB -SLCurT -SLEntFl -SLEnt -bDLcham +SLCurPE
+	       | +SLCurPT -SLBoxSh -SLCurPE +SLCurB
+	       | +SLCurPT +SLBoxDe +SLCurB
+	       | +SLCurB -SLCurT -SLEntFl -SLEnt -bDLcham -DLchpoly +SLCurPE
 	       | +SRCurT
 	       | +SRIron -SRIronB -SRIronL -SRIronE
 	       | +SRIron +SRIronP -SRIronT -SRCurB
 	       | +SRCurPT -SRCurPE +SRCurB
-	       | +SRCurB -SRCurT -SREntFl -SREnt -bDLcham +SRCurPE
+	       | +SRCurB -SRCurT -SREntFl -SREnt -bDLcham -DLchpoly +SRCurPE
 *-bBellow1 -bBellow2 -bBellow3 -bBellow4
 *-bUSConc -bUScSh4 -bUScSh5 -bBPM6aS
 
@@ -2227,6 +2234,7 @@ Target       5 +bTarget
 DLTarget     5 +bDLfoil
 DLChSh       5 +bDLChSh -bDLvacc -bBP1Vac -SREntV -SLEntV
 DLChamb      5 +bDLcham -bDLChSh -bBP1Vac -SREnt -SLEnt
+DLCHPOLY     5 +DLchpoly -bDLcham -SLEnt -SREnt -bBP1Wall
 DLVacuum     5 +bDLvacc -bDLfoil -bBP1Vac
 DLColl       5 +bDLColl -bDLCHol 
 DLCHol       5 +bDLCHol
@@ -2258,22 +2266,24 @@ rSpecRV      5 +SREntV -bDLvacc
 *rSpeRV       5 +SRShieV +SRCurPT
 rSpecL       5 +SLEnt -SLEntV -bDLvacc -bDLChSh 
 	     | +SLEntFl -SLColV -SLEntV 
-	     | -SLCurBV +SLCurPE +SLCurPT +SLCurTV +SLColV
+	     | -SLCurBV +SLCurPE +SLCurPT +SLCurTV +SLColV -SLBoxSh -SLBoxDe
 	     | +SLColL -SLColT -SLColB
 	     | +SLColR -SLColT -SLColB
 	     | +SLColT
 	     | +SLColB	     
 	     | +SLCurB -SLCurBV -SLCurPT -SLEntFl -SLCurT -SLCurPE
-	     | +SLCurTV -SLCurT -SLCurPT -SLCurPE
-rSpecLI      5 +SLIron -SLCurT +SLIronB -SLIronP -SLCurB
-	     | +SLIronT -SLCurT
-	     | +SLIronL -SLCurB 
+	     | +SLCurTV -SLCurT -SLCurPT -SLCurPE -SLBoxSh -SLBoxDe
+rSpecLI      5 +SLIron -SLCurT +SLIronB -SLIronP -SLCurB -SLBoxSh -SLBoxDe
+	     | +SLIronT -SLCurT -SLBoxSh -SLBoxDe
+	     | +SLIronL -SLCurB
 	     | +SLIronE -SLCurB
 rSpecLS      5 +SLSteel -SLIron
 rSpecLV      5 +SLEntV -bDLvacc
 	     | +SLColV -SLColL -SLColR -SLColT -SLColB
 	     | +SLCurBV -SLCurPE -SLCurPT -SLCurTV -SLColV
 	     | +SRCurTV +SRColV
+rSpecLSh     5 +SLBoxSh -SLBoxDe
+rSpecLDe     5 +SLBoxDe -SLIronL -SLIron -SLCurB -SLCurT
 *rSpeLPo      5 +SLShiePo -SLShiePb -SLShieV +SLCurPT
 *rSpeLPb      5 +SLShiePb -SLShieV +SLCurPT
 *rSpeLV       5 +SLShieV +SLCurPT
@@ -2612,6 +2622,7 @@ ASSIGNMA         AIR  BD_StAir
 ASSIGNMA        IRON    Target
 ASSIGNMA    TANTALUM  DLTarget
 ASSIGNMA    Stainles   DLChamb
+ASSIGNMA    POLYETHY  DLCHPOLY
 *ASSIGNMA      VACUUM    rSpeRV
 *ASSIGNMA        LEAD   rSpeRPb
 *ASSIGNMA        B-PE   rSpeRPo
@@ -2624,6 +2635,8 @@ ASSIGNMA        IRON   rSpecRS
 *ASSIGNMA        B-PE   rSpeLPo
 ASSIGNMA    Stainles    rSpecL
 ASSIGNMA      VACUUM   rSpecLV
+ASSIGNMA        LEAD  rSpecLSh
+ASSIGNMA         AIR  rSpecLDe
 ASSIGNMA        IRON   rSpecLI
 ASSIGNMA        IRON   rSpecLS
 ASSIGNMA    Stainles     DLPM1
@@ -2933,12 +2946,14 @@ AUXSCORE      USRBIN   NEUTRON                DE_n                    AMB74
 USRBIN           10.   DOSE-EQ      -53.      350.      650.     3300.DE
 USRBIN         -900.     -200.     2000.      250.      162.      260. &
 *Silicon Damage L
-USRBIN           10.  SI1MEVNE     -114.     -360.      140.     3000.SIL
-USRBIN         -470.       60.     2870.      250.      162.      260. &
-AUXSCORE      USRBIN   NEUTRON                SIL                     AMB74
-*SIlicon Damge R
-*USRBIN           10.  SI1MEVNE     -115.     -350.      140.     2990.SIR
-*USRBIN         -430.      100.     2940.      250.      162.      260. &
+USRTRACK         -1.  SI1MEVNE     -114.  rSpecLDe      540.      260.SIL
+USRTRACK       0.032     1D-14                                         &
+USRBIN           10.      DOSE     -116.     -360.      140.     3000.SILD
+USRBIN         -470.       60.     2870.      250.      162.      260.&
+* AUXSCORE      USRBIN   NEUTRON                SIL                     
+*Silicon Damge R
+USRBIN           10.      DOSE     -115.     -350.      140.     2990.SIR
+USRBIN         -430.      100.     2940.      250.      162.      260. &
 * AUXSCORE      USRBIN   NEUTRON                SIR                     AMB74
 * Beam Particle fluence in BD area (small)
 USRBIN           10.  BEAMPART      -40.      20.0      78.5     2944.BP_Fl
@@ -2951,8 +2966,8 @@ USRBDX           11.  BEAMPART     -108.   rBP1Vac  DLTarget     6.45 BD_Fl
 USRBDX           11.   NEUTRON     -109.   rBP1Vac  DLTarget     6.45 ND_Fl
 USRBDX           11.  BEAMPART     -110.  DLTarget   rBP1Vac     6.45 BB_Fl
 USRBDX           11.   NEUTRON     -111.  DLTarget   rBP1Vac     6.45 NN_Fl
-USRBDX            1.   NEUTRON     -112.  DLVacuum   rSpecRV       5. NR_Fl
-USRBDX            1.   NEUTRON     -113.  DLVacuum   rSpecLV       5. NL_Fl
+USRBDX            1.  SI1MEVNE     -112.  DLVacuum   rSpecRV       5. NR_Fl
+USRBDX            1.  SI1MEVNE     -113.  DLVacuum   rSpecLV       5. NL_Fl
 * Dose Eq from Photons
 * 5 cm bins in x, y, and z
 * USRBIN           10.   DOSE-EQ      -62.      350.      400.     3250.DE_epem_sm
