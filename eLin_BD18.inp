@@ -1822,7 +1822,8 @@ RCC bDLColl   -150 76 2941.5 -5.5 0 0 4.65
 RPP bDLCHol   -155.5 -150. 73.8 78.3 2939.55 2943.45
 RPP bDLfoil   -465.5201 -465.52 74.73 77.27 2940.23 2942.77 
 RCC bDLcham   -462.935 67.105 2941.5 0. 17.79 0. 12.945
-RCC DLchpoly   -462.935 67.105 2941.5 0. 17.79 0. 17.945
+RCC DLchpoly  -462.935 67.105 2941.5 0. 17.79 0. 15.445
+RCC DLchPB    -462.935 67.105 2941.5 0. 17.79 0. 17.945
 RCC bDLChSh   -462.935 69.015 2941.5 0. 13.97 0. 12.705
 RCC bDLvacc   -462.935 71.515 2941.5 0. 8.97 0. 10.205
 
@@ -1878,9 +1879,9 @@ RCC SLIronB    -412. 105. 2930. 0. 0. 22. 44.5
 PLA SLIronP    1. -3. 0.0 -392. 104. 2931.
 PLA SLBoxT     1. -1.3 0.0 -392. 119. 2941.
 RPP SLSteel    -410. -340. 44. 108. 2925. 2957.
-RPP SLBoxSh    -405. -360. 108. 150. 2920. 2962.
-RPP SLBoxDe    -400. -365. 108. 145. 2925. 2957.
-RPP SLBoxSE    -405. -400. 102. 108. 2926. 2956.
+RPP SLBoxSh    -405. -364. 108. 145. 2920. 2958.
+RPP SLBoxDe    -404. -365. 108. 145. 2921. 2957.
+RPP SLBoxSE    -405. -404. 102. 108. 2920. 2958.
 RPP SLSiPML    -395. -380. 116. 120. 2930. 2931.
 RPP SLSiPMR    -395. -380. 116. 120. 2952. 2953.
 RPP SLSiPMP    -395. -380. 116. 120. 2931. 2952.
@@ -1896,7 +1897,7 @@ END
 * Black hole
 BLKBODY      5 +blkbody -void
 * Void around
-AirSpace     5 +void -bTarget -bDLfoil -DLHut1 -DLHut2 -DLHut3 -DLHut4 -DLHut5 -bDLcham -DLchpoly -bDLvacc -bDLChSh -bDLColl -bFloor1 -bFloor2 -bSoilF -bRoof -bWallN1B -bWallN1T -bWallN2
+AirSpace     5 +void -bTarget -bDLfoil -DLHut1 -DLHut2 -DLHut3 -DLHut4 -DLHut5 -bDLcham -DLchpoly -DLchPB -bDLvacc -bDLChSh -bDLColl -bFloor1 -bFloor2 -bSoilF -bRoof -bWallN1B -bWallN1T -bWallN2
                -(bAngBody -pAngW_N +pAngW_S)
                -bSoilN
                -bWSEx1 -bWallE
@@ -1950,12 +1951,12 @@ AirSpace     5 +void -bTarget -bDLfoil -DLHut1 -DLHut2 -DLHut3 -DLHut4 -DLHut5 -
 	       | +SLIron +SLIronP -SLIronT -SLCurB -SLBoxSE
 	       | +SLCurPT -SLBoxSh -SLBoxSE -SLCurPE +SLCurB
 	       | +SLCurPT +SLBoxDe +SLCurB -SLSiPMP
-	       | +SLCurB -SLCurT -SLEntFl -SLEnt -bDLcham -DLchpoly +SLCurPE
+	       | +SLCurB -SLCurT -SLEntFl -SLEnt -bDLcham -DLchpoly -DLchPB +SLCurPE
 	       | +SRCurT
 	       | +SRIron -SRIronB -SRIronL -SRIronE
 	       | +SRIron +SRIronP -SRIronT -SRCurB
 	       | +SRCurPT -SRCurPE +SRCurB
-	       | +SRCurB -SRCurT -SREntFl -SREnt -bDLcham -DLchpoly +SRCurPE
+	       | +SRCurB -SRCurT -SREntFl -SREnt -bDLcham -DLchpoly -DLchPB +SRCurPE
 	       | +SLBoxSh -SLCurPT -SLBoxDe
 *-bBellow1 -bBellow2 -bBellow3 -bBellow4
 *-bUSConc -bUScSh4 -bUScSh5 -bBPM6aS
@@ -2248,6 +2249,7 @@ DLTarget     5 +bDLfoil
 DLChSh       5 +bDLChSh -bDLvacc -bBP1Vac -SREntV -SLEntV
 DLChamb      5 +bDLcham -bDLChSh -bBP1Vac -SREnt -SLEnt
 DLCHPOLY     5 +DLchpoly -bDLcham -SLEnt -SREnt -bBP1Wall
+DLCHLEAD     5 +DLchPB -bDLcham -SLEnt -SREnt -bBP1Wall -DLchpoly
 DLVacuum     5 +bDLvacc -bDLfoil -bBP1Vac
 DLColl       5 +bDLColl -bDLCHol 
 DLCHol       5 +bDLCHol
@@ -2645,6 +2647,7 @@ ASSIGNMA        IRON    Target
 ASSIGNMA    TANTALUM  DLTarget
 ASSIGNMA    Stainles   DLChamb
 ASSIGNMA        B-PE  DLCHPOLY
+ASSIGNMA        LEAD  DLCHLEAD
 ASSIGNMA    PortConc     DLHut
 *ASSIGNMA      VACUUM    rSpeRV
 *ASSIGNMA        LEAD   rSpeRPb
