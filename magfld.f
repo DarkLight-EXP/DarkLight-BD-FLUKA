@@ -270,10 +270,10 @@ c     Bx,By,Bz the 3 component of the magnetic field in TESLA
       endif
   
       !now the field components, copy-pasted directly from mathematica
-      Bx_loc = -0.5*STRK/eL *
+      Bx_loc = -0.5*STRK/eL/al *
      $ATAN2(Sin(2*x)*Sinh(eL)
      $, Cos(2*x)*Cosh(eL) + Cosh(2*z)) 
-      By_loc =  0.5*STRK/eL *
+      By_loc =  0.5*STRK/eL/al *
      $ATAN2(Sin(2*y)*Sinh(eL)
      $, Cos(2*y)*Cosh(eL) + Cosh(2*z))   
   
@@ -282,7 +282,7 @@ c     Bx,By,Bz the 3 component of the magnetic field in TESLA
       By = By + 1./SQRT(2.0)*(-Bx_loc + By_loc)
   
       !Increment Bz as is, since the rotation is done around z 
-      Bz = Bz + 0.25*STRK/eL*
+      Bz = Bz + 0.25*STRK/eL/al*
      $LOG(
      $((Cos(2*y) + Cosh(eL - 2*z))*(Cos(2*x) + Cosh(eL + 2*z)))/
      $((Cos(2*x) + Cosh(eL - 2*z))*(Cos(2*y) + Cosh(eL + 2*z)))
