@@ -66,50 +66,36 @@
 *----------------------------------------------------------------------*
       !DL target sits at (-465, 76, 2941.5)
       
-      STRK1 = 0.62 ! strength of first permanent magnet - 0.084*QM20*length/aperture QM20=2, aper=2.6, len = 9.3
-      STRK2 = 1. ! strength of second permanent magnet - 0.084*QM21*length/aperture QM21=2.8
-      STRK3 = 0.62 ! strength of third permanent magnet - 0.084*QM22*length/aperture QM22=1.7
-      STRK4 = 0.0 ! strenght of original permanent magnet quad
-      STRK5 = 0.22 ! 0.012705*QM18*length/aperture current in beam optics model of 8.636, aper = 3.3, len = 10
-      STRK6 = 0.12    ! 0.012705*QM19*length/aperture current in beam optics model of -6.986, aper = 3.3, len = 10
-      !STRK1 = -0.382 !0.012705*QM5*length/aperture current in beam optics model of -9.915 A, aper = 3.3, len = 10
-      !STRK2 = 0.258  !0.012705*QM6*length/aperture current in beam optics model of 6.704  A, aper = 3.3, len = 10
-
-      APR = 2.6 !cm for PMQs
-      APR2 = 3.3 !cm for EMQs  !!
- 
-      x_local = x + 465. !subtract extra 20cm for the amount the target has shifted downstream
+      x_local = x + 465. 
       y_local = y - 76.
       z_local = z - 2941.5
 
-      x1 = 20. + 9.3/2 ! centre of PMQ1
-      x2 = x1 + 9.3/2 + 3. + 9.3/2.! centre of PMQ2
-      x3 = x2 + 9.3/2 + 3.5 + 9.3/2.! centre of PMQ3
-      x4 = x3 + 9.3/2 + 20.  + 9.3/2 ! centre of PMQ4
-      x5 = x4 + 9.3/2 + 3.25 + 9.3/2.! centre of PMQ5
-      x6 = x5 + 9.3/2 + 5. + 3.211 + 0.539 + 7.5 + 5.! centre of EMQ5
-      x7 = x6 + 5. + 3.5 + 5.!centre of EMQ6
+      !Quad integrated strength in T
+      STRPM1 = -0.6
+      STRPM2 =  1.0
+      STREM1 =  0.07
+      STREM2 = -0.08
 
-      !print*,x1,x2,x3,x4,x5,x6,x7
+      !Distence betwen the first edge of the DL target and the center of each quad in cm
+      sPM1 = 24.5
+      sPM2 = 36.5
+      sPM3 = 48.5 
+      sEM1 = 115.723 
+      sEM2 = 143.722  
 
-      !new fake distances to check FLUKA without overlapping fields for the same strenghts - target out
-      !x1 = 20. + 9.3/2
-      !x2 = x1 + 9.3/2 + 13. + 9.3/2
-      !x3 = x2 + 9.3/2 + 13. + 9.3/2
-      !x4 = x3 + 9.3/2 + 13. + 9.3/2
-      !x5 = x4 + 9.3/2 + 13. + 9.3/2
-      !x6 = x5 + 9.3/2 + 10.911 + 5.
-      !x7 = x6 +5. +10. +5.
-
-      !Aveen here is when you gonna do
-
-      CALL PMQUAD(-STRK1,APR,x1,x_local,y_local,z_local,BTX,BTY,BTZ)
-      CALL PMQUAD(STRK2,APR,x2,x_local,y_local,z_local,BTX,BTY,BTZ)
-      CALL PMQUAD(-STRK3,APR,x3,x_local,y_local,z_local,BTX,BTY,BTZ)
-      CALL PMQUAD(STRK4,APR,x4,x_local,y_local,z_local,BTX,BTY,BTZ)
-      CALL PMQUAD(-STRK4,APR,x5,x_local,y_local,z_local,BTX,BTY,BTZ)
-      CALL MSQ(STRK5,APR2,x6,x_local,y_local,z_local,BTX,BTY,BTZ)
-      CALL MSQ(-STRK6,APR2,x7,x_local,y_local,z_local,BTX,BTY,BTZ)
+      APR = 2.6 !cm for PMQs
+      APR2 = 3.3 !cm for EMQs  !!
+      eL = 9.014 ! effective length of PM quads in cm, from Aveen's fit of the magnet measurment data
+      al = 1.036 ! fringe field extend parameters of PM quads in cm, from Aveen's fit of the magnet measurment data
+      CALL TANHQ(STRPM1,APR,al,eL,sPM1 ,x_local,y_local,z_local,
+     $BTX,BTY,BTZ)
+      CALL TANHQ(STRPM2,APR,al,eL,sPM2 ,x_local,y_local,z_local,
+     $BTX,BTY,BTZ)
+      CALL TANHQ(STRPM1,APR,al,eL,sPM3 ,x_local,y_local,z_local,
+     $BTX,BTY,BTZ)
+      APR = 3.3
+      CALL MSQ(STREM1,APR2,sEM1,x_local,y_local,z_local,BTX,BTY,BTZ)
+      CALL MSQ(STREM2,APR2,sEM2,x_local,y_local,z_local,BTX,BTY,BTZ)
 
 *     get field module:
       B   = SQRT( BTX**2 + BTY**2 + BTZ**2 )
@@ -146,7 +132,7 @@ c     Z0   position of the quad center along the beam axis
 c     x_,y_,z_ coordinates at which the magnetic field is evaluted (in cm)
 c     INCREMENTED:
 c     Bx,By,Bz the 3 component of the magnetic field in TESLA
-      PI = 4.D0*DATAN(1.D0)
+      PI = 4.*ATAN(1.)
       al = 4./PI*APR !length scale for the sech^2 k(z) on-axis gradient function
       !rotate the local coordinate system to account for the fact that magnetic quads are rotated +45 deg wrt to electro static quads (see PSAB paper referred to above)
       x = 1./SQRT(2.0)*( x_ - y_)
@@ -177,8 +163,12 @@ c     Bx,By,Bz the 3 component of the magnetic field in TESLA
       By = By + 1./SQRT(2.0)*(-Bx_loc + By_loc)
 
       !Increment Bz as is, since the rotation is done around z 
-      Bz = Bz - 0.5*STRK*Sinh(2*z)*(1/(Cos(2*y)+Cosh(2*z))
-     *- 1/(Cos(2*x)+Cosh(2*z)))
+
+      Bz = Bz + 0.5*STRK*(( Cos(2*y) - Cos(2*x) )*Sinh(2*z))/
+     $((Cos(2*x) + Cosh(2*z))*(Cos(2*y) + Cosh(2*z)))
+
+      ! Bz = Bz - 0.5*STRK*Sinh(2*z)*(1/(Cos(2*y)+Cosh(2*z))
+    !  *- 1/(Cos(2*x)+Cosh(2*z))) ! from Rick's paper, not copy-pasted from mathematica
       
       return
       end
@@ -218,29 +208,150 @@ c     Wrapper subroutine to change from Baartman's coordinate system to Fluka
       return
       End
 
-      SUBROUTINE PMQUAD(STRK,APR,X0,x_,y_,z_,Bx,By,Bz)
+!       SUBROUTINE PMQUAD(STRK,APR,X0,x_,y_,z_,Bx,By,Bz)
+!       INCLUDE '(DBLPRC)'
+!       INCLUDE '(DIMPAR)'
+!       INCLUDE '(IOUNIT)'
+!       !wrapper around MSQUAD to model the DarkLight permament magnet quads. Kinda kludgy, but it will do
+! c     INPUTS:
+! c     X0   position of the quad center along the beam axis
+! c     x_,y_,z_ coordinates at which the magnetic field is evaluted (in cm)
+! c     OUTPUTS:
+! c     Bx,By,Bz the 3 component of the magnetic field in TESLA
+!       !APR=5.2/2.0 !in cm
+!       PI=4.*ATAN(1.)
+!       al = 4/PI*APR
+!       alen = al*0.658479 !good enough approximation for al*ACosh(2.)/2.0
+!       !STRK=0.3 ! 0.3 T 
+      
+!       !call MSQUAD twice with 1/2 of the strength and at a distance of +/- alen w.r.t Z0
+!       !edit: call MSQ twice to call MSQUAD in new coords system
+!       CALL MSQ(STRK/2.0,APR,X0+alen,x_,y_,z_,Bx,By,Bz)
+!       CALL MSQ(STRK/2.0,APR,X0-alen,x_,y_,z_,Bx,By,Bz)
+!       return
+!       end
+
+
+      SUBROUTINE TANHQUAD(STRK,APR,al,effL,Z0,x_,y_,z_,Bx,By,Bz) !new tanh subroutine
+        
       INCLUDE '(DBLPRC)'
       INCLUDE '(DIMPAR)'
-      INCLUDE '(IOUNIT)'
-      !wrapper around MSQUAD to model the DarkLight permament magnet quads. Kinda kludgy, but it will do
+      INCLUDE '(IOUNIT)'  
+        
+        !Better model of the DarkLight permament magnet quads. 
 c     INPUTS:
 c     X0   position of the quad center along the beam axis
 c     x_,y_,z_ coordinates at which the magnetic field is evaluted (in cm)
 c     OUTPUTS:
 c     Bx,By,Bz the 3 component of the magnetic field in TESLA
-      !APR=5.2/2.0 !in cm
-      PI=4.D0*DATAN(1.D0)
-      al = 4/PI*APR
-      alen = al*0.658479 !good enough approximation for al*ACosh(2.)/2.0
-      !STRK=0.3 ! 0.3 T 
-      
-      !call MSQUAD twice with 1/2 of the strength and at a distance of +/- alen w.r.t Z0
-      !edit: call MSQ twice to call MSQUAD in new coords system
-      CALL MSQ(STRK/2.0,APR,X0+alen,x_,y_,z_,Bx,By,Bz)
-      CALL MSQ(STRK/2.0,APR,X0-alen,x_,y_,z_,Bx,By,Bz)
+  
+      x = 1./SQRT(2.0)*( x_ - y_)
+      y = 1./SQRT(2.0)*( y_ + x_)
+  
+      !normalize x,y,z by the characteristic length l, and center the field around z0
+      !al = 90.14 !from param fit
+      x = x/al
+      y = y/al
+      z = (z_-z0)/al
+      eL = effL/al
+  
+      !if aperture not known then set to guess from value of al (lambda)
+      if (APR.LT.0) then
+        PI = 4.*ATAN(1.)
+        APR = PI/4. !aperture guess in unit of lambda
+      endif
+  
+      !don't bother evaluating if you are too far from the magnet
+      if((x**2+y**2.GT.APR**2).OR.(ABS(z).GE.(eL/2.+5.))) then
+            Bx_loc = 0.0
+            By_loc = 0.0
+            Bz_loc = 0.0
+            return
+      endif
+  
+      !now the field components, copy-pasted directly from mathematica
+      Bx_loc = -0.5*STRK/eL *
+     $ATAN2(Sin(2*x)*Sinh(eL)
+     $, Cos(2*x)*Cosh(eL) + Cosh(2*z)) 
+      By_loc =  0.5*STRK/eL *
+     $ATAN2(Sin(2*y)*Sinh(eL)
+     $, Cos(2*y)*Cosh(eL) + Cosh(2*z))   
+  
+      !now rotate back Bx and By -45 deg 
+      Bx = Bx + 1./SQRT(2.0)*( Bx_loc + By_loc)
+      By = By + 1./SQRT(2.0)*(-Bx_loc + By_loc)
+  
+      !Increment Bz as is, since the rotation is done around z 
+      Bz = Bz + 0.25*STRK/eL*
+     $LOG(
+     $((Cos(2*y) + Cosh(eL - 2*z))*(Cos(2*x) + Cosh(eL + 2*z)))/
+     $((Cos(2*x) + Cosh(eL - 2*z))*(Cos(2*y) + Cosh(eL + 2*z)))
+     $)
+  
       return
       end
-
+  
+      SUBROUTINE TANHQ(STRK,APR,al,effL,X0,x_,y_,z_,Bx,By,Bz)
+      INCLUDE '(DBLPRC)'
+      INCLUDE '(DIMPAR)'
+      INCLUDE '(IOUNIT)'
+c     Wrapper subroutine to change from Baartman's coordinate system to Fluka
+        
+      !initialize variables
+           !why are these initialized to zero?
+      Bx_l = 0.
+      By_l = 0.
+      Bz_l = 0.
+  
+      !Call previous subroutine with swapped coordinates
+      CALL TANHQUAD(STRK,APR,al,effL,-X0,z_,y_,-x_,Bz_l,By_l,Bx_l)
+  
+      !increment new coordinates
+      Bx = Bx - Bx_l
+      Bz = Bz + Bz_l
+      By = By + By_l
+  
+      !print*,Bx,By,Bz
+      !initial Bx = Bx - Bz_l and Bz = Bz + Bx_l does not work, onyly changes sign of Bx
+      !changed to Bx = Bz - Bz_l and Bz = Bx + Bx_l which gives z the correct field with wrong sign
+      !but Bx still incorrect, should return zero but its returning same as Bz...why?
+      !dont think I can call Bx and Bz within one another, its making them both the same
+      !trying Bx = Bx - Bx_l and Bz = Bz + Bz_l seems to work better? swaps z and x succesfully!
+      return
+      end
+  
+!       SUBROUTINE PMQ(STRK,APR,al,effL,X0,x_,y_,z_,Bx,By,Bz) !need to do the coordinate shift the same way we do in MSQ
+!       INCLUDE '(DBLPRC)'
+!       INCLUDE '(DIMPAR)'
+!       INCLUDE '(IOUNIT)'
+! c     Wrapper subroutine to change from Baartman's coordinate system to Fluka
+        
+!       !initialize variables
+!             !why are these initialized to zero?
+!       Bx_l = 0.
+!       By_l = 0.
+!       Bz_l = 0.
+  
+!       !Call previous subroutine with swapped coordinates
+!       CALL TANHQUAD(STRK,APR,al,effL,-X0,z_,y_,-x_,Bz_l,By_l,Bx_l)
+  
+!       !increment new coordinates
+!       Bx = Bx - Bx_l
+!       Bz = Bz + Bz_l
+!       By = By + By_l
+  
+!       !print*,Bx,By,Bz
+!       !initial Bx = Bx - Bz_l and Bz = Bz + Bx_l does not work, onyly changes sign of Bx
+!       !changed to Bx = Bz - Bz_l and Bz = Bx + Bx_l which gives z the correct field with wrong sign
+!       !but Bx still incorrect, should return zero but its returning same as Bz...why?
+!       !dont think I can call Bx and Bz within one another, its making them both the same
+!       !trying Bx = Bx - Bx_l and Bz = Bz + Bz_l seems to work better? swaps z and x succesfully!
+!       return
+  
+!       End
+  
+      !one way to check is that these both give the same Bx,By,Bz in the case where L goes to zero
+      !tanhquad will be same as sec quad when l goes to zero
 
 
 
