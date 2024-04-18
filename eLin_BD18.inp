@@ -1821,14 +1821,16 @@ BOX bICMair    -1047.5 39.0 630.0 112.42098152481 0.0 160.55380068064
 RCC bDLColl   -150 76 2941.5 -5.5 0 0 4.65
 RPP bDLCHol   -155.5 -150. 73.8 78.3 2939.55 2943.45
 RPP bDLfoil   -465.5201 -465.52 74.73 77.27 2940.23 2942.77 
-RCC bDLcham   -462.935 67.105 2941.5 0. 17.79 0. 12.945
-RCC DLchpoly  -462.935 67.105 2941.5 0. 17.79 0. 15.445
-RCC DLchPB    -462.935 67.105 2941.5 0. 17.79 0. 17.945
-RCC bDLChSh   -462.935 69.015 2941.5 0. 13.97 0. 12.705
-RCC bDLvacc   -462.935 71.515 2941.5 0. 8.97 0. 10.205
-
+RCC bDLcham   -465.5201 66.47 2941.5 0. 19.05 0. 15.245
+RCC bDLchhat  -465.5201 84.09 2941.5 0. 5.72 0. 18.415
+RCC DLchPB  -465.5201 72.745 2941.5 0. 11.345 0. 17.785
+RCC DLchpoly    -465.5201 72.745 2941.5 0. 11.345 0. 20.325
+RCC bDLChSh   -465.5201 68.38 2941.5 0. 15.24 0. 15.105
+RCC bDLvacc   -465.5201 71.515 2941.5 0. 8.97 0. 10.205
+PLA lhfshiel  1.0 0.0 1.0 -465. 76. 2941.
+PLA rhfshiel  -1.0 0.0 1.0 -465. 76. 2941.
 * DarkLight Permanent Quads
-RCC bDLPMo1    -443.52 76. 2941.5 9.3 0.0 0.0 3.5
+RCC bDLPMo1    -430.52 76. 2941.5 9.3 0.0 0.0 3.5
 RCC bDLPMo2    -407.72 76. 2941.5 9.3 0.0 0.0 3.5
 RCC bDLPMo3    -373.42 76. 2941.5 9.3 0.0 0.0 3.5
 *DarkLight Spectrometer
@@ -1890,14 +1892,14 @@ $end_transform
 * DL Hut
 RPP DLHut1  -150. -50. 0. 243. 2340. 2400.  
 RPP DLHut2  -50. 0. 0. 243. 2150. 2400.
-RPP DLHut3  -200. 0. 0. 243. 2100. 2150.
-RPP DLHut4  -200. -150. 0. 243. 2200. 2400.
+RPP DLHut3  -100. 0. 0. 243. 2100. 2150.
+RPP DLHut4  -200. -150. 0. 243. 2100. 2400.
 RPP DLHut5  -200. 0. 243. 343. 2100. 2400.
 END
 * Black hole
 BLKBODY      5 +blkbody -void
 * Void around
-AirSpace     5 +void -bTarget -bDLfoil -DLHut1 -DLHut2 -DLHut3 -DLHut4 -DLHut5 -bDLcham -DLchpoly -DLchPB -bDLvacc -bDLChSh -bDLColl -bFloor1 -bFloor2 -bSoilF -bRoof -bWallN1B -bWallN1T -bWallN2
+AirSpace     5 +void -bTarget -bDLfoil -DLHut1 -DLHut2 -DLHut3 -DLHut4 -DLHut5 -bDLcham -DLchpoly -bDLchhat -DLchPB -bDLvacc -bDLChSh -bDLColl -bFloor1 -bFloor2 -bSoilF -bRoof -bWallN1B -bWallN1T -bWallN2
                -(bAngBody -pAngW_N +pAngW_S)
                -bSoilN
                -bWSEx1 -bWallE
@@ -1945,7 +1947,7 @@ AirSpace     5 +void -bTarget -bDLfoil -DLHut1 -DLHut2 -DLHut3 -DLHut4 -DLHut5 -
 	       -SRIronE
 	       -SRIronL
 	       -SRIronT
-	       -SRCurB
+	       -SRCurB 
 	       | +SLCurT -SLBoxSh -SLBoxDe -SLBoxSE
 	       | +SLIron -SLIronB -SLIronL -SLIronE
 	       | +SLIron +SLIronP -SLIronT -SLCurB -SLBoxSE
@@ -1956,8 +1958,11 @@ AirSpace     5 +void -bTarget -bDLfoil -DLHut1 -DLHut2 -DLHut3 -DLHut4 -DLHut5 -
 	       | +SRIron -SRIronB -SRIronL -SRIronE
 	       | +SRIron +SRIronP -SRIronT -SRCurB
 	       | +SRCurPT -SRCurPE +SRCurB
-	       | +SRCurB -SRCurT -SREntFl -SREnt -bDLcham -DLchpoly -DLchPB +SRCurPE
+	       | +SRCurB -SRCurT -SREntFl -SREnt -bDLcham -bDLchhat -DLchpoly -DLchPB +SRCurPE
 	       | +SLBoxSh -SLCurPT -SLBoxDe
+	       | +DLchpoly +lhfshiel -bDLcham -bBP1Vac -bBP1Wall
+	       | +DLchPB +lhfshiel -bDLcham -bBP1Vac -bBP1Wall
+	       | +DLchpoly -rhfshiel -bDLcham -bBP1Vac -bBP1Wall
 *-bBellow1 -bBellow2 -bBellow3 -bBellow4
 *-bUSConc -bUScSh4 -bUScSh5 -bBPM6aS
 
@@ -2248,8 +2253,9 @@ Target       5 +bTarget
 DLTarget     5 +bDLfoil
 DLChSh       5 +bDLChSh -bDLvacc -bBP1Vac -SREntV -SLEntV
 DLChamb      5 +bDLcham -bDLChSh -bBP1Vac -SREnt -SLEnt
-DLCHPOLY     5 +DLchpoly -bDLcham -SLEnt -SREnt -bBP1Wall
-DLCHLEAD     5 +DLchPB -bDLcham -SLEnt -SREnt -bBP1Wall -DLchpoly
+	     | +bDLchhat
+DLCHLEAD     5 +DLchPB -bDLcham -SLEnt -SREnt -bBP1Wall -lhfshiel +rhfshiel
+DLCHPOLY     5 +DLchpoly -bDLcham -SLEnt -SREnt -bBP1Wall -DLchPB -lhfshiel +rhfshiel
 DLVacuum     5 +bDLvacc -bDLfoil -bBP1Vac
 DLColl       5 +bDLColl -bDLCHol 
 DLCHol       5 +bDLCHol
@@ -2667,9 +2673,9 @@ ASSIGNMA     SILICON  rSpecLSM
 ASSIGNMA    POLYETHY  rSpecLSP
 ASSIGNMA        IRON   rSpecLI
 ASSIGNMA        IRON   rSpecLS
-ASSIGNMA    Stainles     DLPM1
-ASSIGNMA    Stainles     DLPM2
-ASSIGNMA    Stainles     DLPM3
+ASSIGNMA        IRON     DLPM1
+ASSIGNMA        IRON     DLPM2
+ASSIGNMA        IRON     DLPM3
 ASSIGNMA      VACUUM    DLChSh
 ASSIGNMA      VACUUM    DLCHol
 ASSIGNMA      VACUUM  DLVacuum
