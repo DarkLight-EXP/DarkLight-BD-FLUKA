@@ -13,7 +13,7 @@ GLOBAL                                         1.0       1.0          OLDFLAIR
 DEFAULTS                                                              PRECISIO
 * 25 MeV beam, 2sigma = 0.06 cm , FWHM = 2.355 * 0.03 = 0.071
 * BEAM           -.030                        -1.413    -1.413       1.0ELECTRON
-BEAM           -.032                       -0.087     -0.055       1.0ELECTRON
+BEAM           -.031                       -0.076     -0.156       1.0ELECTRON
 * BEAM           -.030                       -0.001     -0.001       1.0ELECTRON
 * BEAM           -.030                       -0.001     -0.003       1.0ELECTRON
 * BEAM           -.030                       -0.142     -0.001       1.0ELECTRON
@@ -1882,7 +1882,7 @@ PLA SLIronP    1. -3. 0.0 -392. 104. 2931.
 PLA SLBoxT     1. -1.3 0.0 -392. 119. 2941.
 RPP SLSteel    -410. -340. 44. 108. 2925. 2957.
 RPP SLBoxSh    -405. -364. 108. 145. 2920. 2958.
-RPP SLBoxDe    -404. -365. 108. 145. 2921. 2957.
+RPP SLBoxDe    -404. -362. 108. 145. 2918. 2957.
 RPP SLBoxSE    -405. -404. 102. 108. 2920. 2958.
 RPP SLSiPML    -395. -380. 116. 120. 2930. 2931.
 RPP SLSiPMR    -395. -380. 116. 120. 2952. 2953.
@@ -1953,7 +1953,7 @@ AirSpace     5 +void -bTarget -bDLfoil -DLHut1 -DLHut2 -DLHut3 -DLHut4 -DLHut5 -
 	       | +SLIron +SLIronP -SLIronT -SLCurB -SLBoxSE
 	       | +SLCurPT -SLBoxSh -SLBoxSE -SLCurPE +SLCurB
 	       | +SLCurPT +SLBoxDe +SLCurB -SLSiPMP
-	       | +SLCurB -SLCurT -SLEntFl -SLEnt -bDLcham -DLchpoly -DLchPB +SLCurPE
+	       | +SLCurB -SLCurT -SLEntFl -SLEnt -bDLcham -DLchpoly -DLchPB -bDLchhat +SLCurPE
 	       | +SRCurT
 	       | +SRIron -SRIronB -SRIronL -SRIronE
 	       | +SRIron +SRIronP -SRIronT -SRCurB

@@ -73,15 +73,15 @@
       !Quad integrated strength in T
       STRPM1 = -0.6
       STRPM2 =  1.0
-      STREM1 =  0.07
-      STREM2 = -0.08
+      STREM1 =  0.2
+      STREM2 = -0.2
 
       !Distence betwen the first edge of the DL target and the center of each quad in cm
-      sPM1 = 24.5
-      sPM2 = 36.5
-      sPM3 = 48.5 
-      sEM1 = 115.723 
-      sEM2 = 143.722  
+      sPM1 = 25.1869
+      sPM2 = 37.2007
+      sPM3 = 49.2146 
+      sEM1 = 116.724 
+      sEM2 = 144.723  
 
       APR = 2.6 !cm for PMQs
       APR2 = 3.3 !cm for EMQs  !!
