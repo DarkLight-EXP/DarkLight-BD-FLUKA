@@ -542,7 +542,7 @@ RCC bBP2Vac    -499.25 76. 2941.8397 -86.602540378443877 0.0 -49.999999999999993
 *!@what.1= BD_FF_new - 28.62 - 73.38 - 11.6
 *!@what.2= Beam_Y
 *!@what.3= Beam_Z
-RCC bFl_G1     -283.5 76. 2941.5 -3.81 0.0 0.0 5.7
+RCC bFl_G1     -264. 76. 2941.5 -3.81 0.0 0.0 5.7
 * 24 wafers, each 0.05 mm, extended space= 12 mm (8 mm ss + 4 mm air)
 *!@what.1= BD_FF_orig- 28.62 - 73.38  - 5.55
 *!@what.2= Beam_Y
@@ -562,7 +562,7 @@ RCC bBellow2   -294.05000000000001 76. 2941.5 +0.8 0.0 0.0 5.
 *!@what.4= Beam_Y + 3.391
 *!@what.5= Beam_Z - 3.391
 *!@what.6= Beam_Z + 3.391
-RPP bBPM6bS    -293.25 -289.85000000000002 72.608999999999995 79.391000000000005
+RPP bBPM6bS    -271.25 -267.85000000000002 72.608999999999995 79.391000000000005
               2938.1089999999999 2944.8910000000001
 * BPM Air
 !@what.1= BD_FF_orig - 28.62 - 73.38 - 9.75 + 0.3211
@@ -1670,7 +1670,7 @@ RPP bUSsSh4    -251.81999999999999 -238.52000000000001 50. 176. 2841.5 3040.
 !@what.4= Beam_Y + 100
 !@what.5= Beam_Z  -100
 RPP bUScSh4    -263.5 -251.81999999999999 50. 176. 2841.5 3040.
-RPP bUScSh5    -283.5 -263.5 00. 176. 2841.5 3040.
+RPP bUScSh5    -270.0 -263.5 00. 176. 2841.5 3040.
 * 10 cm PE  to shield back shine from the dump
 * Extending to FF of Pb collimation style shielding
 * Removed for DarkLight
@@ -1823,16 +1823,18 @@ RPP bDLCHol   -155.5 -150. 73.8 78.3 2939.55 2943.45
 RPP bDLfoil   -465.5201 -465.52 74.73 77.27 2940.23 2942.77 
 RCC bDLcham   -465.5201 66.47 2941.5 0. 19.05 0. 15.245
 RCC bDLchhat  -465.5201 84.09 2941.5 0. 5.72 0. 18.415
-RCC DLchPB  -465.5201 72.745 2941.5 0. 11.345 0. 17.785
-RCC DLchpoly    -465.5201 72.745 2941.5 0. 11.345 0. 20.325
+RCC DLchair  -465.5201 72.745 2941.5 0. 15.345 0. 18.415
+RCC DLchtair -465.5201 89.81 2941.5 0. 7. 0. 18.415 
+RCC DLchPB  -465.5201 72.745 2941.5 0. 22.345 0. 20.955
+RCC DLchpoly    -465.5201 72.745 2941.5 0. 22.345 0. 23.495
 RCC bDLChSh   -465.5201 68.38 2941.5 0. 15.24 0. 15.105
 RCC bDLvacc   -465.5201 71.515 2941.5 0. 8.97 0. 10.205
 PLA lhfshiel  1.0 0.0 1.0 -465. 76. 2941.
 PLA rhfshiel  -1.0 0.0 1.0 -465. 76. 2941.
 * DarkLight Permanent Quads
-RCC bDLPMo1    -430.52 76. 2941.5 9.3 0.0 0.0 3.5
-RCC bDLPMo2    -407.72 76. 2941.5 9.3 0.0 0.0 3.5
-RCC bDLPMo3    -373.42 76. 2941.5 9.3 0.0 0.0 3.5
+RCC bDLPMo1    -440.52 76. 2941.5 9.3 0.0 0.0 3.5
+RCC bDLPMo2    -429.72 76. 2941.5 9.3 0.0 0.0 3.5
+RCC bDLPMo3    -418.42 76. 2941.5 9.3 0.0 0.0 3.5
 *DarkLight Spectrometer
 $start_transform SpecR
 RPP SREnt      -452.2 -437.9 70. 79. 2940 2943. 
@@ -1881,9 +1883,9 @@ RCC SLIronB    -412. 105. 2930. 0. 0. 22. 44.5
 PLA SLIronP    1. -3. 0.0 -392. 104. 2931.
 PLA SLBoxT     1. -1.3 0.0 -392. 119. 2941.
 RPP SLSteel    -410. -340. 44. 108. 2925. 2957.
-RPP SLBoxSh    -405. -364. 108. 145. 2920. 2958.
-RPP SLBoxDe    -404. -362. 108. 145. 2918. 2957.
-RPP SLBoxSE    -405. -404. 102. 108. 2920. 2958.
+RPP SLBoxSh    -405. -364. 108. 122. 2920. 2958.
+RPP SLBoxDe    -404. -362. 108. 122. 2918. 2957.
+RPP SLBoxSE    -405. -404. 105. 108. 2920. 2958.
 RPP SLSiPML    -395. -380. 116. 120. 2930. 2931.
 RPP SLSiPMR    -395. -380. 116. 120. 2952. 2953.
 RPP SLSiPMP    -395. -380. 116. 120. 2931. 2952.
@@ -1953,16 +1955,18 @@ AirSpace     5 +void -bTarget -bDLfoil -DLHut1 -DLHut2 -DLHut3 -DLHut4 -DLHut5 -
 	       | +SLIron +SLIronP -SLIronT -SLCurB -SLBoxSE
 	       | +SLCurPT -SLBoxSh -SLBoxSE -SLCurPE +SLCurB
 	       | +SLCurPT +SLBoxDe +SLCurB -SLSiPMP
-	       | +SLCurB -SLCurT -SLEntFl -SLEnt -bDLcham -DLchpoly -DLchPB -bDLchhat +SLCurPE
+	       | +SLCurB -SLCurT -SLEntFl -SLEnt -bDLcham -DLchpoly -DLchPB -DLchair -bDLchhat +SLCurPE
 	       | +SRCurT
 	       | +SRIron -SRIronB -SRIronL -SRIronE
 	       | +SRIron +SRIronP -SRIronT -SRCurB
 	       | +SRCurPT -SRCurPE +SRCurB
-	       | +SRCurB -SRCurT -SREntFl -SREnt -bDLcham -bDLchhat -DLchpoly -DLchPB +SRCurPE
+	       | +SRCurB -SRCurT -SREntFl -SREnt -bDLcham -bDLchhat -DLchpoly -DLchPB -DLchair +SRCurPE
 	       | +SLBoxSh -SLCurPT -SLBoxDe
-	       | +DLchpoly +lhfshiel -bDLcham -bBP1Vac -bBP1Wall
-	       | +DLchPB +lhfshiel -bDLcham -bBP1Vac -bBP1Wall
-	       | +DLchpoly -rhfshiel -bDLcham -bBP1Vac -bBP1Wall
+	       | +DLchpoly +lhfshiel -bDLcham -bBP1Vac -bBP1Wall -bDLchhat
+	       | +DLchPB +lhfshiel -DLchair -bDLcham -bBP1Vac -bBP1Wall -bDLchhat
+	       | +DLchpoly -rhfshiel -bDLcham -bBP1Vac -bBP1Wall -bDLchhat
+	       | +DLchair -bDLcham -bDLchhat -bBP1Vac -bBP1Wall -SLEnt -SREnt -lhfshiel +rhfshiel
+	       | +DLchtair
 *-bBellow1 -bBellow2 -bBellow3 -bBellow4
 *-bUSConc -bUScSh4 -bUScSh5 -bBPM6aS
 
@@ -2113,7 +2117,7 @@ UcSh3_1      5 +bUcSh3_1   -bb_CO6_1 -bBP0Wall+pWallN1
 UcSh3_2      5 +bUcSh3_2 -bb_CO6_2 -bBP0Wall+pWallN1
 USsSh4       5 +bUSsSh4 -bUSb_CO7-bBP0Wall+pWallN1
 UScSh4       5 +bUScSh4  -bUSb_CO8 -bBP0Wall+pWallN1
-UScSh5       5 +bUScSh5  -bBP1Wall +pWallN1
+UScSh5       5 +bUScSh5  -bBP1Wall -bFl_G1 -bBPM6bS +pWallN1
 USHole       5 +bUSCO_b1 -bClamp -bBP0Wall -bDLColl
 Clamp        5 +bClamp -bBP0Wall -bDLColl
 InSteel1     5 +bUSb_CO1 -bUSc_CO1
@@ -2254,8 +2258,8 @@ DLTarget     5 +bDLfoil
 DLChSh       5 +bDLChSh -bDLvacc -bBP1Vac -SREntV -SLEntV
 DLChamb      5 +bDLcham -bDLChSh -bBP1Vac -SREnt -SLEnt
 	     | +bDLchhat
-DLCHLEAD     5 +DLchPB -bDLcham -SLEnt -SREnt -bBP1Wall -lhfshiel +rhfshiel
-DLCHPOLY     5 +DLchpoly -bDLcham -SLEnt -SREnt -bBP1Wall -DLchPB -lhfshiel +rhfshiel
+DLCHLEAD     5 +DLchPB -DLchair -DLchtair -bDLchhat -bDLcham -SLEnt -SREnt -bBP1Wall -lhfshiel +rhfshiel
+DLCHPOLY     5 +DLchpoly -DLchair -DLchtair -bDLcham -SLEnt -SREnt -bBP1Wall -DLchPB -lhfshiel +rhfshiel
 DLVacuum     5 +bDLvacc -bDLfoil -bBP1Vac
 DLColl       5 +bDLColl -bDLCHol 
 DLCHol       5 +bDLCHol
@@ -2991,7 +2995,7 @@ USRBIN         -430.      100.     2940.      250.      162.      260. &
 * AUXSCORE      USRBIN   NEUTRON                SIR                     AMB74
 * Beam Particle fluence in BD area (small)
 USRBIN           10.  BEAMPART      -40.      20.0      78.5     2944.BP_Fl
-USRBIN         -480.      73.5    2939.       80.      150.      210. &
+USRBIN        -465.5      73.5    2939.       80.      150.      210. &
 USRBDX            1.  BEAMPART     -104.  DLTarget   rBP1Vac     6.45 PB_Fl
 USRBDX            1.   NEUTRON     -105.  DLTarget   rBP1Vac     6.45 NB_Fl
 USRBDX            1.  BEAMPART     -106.   rBP1Vac  DLTarget     6.45 PF_Fl
