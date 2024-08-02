@@ -3009,11 +3009,13 @@ USRBIN         -900.     -200.     2000.      250.      162.      260. &
 *Silicon Damage L
 USRTRACK         -1.  SI1MEVNE     -114.  rSpecLDe      540.      260.SIL
 USRTRACK       0.032     1D-14                                         &
-USRBIN           10.      DOSE     -116.     -360.      140.     3000.SILD
+USRBIN           10.      DOSE     -115.     -360.      140.     3000.SILD
 USRBIN         -470.       60.     2870.      250.      162.      260.&
 * AUXSCORE      USRBIN   NEUTRON                SIL                     
 *Silicon Damge R
-USRBIN           10.      DOSE     -115.     -350.      140.     2990.SIR
+USRTRACK         10.  SI1MEVNE     -116.  rSpecRDe      540.      260.SIR
+USRTRACK       0.032     1D-14                                         &
+USRBIN           10.      DOSE     -117.     -350.      140.     2990.SIRD
 USRBIN         -430.      100.     2940.      250.      162.      260. &
 * AUXSCORE      USRBIN   NEUTRON                SIR                     AMB74
 * Beam Particle fluence in BD area (small)
