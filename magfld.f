@@ -71,10 +71,10 @@
       z_local = z - 2941.5
 
       !Quad integrated strength in T
-      STRPM1 = -0.6
-      STRPM2 =  1.0
-      STREM1 =  0.2
-      STREM2 = -0.2
+      STRPM1 = -0.55
+      STRPM2 =  0.9
+      STREM1 =  0.13
+      STREM2 = -0.09
 
       !Distence betwen the first edge of the DL target and the center of each quad in cm
       sPM1 = 25.1869
