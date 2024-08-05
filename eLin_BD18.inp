@@ -3021,7 +3021,7 @@ USRBIN           10.      DOSE     -115.     -360.      140.     3000.SILD
 USRBIN         -470.       60.     2870.      250.      162.      260.&
 * AUXSCORE      USRBIN   NEUTRON                SIL                     
 *Silicon Damge R
-USRTRACK         10.  SI1MEVNE     -116.  rSpecRDe      540.      260.SIR
+USRTRACK         -1.  SI1MEVNE     -116.  rSpecRDe      540.      260.SIR
 USRTRACK       0.032     1D-14                                         &
 USRBIN           10.      DOSE     -117.     -350.      140.     2990.SIRD
 USRBIN         -430.      100.     2940.      250.      162.      260. &
