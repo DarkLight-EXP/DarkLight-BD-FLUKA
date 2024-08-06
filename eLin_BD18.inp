@@ -1864,13 +1864,14 @@ RCC SRIronN    -412. 105. 2937.5 0. 0. 8. 44.
 PLA SRIronP    1. -3. 0.0 -392. 104. 2931.
 PLA SRBoxT     1. -1.3 0.0 -392. 119. 2941.
 RPP SRSteel    -410. -340. 44. 108. 2925. 2957.
-RPP SRBoxSh    -405. -364. 108. 125. 2917. 2958.
-RPP SRBoxDe    -404. -362. 108. 125. 2918. 2957.
+RPP SRBoxSh    -405. -364. 108. 135. 2917. 2958.
+RPP SRBoxDe    -404. -362. 108. 135. 2918. 2957.
 RPP SRBoxSE    -403. -402. 105. 108. 2915. 2960.
 $start_transform SiPMR
-RPP SRSiPML    -400. -375. 120. 120.5 2934. 2935.
-RPP SRSiPMR    -400. -375. 120. 120.5 2950. 2951.
-RPP SRSiPMP    -400. -375. 120. 120.5 2935. 2950.
+RPP SRSiPML    -400. -368. 120. 120.5 2934. 2935.
+RPP SRSiPMR    -400. -368. 120. 120.5 2950. 2951.
+RPP SRSiPMP    -400. -368. 120. 120.5 2935. 2950.
+RPP SRGEM      -398. -360. 118.4 119.5 2930. 2955.
 $end_transform SiPMR
 $end_transform
 $start_transform SpecL
@@ -1903,6 +1904,7 @@ $start_transform SiPML
 RPP SLSiPML    -400. -375. 120. 120.5 2934. 2935.
 RPP SLSiPMR    -400. -375. 120. 120.5 2950. 2951.
 RPP SLSiPMP    -400. -375. 120. 120.5 2935. 2950.
+RPP SLGEM      -398. -360. 118.4 119.5 2930. 2955.
 $end_transform
 $end_transform
 
@@ -1956,6 +1958,8 @@ AirSpace     5 +void -bTarget -bDLfoil -DLHut1 -DLHut2 -DLHut3 -DLHut4 -DLHut5 -
 	       -SRBoxSh
 	       -SRBoxDe
 	       -SRSiPMP
+	       -SRGEM
+	       -SLGEM
 	       -SRBoxSE
 	       -SLEnt -SLEntFl
 	       -SLSteel -SLIron
@@ -1973,13 +1977,13 @@ AirSpace     5 +void -bTarget -bDLfoil -DLHut1 -DLHut2 -DLHut3 -DLHut4 -DLHut5 -
 	       | +SLIron -SLIronB -SLIronL -SLIronE
 	       | +SLIron +SLIronP -SLIronT -SLCurB -SLBoxSE
 	       | +SLCurPT -SLBoxSh -SLBoxSE -SLCurPE +SLCurB
-	       | +SLCurPT +SLBoxDe +SLCurB -SLSiPMP
+	       | +SLCurPT +SLBoxDe +SLCurB -SLSiPMP -SLGEM
 	       | +SLCurB -SLCurT -SLEntFl -SLEnt -bDLcham -DLchpoly -DLchPB -DLchair -bDLchhat +SLCurPE
 	       | +SRCurT -SRBoxSh -SRBoxDe -SRBoxSE
 	       | +SRIron -SRIronB -SRIronL -SRIronE
 	       | +SRIron +SRIronP -SRIronT -SRCurB -SRBoxSE
 	       | +SRCurPT -SRBoxSh -SRBoxSE -SRCurPE +SRCurB
-	       | +SRCurPT +SRBoxDe +SRCurB -SRSiPMP
+	       | +SRCurPT +SRBoxDe +SRCurB -SRSiPMP -SRGEM
 	       | +SRCurB -SRCurT -SREntFl -SREnt -bDLcham -bDLchhat -DLchpoly -DLchPB -DLchair +SRCurPE
 	       | +SLBoxSh -SLCurPT -SLBoxDe -SLBoxSE
 	       | +SRBoxSh -SRCurPT -SRBoxDe -SRBoxSE
@@ -2314,10 +2318,11 @@ rSpecRV      5 +SREntV -bDLvacc
 	     | +SRCurTV +SRColV
 rSpecRSh     5 +SRBoxSh -SRBoxDe +SRCurPT
 	     | +SRBoxSE
-rSpecRDe     5 +SRBoxDe -SRIronL -SRIron -SRCurB -SRSteel -SRIronE -SRSiPML -SRSiPMR -SRSiPMP
+rSpecRDe     5 +SRBoxDe -SRIronL -SRIron -SRCurB -SRSteel -SRIronE -SRSiPML -SRSiPMR -SRSiPMP -SRGEM
 rSpecRSM     5 +SRSiPML
 	     | +SRSiPMR
 rSpecRSP     5 +SRSiPMP
+rSpecRGM     5 +SRGEM
 *rSpeRPo      5 +SRShiePo -SRShiePb -SRShieV +SRCurPT
 *rSpeRPb      5 +SRShiePb -SRShieV +SRCurPT
 *rSpeRV       5 +SRShieV +SRCurPT
@@ -2341,10 +2346,11 @@ rSpecLV      5 +SLEntV -bDLvacc
 	     | +SRCurTV +SRColV
 rSpecLSh     5 +SLBoxSh -SLBoxDe +SLCurPT
 	     | +SLBoxSE
-rSpecLDe     5 +SLBoxDe -SLIronL -SLIron -SLCurB -SLSteel -SLIronE -SLSiPML -SLSiPMR -SLSiPMP
+rSpecLDe     5 +SLBoxDe -SLIronL -SLIron -SLCurB -SLSteel -SLIronE -SLSiPML -SLSiPMR -SLSiPMP -SLGEM
 rSpecLSM     5 +SLSiPML
 	     | +SLSiPMR
 rSpecLSP     5 +SLSiPMP
+rSpecLGM     5 +SLGEM
 *rSpeLPo      5 +SLShiePo -SLShiePb -SLShieV +SLCurPT
 *rSpeLPb      5 +SLShiePb -SLShieV +SLCurPT
 *rSpeLV       5 +SLShieV +SLCurPT
@@ -2702,10 +2708,12 @@ ASSIGNMA        LEAD  rSpecLSh
 ASSIGNMA         AIR  rSpecLDe
 ASSIGNMA     SILICON  rSpecLSM
 ASSIGNMA    POLYETHY  rSpecLSP
+ASSIGNMA    POLYETHY  rSpecLGM
 ASSIGNMA        LEAD  rSpecRSh
 ASSIGNMA         AIR  rSpecRDe
 ASSIGNMA     SILICON  rSpecRSM
 ASSIGNMA    POLYETHY  rSpecRSP
+ASSIGNMA    POLYETHY  rSpecRGM
 ASSIGNMA        IRON   rSpecLI
 ASSIGNMA        IRON   rSpecLS
 ASSIGNMA        IRON     DLPM1
