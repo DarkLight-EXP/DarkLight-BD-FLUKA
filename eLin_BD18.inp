@@ -69,7 +69,6 @@ BIASING          0.0        1.      512.     C1_10                    PRINT
 BIASING          0.0        1.     1024.     C1_11                    PRINT
 BIASING          0.0        1.     2048.     C1_12                    PRINT
 BIASING          0.0        1.     4096.     C1_13                    PRINT
-BIASING          0.0        1.     8192.     C1_14                    PRINT
 * Maximum allowed = 100000
 * region importance (allowed values range from 0.0001 to 100000.0)
 BIASING          0.0        1.        1.    USsSh1                    PRINT
@@ -170,7 +169,6 @@ RPP bC1_10     -530. 10. 530. 550. 2212. 3040.
 RPP bC1_11     -530. 10. 550. 570. 2212. 3040.
 RPP bC1_12     -530. 10. 570. 590. 2212. 3040.
 RPP bC1_13     -530. 10. 590. 610. 2212. 3040.
-RPP bC1_14     -530. 10. 610. 640. 2212. 3040.
 RPP WallStk    -2520.0 120.0 600.0 1006.0 2210.0 2340.0
 * - Extra concrete shielding at edge of Roof Beams, 90x120cm, wide by tall
 RPP bBlkE      -2520.5 -2430.5 840. 960. -80. 2220.
@@ -1923,7 +1921,7 @@ AirSpace     5 +void -bTarget -bDLfoil -DLHut1 -DLHut2 -DLHut3 -DLHut4 -DLHut5 -
                -bSoilN
                -bWSEx1 -bWallE
                -bWallW1 -bWallW2  -bCeiling -WallStk
-	       -bC1_1 -bC1_2 -bC1_3 -bC1_4 -bC1_5 -bC1_6 -bC1_7 -bC1_8 -bC1_9 -bC1_10 -bC1_11 -bC1_12 -bC1_13 -bC1_14
+	       -bC1_1 -bC1_2 -bC1_3 -bC1_4 -bC1_5 -bC1_6 -bC1_7 -bC1_8 -bC1_9 -bC1_10 -bC1_11 -bC1_12 -bC1_13
                -bKlyW_W1 -bKlyW_W2 -bKlyW_E
                -bProtE -bBmPipe - bBmVac -bBlkE -bBlkW -DetWU -DetWD -DetEU -DetED -DetNeut -DetNeut2
                -DetMU -DetMD -bBmPipe2 -bBmVac2  -bBmPipe3 -bBmVac3 -bBlockS
@@ -2421,7 +2419,7 @@ rFe3         5 +bFe3
 rFe2         5 +bFe2
 rFe1         5 +bFe1
 WN1_1        5 +bWallN1T +pWN1_1 -bWallE -bWallW1 -bRoof -bCeiling -bSoilW  -pWallN1
-               -bC1_1 -bC1_2 -bC1_3 -bC1_4 -bC1_5 -bC1_6 -bC1_7 -bC1_8 -bC1_9 -bC1_10 -bC1_11 -bC1_12 -bC1_13 -bC1_14
+               -bC1_1 -bC1_2 -bC1_3 -bC1_4 -bC1_5 -bC1_6 -bC1_7 -bC1_8 -bC1_9 -bC1_10 -bC1_11 -bC1_12 -bC1_13
                | +bWallN1B  +pWN1_1-bWallE -bWallW1 -bFloor1
 WN1_2        5 +bWallN1T -pWN1_1 +pWN1_2 -bWallE -bWallW1 -bRoof -bCeiling -bSoilW
                | +bWallN1B  -pWN1_1 +pWN1_2 -bWallE -bWallW1 -bFloor1
@@ -2480,7 +2478,7 @@ WW1_4        5 +bWallW1  -pWW1_3 +pWW1_4 -bFloor1  -bRoof
 WW1_5        5 +bWallW1  -pWW1_4  +pWW1_5 -bFloor1  -bRoof
 WW1_6        5 +bWallW1  -pWW1_5 -bFloor1  -bRoof
 WallW2       5 +bWallW2 -bFloor1 -bFloor2  -bRoof -bWChs1H -bWChs1V -bWChs2H -bWChs2V -bWChs3H -bWChs3V -bWChs0H
-               -bWChs0V -bCeiling -bC1_1 -bC1_2 -bC1_3 -bC1_4 -bC1_5 -bC1_6 -bC1_7 -bC1_8 -bC1_9 -bC1_10 -bC1_11 -bC1_12 -bC1_13 -bC1_14
+               -bWChs0V -bCeiling -bC1_1 -bC1_2 -bC1_3 -bC1_4 -bC1_5 -bC1_6 -bC1_7 -bC1_8 -bC1_9 -bC1_10 -bC1_11 -bC1_12 -bC1_13
 Ceiling      5 +bCeiling -bWallE -bWallW1  -bWallW1
 C1_1	     5 +bC1_1 -bWallE -bWallW1 -bWallW1
 C1_2	     5 +bC1_2 -bWallE -bWallW1 -bWallW1
@@ -2495,9 +2493,8 @@ C1_10	     5 +bC1_10 -bWallE -bWallW1 -bWallW1
 C1_11	     5 +bC1_11 -bWallE -bWallW1 -bWallW1
 C1_12	     5 +bC1_12 -bWallE -bWallW1 -bWallW1
 C1_13	     5 +bC1_13 -bWallE -bWallW1 -bWallW1
-C1_14        5 +bC1_14 -bWallE -bWallW1 -bWallW1
 WallStk      5 +WallStk -bCeiling -bRoof -bWallE -bWallW2 -bOpSmN -bJayUp1 -bJayUp2 -bJayDn1 -bJayDn2
-               -bJayUp3 -bJayDn3 -bC1_1 -bC1_2 -bC1_3 -bC1_4 -bC1_5 -bC1_6 -bC1_7 -bC1_8 -bC1_9 -bC1_10 -bC1_11 -bC1_12 -bC1_13 -bC1_14
+               -bJayUp3 -bJayDn3 -bC1_1 -bC1_2 -bC1_3 -bC1_4 -bC1_5 -bC1_6 -bC1_7 -bC1_8 -bC1_9 -bC1_10 -bC1_11 -bC1_12 -bC1_13 
 rJayUp1      5 +bJayUp1
 rJayDn1      5 +bJayDn1 -bJayUp1
 rJayUp2      5 +bJayUp2
@@ -2791,7 +2788,7 @@ ASSIGNMA    PortConc   ExConcW
 ASSIGNMA    PortConc    WallW2
 ASSIGNMA    PortConc     rBlkW
 ASSIGNMA    PortConc   Ceiling
-ASSIGNMA    PortConc      C1_1   C1_14
+ASSIGNMA    PortConc      C1_1   C1_13
 ASSIGNMA    PortConc   WallStk
 ASSIGNMA         AIR   rJayUp1   rJayDn3
 ASSIGNMA         AIR  rCrOpAir
@@ -3010,8 +3007,7 @@ DCYTIMES    7776000. 15552000. 31536000.
 !@what.8=10*keV
 *USRTRACK         -1.   DOSE-EQ      -99.  rDB4CCAi      145.       50.AD_DB4_CCD
 *USRTRACK        0.01     1.E-5                                         &
-* Dose Eq from gammas
-* 20 x 20 x 20 cm
+* Dose Eq from gammas target region
 USRBIN           10.   DOSE-EQ      -51.      350.      650.     3300.DE_g
 USRBIN         -900.     -200.     2000.      250.      162.      260. &
 AUXSCORE      USRBIN    PHOTON                DE_g                    AMB74
@@ -3022,6 +3018,28 @@ AUXSCORE      USRBIN   NEUTRON                DE_n                    AMB74
 * Dose Eq from all particles
 USRBIN           10.   DOSE-EQ      -53.      350.      650.     3300.DE
 USRBIN         -900.     -200.     2000.      250.      162.      260. &
+* Dose Eq from gammas Location B
+USRBIN           10.   DOSE-EQ      -54.      350.     1000.     3300.DE_gB
+USRBIN         -900.      600.     2000.      250.      162.      260. &
+AUXSCORE      USRBIN    PHOTON                DE_g                    AMB74
+* Dose Eq from neutrons
+USRBIN           10.   DOSE-EQ      -55.      350.     1000.     3300.DE_nB
+USRBIN         -900.      600.     2000.      250.      162.      260. &
+AUXSCORE      USRBIN   NEUTRON                DE_n                    AMB74
+* Dose Eq from all particles
+USRBIN           10.   DOSE-EQ      -56.      350.     1000.     3300.DE_B
+USRBIN         -900.      600.     2000.      250.      162.      260. &
+* Dose Eq from gammas Location A
+USRBIN           10.   DOSE-EQ      -57.     -900.      650.     3300.DE_gA
+USRBIN        -2400.     -200.     2000.      250.      162.      260. &
+AUXSCORE      USRBIN    PHOTON                DE_g                    AMB74
+* Dose Eq from neutrons
+USRBIN           10.   DOSE-EQ      -58.     -900.      650.     3300.DE_nA
+USRBIN        -2400.     -200.     2000.      250.      162.      260. &
+AUXSCORE      USRBIN   NEUTRON                DE_n                    AMB74
+* Dose Eq from all particles
+USRBIN           10.   DOSE-EQ      -59.     -900.      650.     3300.DE_A
+USRBIN        -2400.     -200.     2000.      250.      162.      260. &
 *Silicon Damage L
 USRTRACK         -1.  SI1MEVNE     -114.  rSpecLDe      540.      260.SIL
 USRTRACK       0.032     1D-14                                         &
