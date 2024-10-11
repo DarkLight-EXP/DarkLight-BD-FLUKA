@@ -69,6 +69,10 @@ BIASING          0.0        1.      512.     C1_10                    PRINT
 BIASING          0.0        1.     1024.     C1_11                    PRINT
 BIASING          0.0        1.     2048.     C1_12                    PRINT
 BIASING          0.0        1.     4096.     C1_13                    PRINT
+BIASING          0.0        1.        1.   SteelN1                    PRINT
+BIASING          0.0        1.        2.   SteelN2                    PRINT
+BIASING          0.0        1.        4.   SteelN3                    PRINT
+BIASING          0.0        1.        8.   SteelN4                    PRINT
 * Maximum allowed = 100000
 * region importance (allowed values range from 0.0001 to 100000.0)
 BIASING          0.0        1.        1.    USsSh1                    PRINT
@@ -119,6 +123,8 @@ ROT-DEFI        4003       0.0      -37.      400.      -76.   -2900. SiPML
 ROT-DEFI        4003       0.0       0.0     -370.       73.    2900. SiPML
 ROT-DEFI        5003       0.0      -37.      400.      -76.   -2900. SiPMR
 ROT-DEFI        5003       0.0       0.0     -370.       73.    2900. SiPMR
+ROT-DEFI        6003       45.       0.0     1500.       0.0   -3190. Stl
+ROT-DEFI        6003       0.0       0.0    -1400.       0.0    2699.5Stl
 
 RANDOMIZ          1. 114050473
 START       2000000.                                     0.0
@@ -218,7 +224,15 @@ PLA pWallN1    0.0 0.71933980033865119 0.69465837045899725 -134.7 167.6 3040.
 !@what.2= 130 - 650
 RPP bWallN2    -2880. -520. -1. 853. 3040. 3190.
 !@what.2= 330
-RPP bSoilN     -902. 330. -1. 853. 3190. 3398.
+RPP bSoilN     -802. 330. -1. 853. 3190. 3398.
+*Steel in North Hole
+RPP bStlNH     -909. -802. 0. 150. 3190. 3290.
+$start_transform Stl
+RPP bStlN1    -1700. -790. 0. 150. 3190. 3203.
+RPP bStlN2    -1725. -775. 0. 150. 3203. 3216.
+RPP bStlN3    -1750. -750. 0. 150. 3216. 3229.
+RPP bStlN4    -1775. -725. 0. 150. 3229. 3242.
+$end_transform
 * - Extra concete for the S wall
 RPP bWallS1    -1555. -645. 0.0 853. 0.0 90.
 * - Extra concete for the S wall
@@ -1863,7 +1877,7 @@ PLA SRIronP    1. -3. 0.0 -392. 104. 2931.
 PLA SRBoxT     1. -1.3 0.0 -392. 119. 2941.
 RPP SRSteel    -410. -340. 44. 108. 2925. 2957.
 RPP SRBoxSh    -405. -364. 108. 135. 2917. 2958.
-RPP SRBoxDe    -404. -362. 108. 135. 2918. 2957.
+RPP SRBoxDe    -404. -362. 108. 135. 2917. 2958.
 RPP SRBoxSE    -403. -402. 105. 108. 2915. 2960.
 $start_transform SiPMR
 RPP SRSiPML    -400. -368. 120. 120.5 2934. 2935.
@@ -1896,7 +1910,7 @@ PLA SLIronP    1. -3. 0.0 -392. 104. 2931.
 PLA SLBoxT     1. -1.3 0.0 -392. 119. 2941.
 RPP SLSteel    -410. -340. 44. 108. 2925. 2957.
 RPP SLBoxSh    -405. -364. 108. 125. 2917. 2958.
-RPP SLBoxDe    -404. -362. 108. 125. 2918. 2957.
+RPP SLBoxDe    -404. -362. 108. 125. 2917. 2958.
 RPP SLBoxSE    -403. -402. 105. 108. 2915. 2960.
 $start_transform SiPML
 RPP SLSiPML    -400. -375. 120. 120.5 2934. 2935.
@@ -1919,6 +1933,8 @@ BLKBODY      5 +blkbody -void
 AirSpace     5 +void -bTarget -bDLfoil -DLHut1 -DLHut2 -DLHut3 -DLHut4 -DLHut5 -bDLcham -DLchpoly -bDLchhat -DLchPB -bDLvacc -bDLChSh -bDLColl -bFloor1 -bFloor2 -bSoilF -bRoof -bWallN1B -bWallN1T -bWallN2
                -(bAngBody -pAngW_N +pAngW_S)
                -bSoilN
+	       -bStlNH
+	       -bStlN1 -bStlN2 -bStlN3 -bStlN4
                -bWSEx1 -bWallE
                -bWallW1 -bWallW2  -bCeiling -WallStk
 	       -bC1_1 -bC1_2 -bC1_3 -bC1_4 -bC1_5 -bC1_6 -bC1_7 -bC1_8 -bC1_9 -bC1_10 -bC1_11 -bC1_12 -bC1_13
@@ -2353,19 +2369,19 @@ rSpecLGM     5 +SLGEM
 *rSpeLPb      5 +SLShiePb -SLShieV +SLCurPT
 *rSpeLV       5 +SLShieV +SLCurPT
 * Floor
-Fl1_1        5 +bFloor1 -pFl1_1 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
+Fl1_1        5 +bFloor1 -pFl1_1 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN -bStlNH -bStlN1 -bStlN2 -bStlN3 -bStlN4
 * Floor
-Fl1_2        5 +bFloor1 +pFl1_1  -pFl1_2 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
+Fl1_2        5 +bFloor1 +pFl1_1  -pFl1_2 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN -bStlNH -bStlN1 -bStlN2 -bStlN3 -bStlN4
 * Floor
-Fl1_3        5 +bFloor1  +pFl1_2  -pFl1_3 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
+Fl1_3        5 +bFloor1  +pFl1_2  -pFl1_3 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN -bStlNH -bStlN1 -bStlN2 -bStlN3 -bStlN4
 * Floor
-Fl1_4        5 +bFloor1  +pFl1_3  -pFl1_4 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
+Fl1_4        5 +bFloor1  +pFl1_3  -pFl1_4 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN -bStlNH -bStlN1 -bStlN2 -bStlN3 -bStlN4
 * Floor
-Fl1_5        5 +bFloor1 +pFl1_4   -pFl1_5 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
+Fl1_5        5 +bFloor1 +pFl1_4   -pFl1_5 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN -bStlNH -bStlN1 -bStlN2 -bStlN3 -bStlN4
 * Floor
-Fl1_6        5 +bFloor1 +pFl1_5   -pFl1_6 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
+Fl1_6        5 +bFloor1 +pFl1_5   -pFl1_6 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN -bStlNH -bStlN1 -bStlN2 -bStlN3 -bStlN4
 * Floor
-Fl1_7        5 +bFloor1 +pFl1_6 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN
+Fl1_7        5 +bFloor1 +pFl1_6 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -bSoilN -bStlNH -bStlN1 -bStlN2 -bStlN3 -bStlN4
 * Floor
 Floor2       5 +bFloor2 -bWallE -bB3TunA -bB3Htch1 -bB3SACon -bB3Htch2 -bB3Htch3 -bB3Htch4
 * Existing roof beams
@@ -2434,7 +2450,7 @@ WN1_6        5 +bWallN1T-pWN1_5 +pWN1_6  -bWallE -bWallW1 -bRoof -bCeiling -bSoi
 WN1_7        5 +bWallN1T-pWN1_6  -bWallE -bWallW1 -bRoof -bCeiling -bSoilW
                | +bWallN1B  -pWN1_6 -bWallE -bWallW1 -bFloor1
 WallN2       5 +bWallN2 -bCeiling -bWallE -bWallW1 -bFloor1 -bRoof -bTunOp -bHoleN -bWallN1T  -bWallN1B
-rTunOpe      5 +bTunOp -bDetTun +pAngW_N
+rTunOpe      5 +bTunOp -bDetTun +pAngW_N -bStlN1 -bStlN2 -bStlN3 -bStlN4
 WallSEx1     5 +bWSEx1 -bWallE -bWallW2 -bFloor1 -bFloor2 -bRoof -bSChs6H -bSChs6V
 WallSEx2     5 +bWSEx2 -bOpBigS
 WallSEx3     5 +bWSEx3 -bSChs4H -bCrBig -bCrMed -bCrSmT -bCrSmB
@@ -2539,7 +2555,7 @@ DetMU        5 +DetMU
 DetMD        5 +DetMD
 DetNeut      5 +DetNeut
 DetNeut2     5 +DetNeut2
-rDetTun      5 +bDetTun
+rDetTun      5 +bDetTun -bStlN1 -bStlN2 -bStlN3 -bStlN4
 rDetCeil     5 +bDetCeil
 rDetRoof     5 +bDetRoof
 rSChs1H      5 +bSChs1H
@@ -2588,6 +2604,11 @@ rWChs3V      5 +bWChs3V
 SoilW        5 +bSoilW -bExConcW
 ExConcW      5 +bExConcW
 SoilN        5 +bSoilN
+SteelNH      5 +bStlNH -bStlN1 -bStlN2 -bStlN3 -bStlN4
+SteelN1      5 +bStlN1 -bProtE
+SteelN2      5 +bStlN2 -bProtE
+SteelN3      5 +bStlN3 -bProtE
+SteelN4      5 +bStlN4 -bProtE
 rConSW       5 +bConSW -bSChs6V
 rHallBlk     5 +bHallBlk
 rSAWallW     5 +bSAWallW
@@ -2912,6 +2933,8 @@ ASSIGNMA        SOIL    rSoilS
 ASSIGNMA        SOIL     SoilF
 ASSIGNMA        SOIL     SoilW
 ASSIGNMA        SOIL     SoilN
+ASSIGNMA     SS316LN   SteelNH
+ASSIGNMA     SS316LN   SteelN1 SteelN4
 ASSIGNMA    PortConc    rSAFlr
 ASSIGNMA         AIR   rWChs0H   rWChs3V
 ASSIGNMA    PortConc    rConSW
@@ -3030,15 +3053,15 @@ AUXSCORE      USRBIN   NEUTRON                DE_n                    AMB74
 USRBIN           10.   DOSE-EQ      -56.      350.     1000.     3300.DE_B
 USRBIN         -900.      600.     2000.      250.      162.      260. &
 * Dose Eq from gammas Location A
-USRBIN           10.   DOSE-EQ      -57.     -900.      650.     3300.DE_gA
+USRBIN           10.   DOSE-EQ      -57.     -800.      650.     3600.DE_gA
 USRBIN        -2400.     -200.     2000.      250.      162.      260. &
 AUXSCORE      USRBIN    PHOTON                DE_g                    AMB74
 * Dose Eq from neutrons
-USRBIN           10.   DOSE-EQ      -58.     -900.      650.     3300.DE_nA
+USRBIN           10.   DOSE-EQ      -58.     -800.      650.     3600.DE_nA
 USRBIN        -2400.     -200.     2000.      250.      162.      260. &
 AUXSCORE      USRBIN   NEUTRON                DE_n                    AMB74
 * Dose Eq from all particles
-USRBIN           10.   DOSE-EQ      -59.     -900.      650.     3300.DE_A
+USRBIN           10.   DOSE-EQ      -59.     -800.      650.     3600.DE_A
 USRBIN        -2400.     -200.     2000.      250.      162.      260. &
 *Silicon Damage L
 USRTRACK         -1.  SI1MEVNE     -114.  rSpecLDe      540.      260.SIL
