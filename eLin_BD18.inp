@@ -3044,25 +3044,36 @@ USRBIN         -900.     -200.     2000.      250.      162.      260. &
 * Dose Eq from gammas Location B
 USRBIN           10.   DOSE-EQ      -54.      350.     1000.     3300.DE_gB
 USRBIN         -900.      600.     2000.      250.      162.      260. &
-AUXSCORE      USRBIN    PHOTON                DE_g                    AMB74
+AUXSCORE      USRBIN    PHOTON               DE_gB                    AMB74
 * Dose Eq from neutrons
 USRBIN           10.   DOSE-EQ      -55.      350.     1000.     3300.DE_nB
 USRBIN         -900.      600.     2000.      250.      162.      260. &
-AUXSCORE      USRBIN   NEUTRON                DE_n                    AMB74
+AUXSCORE      USRBIN   NEUTRON               DE_nB                    AMB74
 * Dose Eq from all particles
 USRBIN           10.   DOSE-EQ      -56.      350.     1000.     3300.DE_B
 USRBIN         -900.      600.     2000.      250.      162.      260. &
 * Dose Eq from gammas Location A
 USRBIN           10.   DOSE-EQ      -57.     -800.      650.     3600.DE_gA
 USRBIN        -2400.     -200.     2000.      250.      162.      260. &
-AUXSCORE      USRBIN    PHOTON                DE_g                    AMB74
+AUXSCORE      USRBIN    PHOTON               DE_gA                    AMB74
 * Dose Eq from neutrons
 USRBIN           10.   DOSE-EQ      -58.     -800.      650.     3600.DE_nA
 USRBIN        -2400.     -200.     2000.      250.      162.      260. &
-AUXSCORE      USRBIN   NEUTRON                DE_n                    AMB74
+AUXSCORE      USRBIN   NEUTRON               DE_nA                    AMB74
 * Dose Eq from all particles
 USRBIN           10.   DOSE-EQ      -59.     -800.      650.     3600.DE_A
 USRBIN        -2400.     -200.     2000.      250.      162.      260. &
+* Dose Eq from gammas Location A
+USRBIN           10.   DOSE-EQ      -60.        0.     1200.     2400.DE_gC
+USRBIN        -1200.      700.     1000.      250.      162.      260. &
+AUXSCORE      USRBIN    PHOTON               DE_gC                    AMB74
+* Dose Eq from neutrons
+USRBIN           10.   DOSE-EQ      -61.        0.     1200.     2400.DE_nC
+USRBIN        -1200.      700.     1000.      250.      162.      260. &
+AUXSCORE      USRBIN   NEUTRON               DE_nC                    AMB74
+* Dose Eq from all particles
+USRBIN           10.   DOSE-EQ      -62.        0.     1200.     2400.DE_C
+USRBIN        -1200.      700.     1000.      250.      162.      260. &
 *Silicon Damage L
 USRTRACK         -1.  SI1MEVNE     -114.  rSpecLDe      540.      260.SIL
 USRTRACK       0.032     1D-14                                         &
