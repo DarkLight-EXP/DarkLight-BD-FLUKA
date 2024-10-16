@@ -177,7 +177,7 @@ RPP bC1_12     -530. 10. 570. 590. 2212. 3040.
 RPP bC1_13     -530. 10. 590. 610. 2212. 3040.
 RPP WallStk    -2520.0 120.0 600.0 1006.0 2210.0 2340.0
 * - Extra concrete shielding at edge of Roof Beams, 90x120cm, wide by tall
-RPP bBlkE      -2520.5 -2430.5 840. 960. -80. 2220.
+RPP bBlkE      -2520.5 -2430.5 840. 960. -80. 2210.
 RPP bWallW1    0.0 121.9 -1. 762. 2650. 3190.
 * For biasing
 YZP pWW1_1     20.
@@ -1921,16 +1921,16 @@ $end_transform
 $end_transform
 
 * DL Hut
-RPP DLHut1  -150. -50. 0. 243. 2340. 2400.  
-RPP DLHut2  -50. 0. 0. 243. 2150. 2400.
-RPP DLHut3  -100. 0. 0. 243. 2100. 2150.
-RPP DLHut4  -200. -150. 0. 243. 2100. 2400.
-RPP DLHut5  -200. 0. 243. 343. 2100. 2400.
+*RPP DLHut1  -150. -50. 0. 243. 2340. 2400.  
+*RPP DLHut2  -50. 0. 0. 243. 2150. 2400.
+*RPP DLHut3  -100. 0. 0. 243. 2100. 2150.
+*RPP DLHut4  -200. -150. 0. 243. 2100. 2400.
+*RPP DLHut5  -200. 0. 243. 343. 2100. 2400.
 END
 * Black hole
 BLKBODY      5 +blkbody -void
 * Void around
-AirSpace     5 +void -bTarget -bDLfoil -DLHut1 -DLHut2 -DLHut3 -DLHut4 -DLHut5 -bDLcham -DLchpoly -bDLchhat -DLchPB -bDLvacc -bDLChSh -bDLColl -bFloor1 -bFloor2 -bSoilF -bRoof -bWallN1B -bWallN1T -bWallN2
+AirSpace     5 +void -bTarget -bDLfoil -bDLcham -DLchpoly -bDLchhat -DLchPB -bDLvacc -bDLChSh -bDLColl -bFloor1 -bFloor2 -bSoilF -bRoof -bWallN1B -bWallN1T -bWallN2
                -(bAngBody -pAngW_N +pAngW_S)
                -bSoilN
 	       -bStlNH
@@ -2302,11 +2302,11 @@ DLCHPOLY     5 +DLchpoly -DLchair -DLchtair -bDLcham -SLEnt -SREnt -bBP1Wall -DL
 DLVacuum     5 +bDLvacc -bDLfoil -bBP1Vac
 DLColl       5 +bDLColl -bDLCHol 
 DLCHol       5 +bDLCHol
-DLHut        5 +DLHut1
-             | +DLHut2
-	     | +DLHut3
-	     | +DLHut4
-	     | +DLHut5
+*DLHut        5 +DLHut1
+*             | +DLHut2
+*	     | +DLHut3
+*	     | +DLHut4
+*	     | +DLHut5
 *DL Permanent Magnets
 DLPM1        5 +bDLPMo1 -bBP1Wall 
 DLPM2        5 +bDLPMo2 -bBP1Wall 
@@ -2385,7 +2385,7 @@ Fl1_7        5 +bFloor1 +pFl1_6 -bWallE -bB3TunA -bB3TunC -bB3Htch3 - bB3Htch4 -
 * Floor
 Floor2       5 +bFloor2 -bWallE -bB3TunA -bB3Htch1 -bB3SACon -bB3Htch2 -bB3Htch3 -bB3Htch4
 * Existing roof beams
-Roof         5 +bRoof -bAirGp21 -bAirGp20 -bAirGp19 -bAirGp18 -bAirGp17 -bAirGp16 -bAirGp15
+Roof         5 +bRoof -bAirGp21 -bAirGp20 -bAirGp19 -bAirGp18 -bAirGp17 -bAirGp16 -bAirGp15 -bJayUp3 -bJayUp2
                -bAirGp14 -bAirGp13 -AirGap12 -bAirGp11 -bAirGp10 -bAirGp9 -bAirGap8 -bAirGap7
                -bAirGap6 -bAirGap5 -bAirGap4 -bAirGap3 -bAirGap2 -bAirGap1 -bAirGp22 -bJayUp1
 * - Air Gaps in roof beams
@@ -2709,7 +2709,7 @@ ASSIGNMA    TANTALUM  DLTarget
 ASSIGNMA    Stainles   DLChamb
 ASSIGNMA        B-PE  DLCHPOLY
 ASSIGNMA        LEAD  DLCHLEAD
-ASSIGNMA    PortConc     DLHut
+*ASSIGNMA    PortConc     DLHut
 *ASSIGNMA      VACUUM    rSpeRV
 *ASSIGNMA        LEAD   rSpeRPb
 *ASSIGNMA        B-PE   rSpeRPo
